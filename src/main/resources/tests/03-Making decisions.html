@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Making Decisions</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="test">
+        <p class="timer">00:00:00</p>
+
+        <div class="question" data-question="1">
+            <h1 class="question-title">Question 1</h1>
+            <p class="question-text">Which of the following data types can be used in a switch expression? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. enum</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. int</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. Byte</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. long</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. String</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. char</p>
+                <p class="question-answer" data-is-correct="True"><input name="G" type="checkbox"/>G. var</p>
+                <p class="question-answer" data-is-correct="False"><input name="H" type="checkbox"/>H. double</p>
+            </div>
+            <p class="question-explanation">
+                A, B, C, E, F, G. A switch expression supports only the primitives int, byte, short,
+                and char, along with their associated wrapper classes Integer, Byte, Short, and
+                Character, respectively, making options B, C, and F correct and ruling out options D and
+                H. It also supports enum and String, making options A and E correct. Finally, switch
+                supports var if the type can be resolved to a supported switch data type, making option
+                G correct.
+            </p>
+        </div>
+        <div class="question" data-question="2">
+            <h1 class="question-title">Question 2</h1>
+            <p class="question-text">What is the output of the following code snippet? (Choose all that apply.)</p>
+            <pre class="question-code">
+3: int temperature = 4;
+4: long humidity = -temperature + temperature * 3;
+5: if (temperature&gt;=4)
+6: if (humidity &lt; 6) System.out.println("Too Low");
+7: else System.out.println("Just Right");
+8: else System.out.println("Too High");
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Too Low</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. Just Right</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Too High</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. A NullPointerException is thrown at runtime.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code will not compile because of line 7.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code will not compile because of line 8.</p>
+            </div>
+            <p class="question-explanation">
+                B. The code compiles and runs without issue, so options D, E, and F are incorrect. Even
+                though two consecutive else statements on lines 7 and 8 look a little odd, they are associated with separate if statements on lines 5 and 6, respectively. The value of humidity on
+                line 4 is equal to -4 + 12, which is 8. The first if statement evaluates to true on line 5, so
+                line 6 is executed and evaluates to false. This causes the else statement on line 7 to run,
+                printing Just Right and making option B the correct answer.
+            </p>
+        </div>
+        <div class="question" data-question="3">
+            <h1 class="question-title">Question 3</h1>
+            <p class="question-text">Which of the following data types are permitted on the right side of a for-each expression? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. Double[][]</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Object</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Map</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. List</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. String</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. char[]</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. Exception</p>
+                <p class="question-answer" data-is-correct="True"><input name="H" type="checkbox"/>H. Set</p>
+            </div>
+            <p class="question-explanation">
+                A, D, F, H. A for-each loop supports arrays, making options A and F correct. For
+                Double[][], each element of the for-each loop would be a Double[]. A for-each loop also
+                supports classes that implement java.lang.Iterable. Although this includes many of
+                the Collections Framework classes, not all of them implement java.lang.Iterable. For
+                this reason, option C is incorrect, and options D and H are correct. Options B, E, and G are
+                incorrect, as they do not implement java.lang.Iterable. Although a String is a list of
+                ordered characters, the class does not implement the required interface for a for-each loop.
+            </p>
+        </div>
+        <div class="question" data-question="4">
+            <h1 class="question-title">Question 4</h1>
+            <p class="question-text">What is the output of calling printReptile(6)?</p>
+            <pre class="question-code">
+void printReptile(int category) {
+  var type = switch(category) {
+    case 1,2 -&gt; "Snake";
+    case 3,4 -&gt; "Lizard";
+    case 5,6 -&gt; "Turtle";
+    case 7,8 -&gt; "Alligator";
+  };
+  System.out.print(type);
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Snake</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Lizard</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Turtle</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Alligator</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. TurtleAlligator</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                F. The code does not compile because the switch expression requires all possible case
+                values to be handled, making option F correct. If a valid default statement was added, then
+                the code would compile and print Turtle at runtime. Unlike traditional switch statements,
+                switch expressions execute exactly one branch and do not use break statements between
+                case statements
+            </p>
+        </div>
+        <div class="question" data-question="5">
+            <h1 class="question-title">Question 5</h1>
+            <p class="question-text">What is the output of the following code snippet?</p>
+            <pre class="question-code">
+List&lt;Integer&gt; myFavoriteNumbers = new ArrayList&lt;&gt;();
+myFavoriteNumbers.add(10);
+myFavoriteNumbers.add(14);
+for (var a : myFavoriteNumbers) {
+  System.out.print(a + ", ");
+  break;
+}
+for (int b : myFavoriteNumbers) {
+  continue;
+  System.out.print(b + ", ");
+}
+for (Object c : myFavoriteNumbers)
+  System.out.print(c + ", ");
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. It compiles and runs without issue but does not produce any output.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 10, 14,</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 10, 10, 14,</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. 10, 10, 14, 10, 14,</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. Exactly one line of code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. Exactly two lines of code do not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. Three or more lines of code do not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="H" type="checkbox"/>H. The code contains an infinite loop and does not terminate.</p>
+            </div>
+            <p class="question-explanation">
+                E. The second for-each loop contains a continue followed by a print() statement.
+                Because the continue is not conditional and always included as part of the body of the foreach loop, the print() statement is not reachable. For this reason, the print() statement
+                does not compile. As this is the only compilation error, option E is correct. The other lines of
+                code compile without issue.
+            </p>
+        </div>
+        <div class="question" data-question="6">
+            <h1 class="question-title">Question 6</h1>
+            <p class="question-text">Which statements about decision structures are true? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. A for-each loop can be executed on any Collections Framework object.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. The body of a while loop is guaranteed to be executed at least once.</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. The conditional expression of a for loop is evaluated before the first execution of the loop body.</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. A switch expression that takes a String and assigns the result to a variable requires a default branch.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. The body of a do/while loop is guaranteed to be executed at least once.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. An if statement can have multiple corresponding else statements.</p>
+            </div>
+            <p class="question-explanation">
+                C, D, E. A for-each loop can be executed on any Collections object that implements
+                java.lang.Iterable, such as List or Set, but not all Collections classes, such as Map,
+                so option A is incorrect. The body of a do/while loop is executed one or more times, while
+                the body of a while loop is executed zero or more times, making option E correct and
+                option B incorrect. The conditional expression of for loops is evaluated at the start of the
+                loop execution, meaning the for loop may execute zero or more times, making option C
+                correct. A switch expression that takes a String requires a default branch if the result
+                is assigned to a variable, making option D correct. Finally, each if statement has at most one
+                matching else statement, making option F incorrect.
+            </p>
+        </div>
+        <div class="question" data-question="7">
+            <h1 class="question-title">Question 7</h1>
+            <p class="question-text">Assuming weather is a well-formed nonempty array, which code snippet, when inserted independently into the
+                blank in the following code, prints all of the elements of weather? (Choose all that apply.)</p>
+            <pre class="question-code">
+private void print(int[] weather) {
+  for(__________________) {
+    System.out.println(weather[i]);
+  }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. int i=weather.length; i&gt;0; i--</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. int i=0; i&lt;=weather.length-1; ++i</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. var w : weather</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. int i=weather.length-1; i&gt;=0; i--</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. int i=0, int j=3; i&lt;weather.length; ++i</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. int i=0; ++i&lt;10 &amp;&amp; i&lt;weather.length;</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                B, D. Option A is incorrect because on the first iteration, it attempts to access
+                weather[weather.length] of the nonempty array, which causes an
+                ArrayIndexOutOfBoundsException to be thrown. Option B is correct and will print
+                the elements in order. Option C doesn’t compile as i is undefined in weather[i]. For this
+                to work, the body of the for-each loop would have to be updated as well. Option D is also
+                correct and is a common way to print the elements of an array in reverse order. Option E
+                does not compile and is therefore incorrect. You can declare multiple elements in a for loop,
+                but the data type must be listed only once, such as in for(int i=0, j=3; ...). Finally,
+                option F is incorrect because the first element of the array is skipped. Since the conditional
+                expression is checked before the loop is executed the first time, the first value of i used inside
+                the body of the loop will be 1.
+            </p>
+        </div>
+        <div class="question" data-question="8">
+            <h1 class="question-title">Question 8</h1>
+            <p class="question-text">What is the output of calling printType(11)?</p>
+            <pre class="question-code">
+31: void printType(Object o) {
+32:    if(o instanceof Integer bat) {
+33:       System.out.print("int");
+34:    } else if(o instanceof Integer bat &amp;&amp; bat &lt; 10) {
+35:       System.out.print("small int");
+36:    } else if(o instanceof Long bat || bat &lt;= 20) {
+37:       System.out.print("long");
+38:    } default {
+39:       System.out.print("unknown");
+40:    }
+41: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. int</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. small int</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. long</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. unknown</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Nothing is printed.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code contains one line that does not compile.</p>
+                <p class="question-answer" data-is-correct="True"><input name="G" type="checkbox"/>G. The code contains two lines that do not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="H" type="checkbox"/>H. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                G. The first two pattern matching statements compile without issue. The variable bat is
+                allowed to be used again, provided it is no longer in scope. Line 36 does not compile,
+                though. Due to flow scoping, if s is not a Long, then bat is not in scope in the expression bat &lt;= 20. Line 38 also does not compile as default cannot be used as part of an
+                if/else statement. For these two reasons, option G is correct
+            </p>
+        </div>
+        <div class="question" data-question="9">
+            <h1 class="question-title">Question 9</h1>
+            <p class="question-text">Which statements, when inserted independently into the following blank, will cause the code to print 2 at runtime? (Choose all that apply.)</p>
+            <pre class="question-code">
+int count = 0;
+BUNNY: for(int row = 1; row &lt;=3; row++)
+  RABBIT: for(int col = 0; col &lt;3 ; col++) {
+    if((col + row) % 2 == 0)
+      ___________________;
+      count++;
+  }
+System.out.println(count);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. break BUNNY</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. break RABBIT</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. continue BUNNY</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. continue RABBIT</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. break</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. continue</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above, as the code contains a compiler error.</p>
+            </div>
+            <p class="question-explanation">
+                B, C, E. The code contains a nested loop and a conditional expression that is executed if the
+                sum of col + row is an even number; otherwise, count is incremented. Note that options
+                E and F are equivalent to options B and D, respectively, since unlabeled statements apply to
+                the most inner loop. Studying the loops, the first time the condition is true is in the second
+                iteration of the inner loop, when row is 1 and col is 1. Option A is incorrect because this
+                causes the loop to exit immediately with count only being set to 1. Options B, C, and E
+                follow the same pathway. First, count is incremented to 1 on the first inner loop, and then
+                the inner loop is exited. On the next iteration of the outer loop, row is 2 and col is 0, so
+                execution exits the inner loop immediately. On the third iteration of the outer loop, row is 3
+                and col is 0, so count is incremented to 2. In the next iteration of the inner loop, the sum
+                is even, so we exit, and our program is complete, making options B, C, and E each correct.
+                Options D and F are both incorrect, as they cause the inner and outer loops to execute multiple times,
+                with count having a value of 5 when done. You don’t need to trace through all
+                the iterations; just stop when the value of count exceeds 2.
+            </p>
+        </div>
+        <div class="question" data-question="10">
+            <h1 class="question-title">Question 10</h1>
+            <p class="question-text">Given the following method, how many lines contain compilation errors? (Choose all that apply.)</p>
+            <pre class="question-code">
+10: private DayOfWeek getWeekDay(int day, final int thursday) {
+11:    int otherDay = day;
+12:    int Sunday = 0;
+13:    switch(otherDay) {
+14:       default:
+15:       case 1: continue;
+16:       case thursday: return DayOfWeek.THURSDAY;
+17:       case 2,10: break;
+18:       case Sunday: return DayOfWeek.SUNDAY;
+19:       case DayOfWeek.MONDAY: return DayOfWeek.MONDAY;
+20:    }
+21:    return DayOfWeek.FRIDAY;
+22: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. None, the code compiles without issue.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 1</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 2</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. 3</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. 4</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. 5</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. 6</p>
+                <p class="question-answer" data-is-correct="False"><input name="H" type="checkbox"/>H. The code compiles but may produce an error at runtime.</p>
+            </div>
+            <p class="question-explanation">
+                E. This code contains numerous compilation errors, making options A and H incorrect. Line
+                15 does not compile, as continue cannot be used inside a switch statement like this. Line
+                16 is not a compile-time constant since any int value can be passed as a parameter. Marking it final does not change this, so it doesn’t compile. Line 18 does not compile because
+                Sunday is not marked as final. Being effectively final is insufficient. Finally, line 19 does
+                not compile because DayOfWeek.MONDAY is not an int value. While switch statements
+                do support enum values, each case statement must have the same data type as the switch
+                variable otherDay, which is int. The rest of the lines do compile. Since exactly four lines
+                do not compile, option E is the correct answer.
+            </p>
+        </div>
+        <div class="question" data-question="11">
+            <h1 class="question-title">Question 11</h1>
+            <p class="question-text">What is the output of calling printLocation(Animal.MAMMAL)?</p>
+            <pre class="question-code">
+10: class Zoo {
+11:    enum Animal {BIRD, FISH, MAMMAL}
+12:    void printLocation(Animal a) {
+13:       long type = switch(a) {
+14:          case BIRD -&gt; 1;
+15:          case FISH -&gt; 2;
+16:          case MAMMAL -&gt; 3;
+17:          default -&gt; 4;
+18:       };
+19:       System.out.print(type);
+20:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. 3</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 4</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 34</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The code does not compile because of line 13.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code does not compile because of line 17.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                A. The code compiles and runs without issue, printing 3 at runtime and making option
+                A correct. The default statement on line 17 is optional since all the enum values are
+                accounted for and can be removed without changing the output
+            </p>
+        </div>
+        <div class="question" data-question="12">
+            <h1 class="question-title">Question 12</h1>
+            <p class="question-text">What is the result of the following code snippet?</p>
+            <pre class="question-code">
+3: int sing = 8, squawk = 2, notes = 0;
+4: while(sing&gt; squawk) {
+5:    sing--;
+6:    squawk += 2;
+7:    notes += sing + squawk;
+8: }
+9: System.out.println(notes);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. 11</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 13</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. 23</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. 33</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. 50</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code will not compile because of line 7.</p>
+            </div>
+            <p class="question-explanation">
+                C. Prior to the first iteration, sing = 8, squawk = 2, and notes = 0. After the iteration of the first loop, sing is updated to 7, squawk to 4, and notes to the sum of the new
+                values for sing + squawk, 7 + 4 = 11. After the iteration of the second loop, sing is
+                updated to 6, squawk to 6, and notes to the sum of itself plus the new values for
+                sing + squawk, 11 + 6 + 6 = 23. On the third iteration of the loop,
+                sing &gt; squawk evaluates to false, as 6 &gt; 6 is false. The loop ends and the most
+                recent value of sing, 23, is output, so the correct answer is option C
+            </p>
+        </div>
+        <div class="question" data-question="13">
+            <h1 class="question-title">Question 13</h1>
+            <p class="question-text">What is the output of the following code snippet?</p>
+            <pre class="question-code">
+2: boolean keepGoing = true;
+3: int result = 15, meters = 10;
+4: do {
+5:    meters--;
+6:    if(meters==8) keepGoing = false;
+7:    result -= 2;
+8: } while keepGoing;
+9: System.out.println(result);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. 7</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 9</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 10</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. 11</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. 15</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code will not compile because of line 6.</p>
+                <p class="question-answer" data-is-correct="True"><input name="G" type="checkbox"/>G. The code does not compile for a different reason.</p>
+            </div>
+            <p class="question-explanation">
+                G. This example may look complicated, but the code does not compile. Line 8 is missing the
+                required parentheses around the boolean conditional expression. Since the code does not
+                compile and it is not because of line 6, option G is the correct answer. If line 8 was corrected
+                with parentheses, then the loop would be executed twice, and the output would be 11.
+            </p>
+        </div>
+        <div class="question" data-question="14">
+            <h1 class="question-title">Question 14</h1>
+            <p class="question-text">Which statements about the following code snippet are correct? (Choose all that apply.)</p>
+            <pre class="question-code">
+for(var penguin : new int[2])
+  System.out.println(penguin);
+var ostrich = new Character[3];
+for(var emu : ostrich)
+  System.out.println(emu);
+List&lt;Integer&gt; parrots = new ArrayList&lt;Integer&gt;();
+for(var macaw  : parrots)
+  System.out.println(macaw);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. The data type of penguin is Integer.</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. The data type of penguin is int.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. The data type of emu is undefined.</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. The data type of emu is Character.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The data type of macaw is List.</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. The data type of macaw is Integer.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above, as the code does not compile.</p>
+            </div>
+            <p class="question-explanation">
+                B, D, F. The code does compile, making option G incorrect. In the first for-each loop, the
+                right side of the for-each loop has a type of int[], so each element penguin has a type
+                of int, making option B correct. In the second for-each loop, ostrich has a type of
+                Character[], so emu has a data type of Character, making option D correct. In the
+                last for-each loop, parrots has a data type of List&lt;Integer&gt;. Since the generic type
+                of Integer is used in the List, macaw will have a data type of Integer, making option
+                F correct.
+            </p>
+        </div>
+        <div class="question" data-question="15">
+            <h1 class="question-title">Question 15</h1>
+            <p class="question-text">What is the result of the following code snippet?</p>
+            <pre class="question-code">
+final char a = &#39;A&#39;, e = &#39;E&#39;;
+char grade = &#39;B&#39;;
+switch (grade) {
+  default:
+  case a:
+  case &#39;B&#39;: &#39;C&#39;: System.out.print("great ");
+  case &#39;D&#39;: System.out.print("good "); break;
+  case e:
+  case &#39;F&#39;: System.out.print("not good ");
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. great</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. great good</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. good</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. not good</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code does not compile because the data type of one or more case statements does not match the data type of the switch variable.</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                F. The code does not compile, although not for the reason specified in option E. The second case statement contains invalid syntax. Each case statement must have the keyword
+                case—in other words, you cannot chain them with a colon (:). For this reason, option F
+                is the correct answer. This line could have been fixed to say case &#39;B&#39;, &#39;C&#39; or by adding
+                the case keyword before &#39;C&#39;; then the rest of the code would have compiled and printed
+                great good at runtime.
+            </p>
+        </div>
+        <div class="question" data-question="16">
+            <h1 class="question-title">Question 16</h1>
+            <p class="question-text">What distinct numbers are printed when the following method is executed? (Choose all that apply.)</p>
+            <pre class="question-code">
+private void countAttendees() {
+int participants = 4, animals = 2, performers = -1;
+    while((participants = participants+1) &lt; 10) {}
+    do {} while (animals++ &lt;= 1);
+    for( ; performers&lt;2; performers+=2) {}
+    System.out.println(participants);
+    System.out.println(animals);
+    System.out.println(performers);
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. 6</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. 3</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 4</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. 5</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. 10</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. 9</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="H" type="checkbox"/>H. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                B, E. The code compiles without issue and prints two distinct numbers at runtime, so options
+                G and H are incorrect. The first loop executes a total of five times, with the loop ending
+                when participants has a value of 10. For this reason, option E is correct. In the second
+                loop, animals starts out not less than or equal to 1, but since it is a do/while loop, it
+                executes at least once. In this manner, animals takes on a value of 3 and the loop terminates, making option B correct. Finally, the last loop executes a total of two times, with
+                performers starting with -1, going to 1 at the end of the first loop, and then ending with
+                a value of 3 after the second loop, which breaks the loop. This makes option B a correct
+                answer twice over
+            </p>
+        </div>
+        <div class="question" data-question="17">
+            <h1 class="question-title">Question 17</h1>
+            <p class="question-text">Which statements about pattern matching and flow scoping are correct? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Pattern matching with an if statement is implemented using the instance operator.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Pattern matching with an if statement is implemented using the instanceon operator.</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. Pattern matching with an if statement is implemented using the instanceof operator.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The pattern variable cannot be accessed after the if statement in which it is declared.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. Flow scoping means a pattern variable is only accessible if the compiler can discern its type.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. Pattern matching can be used to declare a variable with an else statement.</p>
+            </div>
+            <p class="question-explanation">
+                C, E. Pattern matching with an if statement is implemented using the instanceof operator, making option C correct and options A and B incorrect. Option D is incorrect as it is
+                possible to access a pattern variable outside the if statement in which it is defined. Option
+                E is a correct statement about flow scoping. Option F is incorrect. Pattern matching does not
+                support declaring variables in else statements as else statements do not have a boolean
+                expression.
+            </p>
+        </div>
+        <div class="question" data-question="18">
+            <h1 class="question-title">Question 18</h1>
+            <p class="question-text">What is the output of the following code snippet?</p>
+            <pre class="question-code">
+2: double iguana = 0;
+3: do {
+4:    int snake = 1;
+5:    System.out.print(snake++ + " ");
+6:    iguana--;
+7: } while (snake &lt;= 5);
+8: System.out.println(iguana);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. 1 2 3 4 -4.0</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 1 2 3 4 -5.0</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 1 2 3 4 5 -4.0</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. 0 1 2 3 4 5 -5.0</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code compiles but produces an infinite loop at runtime.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                E. The variable snake is declared within the body of the do/while statement, so it is out
+                of scope on line 7. For this reason, option E is the correct answer. If snake were declared
+                before line 3 with a value of 1, then the output would have been 1 2 3 4 5 -5.0, and
+                option G would have been the correct answer.
+            </p>
+        </div>
+        <div class="question" data-question="19">
+            <h1 class="question-title">Question 19</h1>
+            <p class="question-text">Which statements, when inserted into the following blanks, allow the code to compile and run without entering an infinite loop? (Choose all that apply.)</p>
+            <pre class="question-code">
+4:  int height = 1;
+5:  L1: while(height++ &lt;10) {
+6:     long humidity = 12;
+7:     L2: do {
+8:        if(humidity-- % 12 == 0) ________________;
+9:        int temperature = 30;
+10:       L3: for( ; ; ) {
+11:          temperature++;
+12:          if(temperature&gt;50) ________________;
+13:       }
+14:    } while (humidity &gt; 4);
+15: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. break L2 on line 8; continue L2 on line 12</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. continue on line 8; continue on line 12</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. break L3 on line 8; break L1 on line 12</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. continue L2 on line 8; continue L3 on line 12</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. continue L2 on line 8; continue L2 on line 12</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of the above, as the code contains a compiler error</p>
+            </div>
+            <p class="question-explanation">
+                A, E. The most important thing to notice when reading this code is that the innermost loop
+                is an infinite loop. Therefore, you are looking for solutions that skip the innermost loop
+                entirely or that exit that loop. Option A is correct, as break L2 on line 8 causes the second
+                inner loop to exit every time it is entered, skipping the innermost loop entirely. For option B,
+                the first continue on line 8 causes the execution to skip the innermost loop on the first iteration of the second loop but not the second iteration of the second loop. The innermost loop
+                is executed, and with continue on line 12, it produces an infinite loop at runtime, making
+                option B incorrect. Option C is incorrect because it contains a compiler error. The label L3
+                is not visible outside its loop. Option D is incorrect, as it is equivalent to option B since the
+                unlabeled break and continue apply to the nearest loop and therefore produce an infinite
+                loop at runtime. Like option A, the continue L2 on line 8 allows the innermost loop to be
+                executed the second time the second loop is called. The continue L2 on line 12 exits the
+                infinite loop, though, causing control to return to the second loop. Since the first and second
+                loops terminate, the code terminates, and option E is a correct answer.
+            </p>
+        </div>
+        <div class="question" data-question="20">
+            <h1 class="question-title">Question 20</h1>
+            <p class="question-text">A minimum of how many lines need to be corrected before the following method will compile?</p>
+            <pre class="question-code">
+21: void findZookeeper(Long id) {
+22:    System.out.print(switch(id) {
+23:       case 10 -&gt; {"Jane"}
+24:       case 20 -&gt; {yield "Lisa";};
+25:       case 30 -&gt; "Kelly";
+26:       case 30 -&gt; "Sarah";
+27:       default -&gt; "Unassigned";
+28:    });
+29: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Zero</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. One</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Two</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Three</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. Four</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. Five</p>
+            </div>
+            <p class="question-explanation">
+                E. Line 22 does not compile because Long is not a compatible type for a switch statement
+                or expression. Line 23 does not compile because it is missing a semicolon after "Jane" and
+                a yield statement. Line 24 does not compile because it contains an extra semicolon at the
+                end. Finally, lines 25 and 26 do not compile because they use the same case value. At least
+                one of them would need to be changed for the code to compile. Since four lines need to be
+                corrected, option E is correct.
+            </p>
+        </div>
+        <div class="question" data-question="21">
+            <h1 class="question-title">Question 21</h1>
+            <p class="question-text">What is the output of the following code snippet? (Choose all that apply.)</p>
+            <pre class="question-code">
+2: var tailFeathers = 3;
+3: final var one = 1;
+4: switch (tailFeathers) {
+5:    case one: System.out.print(3 + " ");
+6:    default: case 3: System.out.print(5 + " ");
+7: }
+8: while (tailFeathers&gt; 1) {
+9:    System.out.print(--tailFeathers + " "); }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. 3</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 5 1</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 5 2</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. 3 5 1</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. 5 2 1</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code will not compile because of lines 3–5.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. The code will not compile because of line 6.</p>
+            </div>
+            <p class="question-explanation">
+                E. The code compiles without issue, making options F and G incorrect. Remember, var is
+                supported in both switch and while loops, provided the compiler determines that the type
+                is compatible with these statements. In addition, the variable one is allowed in a case statement because it is a final local variable, making it a compile-time constant. The value of
+                tailFeathers is 3, which matches the second case statement, making 5 the first output.
+                The while loop is executed twice, with the pre-increment operator (--) modifying the value
+                of tailFeathers from 3 to 2 and then to 1 on the second loop. For this reason, the final
+                output is 5 2 1, making option E the correct answer.
+            </p>
+        </div>
+        <div class="question" data-question="22">
+            <h1 class="question-title">Question 22</h1>
+            <p class="question-text">What is the output of the following code snippet?</p>
+            <pre class="question-code">
+15: int penguin = 50, turtle = 75;
+16: boolean older = penguin&gt;= turtle;
+17: if (older = true) System.out.println("Success");
+18: else System.out.println("Failure");
+19: else if(penguin != 50) System.out.println("Other");
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Success</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Failure</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Other</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The code will not compile because of line 17.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code compiles but throws an exception at runtime.</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                F. Line 19 starts with an else statement, but there is no preceding if statement that it
+                matches. For this reason, line 19 does not compile, making option F the correct answer. If the
+                else keyword was removed from line 19, then the code snippet would print Success.
+            </p>
+        </div>
+        <div class="question" data-question="23">
+            <h1 class="question-title">Question 23</h1>
+            <p class="question-text">Which of the following are possible data types for friends that would allow the code to compile? (Choose all that apply.)</p>
+            <pre class="question-code">
+for(var friend in friends) {
+  System.out.println(friend);
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Set</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Map</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. String</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. int[]</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Collection</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. StringBuilder</p>
+                <p class="question-answer" data-is-correct="True"><input name="G" type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                G. The statement is not a valid for-each loop (or a traditional for loop) since it uses a nonexistent in keyword. For this reason, the code does not compile, and option G is correct. If
+                the in was changed to a colon (:), then Set, int[], and Collection would be correct.
+            </p>
+        </div>
+        <div class="question" data-question="24">
+            <h1 class="question-title">Question 24</h1>
+            <p class="question-text">What is the output of the following code snippet?</p>
+            <pre class="question-code">
+6:  String instrument = "violin";
+7:  final String CELLO = "cello";
+8:  String viola = "viola";
+9:  int p = -1;
+10: switch(instrument) {
+11:    case "bass" : break;
+12:    case CELLO : p++;
+13:    default: p++;
+14:    case "VIOLIN": p++;
+15:    case "viola" : ++p; break;
+16: }
+17: System.out.print(p);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. -1</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 0</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 1</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. 2</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. 3</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code does not compile.</p>
+            </div>
+            <p class="question-explanation">
+                D. The code compiles without issue, so option F is incorrect. The viola variable created on
+                line 8 is never used and can be ignored. If it had been used as the case value on line 15, it
+                would have caused a compilation error since it is not marked final. Since "violin" and
+                "VIOLIN" are not an exact match, the default branch of the switch statement is executed at runtime. This execution path increments p a total of three times, bringing the final
+                value of p to 2 and making option D the correct answer.
+            </p>
+        </div>
+        <div class="question" data-question="25">
+            <h1 class="question-title">Question 25</h1>
+            <p class="question-text">What is the output of the following code snippet? (Choose all that apply.)</p>
+            <pre class="question-code">
+9:  int w = 0, r = 1;
+10: String name = "";
+11: while(w &lt; 2) {
+12:    name += "A";
+13:    do {
+14:       name += "B";
+15:       if(name.length()&gt;0) name += "C";
+16:       else break;
+17:    } while (r &lt;=1);
+18:    r++; w++; }
+19: System.out.println(name);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. ABC</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. ABCABC</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. ABCABCABC</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Line 15 contains a compilation error.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Line 18 contains a compilation error.</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. The code compiles but never terminates at runtime.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. The code compiles but throws a NullPointerException at runtime.</p>
+            </div>
+            <p class="question-explanation">
+                F. The code snippet does not contain any compilation errors, so options D and E are incorrect.
+                There is a problem with this code snippet, though. While it may seem complicated, the
+                key is to notice that the variable r is updated outside of the do/while loop. This is allowed
+                from a compilation standpoint, since it is defined before the loop, but it means the innermost
+                loop never breaks the termination condition r &lt;= 1. At runtime, this will produce an infinite loop
+                the first time the innermost loop is entered, making option F the correct answer.
+            </p>
+        </div>
+        <div class="question" data-question="26">
+            <h1 class="question-title">Question 26</h1>
+            <p class="question-text">What is printed by the following code snippet?</p>
+            <pre class="question-code">
+23: byte amphibian = 1;
+24: String name = "Frog";
+25: String color = switch(amphibian) {
+26:    case 1 -&gt; { yield "Red"; }
+27:    case 2 -&gt; { if(name.equals("Frog")) yield "Green"; }
+28:    case 3 -&gt; { yield "Purple"; }
+29:    default -&gt; throw new RuntimeException();
+30: };
+31: System.out.print(color);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Red</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Green</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Purple</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. RedPurple</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. An exception is thrown at runtime.</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. The code does not compile.</p>
+            </div>
+            <p class="question-explanation">
+                F. Line 27 does not compile because the case block does not yield a value if name is not
+                equal to Frog. For this reason, option F is correct. Every path within a case block must
+                yield a value if the switch expression is expected to return a value.
+            </p>
+        </div>
+        <div class="question" data-question="27">
+            <h1 class="question-title">Question 27</h1>
+            <p class="question-text">What is the output of calling getFish("goldie")?</p>
+            <pre class="question-code">
+40: void getFish(Object fish) {
+41:    if (!(fish instanceof String guppy))
+42:       System.out.print("Eat!");
+43:    else if (!(fish instanceof String guppy)) {
+44:       throw new RuntimeException();
+45:    }
+46:    System.out.print("Swim!");
+47: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Eat!</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Swim!</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Eat! followed by an exception.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Eat!Swim!</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. An exception is printed.</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                F. Based on flow scoping, guppy is in scope after lines 41–42 if the type is not a String.
+                In this case, line 43 declares a variable guppy that is a duplicate of the previously defined
+                local variable defined on line 41. For this reason, the code does not compile, and option F is
+                correct. If a different variable name was used on line 43, then the code would compile and
+                print Swim! at runtime with the specified input.
+            </p>
+        </div>
+        <div class="question" data-question="28">
+            <h1 class="question-title">Question 28</h1>
+            <p class="question-text">What is the result of the following code?</p>
+            <pre class="question-code">
+1: public class PrintIntegers {
+2:    public static void main(String[] args) {
+3:       int y = -2;
+4:       do System.out.print(++y + " ");
+5:       while(y &lt;= 5);
+6: } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. -2 -1 0 1 2 3 4 5</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. -2 -1 0 1 2 3 4</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. -1 0 1 2 3 4 5 6</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. -1 0 1 2 3 4 5</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code will not compile because of line 5.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code contains an infinite loop and does not terminate.</p>
+            </div>
+            <p class="question-explanation">
+                C. Since the pre-increment operator was used, the first value that will be displayed is -1, so
+                options A and B are incorrect. On the second-to-last iteration of the loop, y will be incremented to 5, and the loop will output 5. The loop will continue since 5 &lt;= 5 is true, and
+                on the last iteration, 6 will be output. At the end of this last iteration, the boolean expression 6 &lt;= 5 will evaluate to false, and the loop will terminate. Since 6 was the last value
+                output by the loop, the answer is option C.
+            </p>
+        </div>
+
+        <p class="info"></p>
+    </div>
+    <div>
+        <button type="button" class="start">Start</button>
+        <button type="button" class="finish">Finish</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

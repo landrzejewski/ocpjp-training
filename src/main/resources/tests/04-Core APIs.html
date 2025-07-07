@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Core APIs</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="test">
+        <p class="timer">00:00:00</p>
+
+        <div class="question" data-question="1">
+            <h1 class="question-title">Question 1</h1>
+            <p class="question-text">What is output by the following code? (Choose all that apply.)</p>
+            <pre class="question-code">
+1: public class Fish {
+2:    public static void main(String[] args) {
+3:       int numFish = 4;
+4:       String fishType = "tuna";
+5:       String anotherFish = numFish + 1;
+6:       System.out.println(anotherFish + " " + fishType);
+7:       System.out.println(numFish + " " + 1);
+8: } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. 4 1</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 5</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 5 tuna</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. 5tuna</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. 51tuna</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. The code does not compile.</p>
+            </div>
+            <p class="question-explanation">
+                F. Line 5 does not compile. This question is checking to see whether you are paying attention
+                to the types. numFish is an int, and 1 is an int. Therefore, we use numeric addition and
+                get 5. The problem is that we can’t store an int in a String variable. Suppose line 5 said
+                String anotherFish = numFish + 1 + "";. In that case, the answers would be
+                option A and option C. The variable defined on line 5 would be the string "5", and both
+                output statements would use concatenation.
+            </p>
+        </div>
+        <div class="question" data-question="2">
+            <h1 class="question-title">Question 2</h1>
+            <p class="question-text">Which of these array declarations are not legal? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. int[][] scores = new int[5][];</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Object[][][] cubbies = new Object[3][0][5];</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. String beans[] = new beans[6];</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. java.util.Date[] dates[] = new java.util.Date[2][];</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. int[][] types = new int[];</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. int[][] java = new int[][];</p>
+            </div>
+            <p class="question-explanation">
+                C, E, F. Option C uses the variable name as if it were a type, which is clearly illegal. Options
+                E and F don’t specify any size. Although it is legal to leave out the size for later dimensions of
+                a multidimensional array, the first one is required. Option A declares a legal 2D array. Option
+                B declares a legal 3D array. Option D declares a legal 2D array. Remember that it is normal
+                to see classes on the exam you might not have learned. You aren’t expected to know anything
+                about them
+            </p>
+        </div>
+        <div class="question" data-question="3">
+            <h1 class="question-title">Question 3</h1>
+            <p class="question-text">Note that March 13, 2022 is the weekend when we spring forward, and November 6, 2022 is when
+                we fall back for daylight saving time. Which of the following can fill in the blank without the
+                code throwing an exception? (Choose all that apply.)</p>
+            <pre class="question-code">
+var zone = ZoneId.of("US/Eastern");
+var date = _______________________________;
+var time = LocalTime.of(2, 15);
+var z = ZonedDateTime.of(date, time, zone);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. LocalDate.of(2022, 3, 13)</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. LocalDate.of(2022, 3, 40)</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. LocalDate.of(2022, 11, 6)</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. LocalDate.of(2022, 11, 7)</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. LocalDate.of(2023, 2, 29)</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. LocalDate.of(2022, MonthEnum.MARCH, 13);</p>
+            </div>
+            <p class="question-explanation">
+                A, C, D. Option B throws an exception because there is no March 40. Option E also throws
+                an exception because 2023 isn’t a leap year and therefore has no February 29. Option F
+                doesn’t compile because the enum should be named Month, rather than MonthEnum. Option
+                D is correct because it is just a regular date and has nothing to do with daylight saving time.
+                Options A and C are correct because Java is smart enough to adjust for daylight saving time.
+            </p>
+        </div>
+        <div class="question" data-question="4">
+            <h1 class="question-title">Question 4</h1>
+            <p class="question-text">Which of the following are output by this code? (Choose all that apply.)</p>
+            <pre class="question-code">
+3: var s = "Hello";
+4: var t = new String(s);
+5: if ("Hello".equals(s)) System.out.println("one");
+6: if (t == s) System.out.println("two");
+7: if (t.intern() == s) System.out.println("three");
+8: if ("Hello" == s) System.out.println("four");
+9: if ("Hello".intern() == t) System.out.println("five");
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. one</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. two</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. three</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. four</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. five</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                A, C, D. The code compiles fine. Line 3 points to the String in the string pool. Line 4 calls
+                the String constructor explicitly and is therefore a different object than s. Line 5 checks
+                for object equality, which is true, and so it prints one. Line 6 uses object reference equality,
+                which is not true since we have different objects. Line 7 calls intern(), which returns the
+                value from the string pool and is therefore the same reference as s. Line 8 also compares references but is true since both references point to the object from the string pool. Finally, line
+                9 is a trick. The string Hello is already in the string pool, so calling intern() does not
+                change anything. The reference t is a different object, so the result is still false
+            </p>
+        </div>
+        <div class="question" data-question="5">
+            <h1 class="question-title">Question 5</h1>
+            <p class="question-text">What is the result of the following code?</p>
+            <pre class="question-code">
+7: var sb = new StringBuilder();
+8: sb.append("aaa").insert(1, "bb").insert(4, "ccc");
+9: System.out.println(sb);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. abbaaccc</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. abbaccca</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. bbaaaccc</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. bbaaccca</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. An empty line</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code does not compile.</p>
+            </div>
+            <p class="question-explanation">
+                B. This example uses method chaining. After the call to append(), sb contains "aaa".
+                That result is passed to the first insert() call, which inserts at index 1. At this point, sb
+                contains abbaa. That result is passed to the final insert(), which inserts at index 4, resulting in abbaccca.
+            </p>
+        </div>
+        <div class="question" data-question="6">
+            <h1 class="question-title">Question 6</h1>
+            <p class="question-text">How many of these lines contain a compiler error? (Choose all that apply.)</p>
+            <pre class="question-code">
+23: double one = Math.pow(1, 2);
+24: int two = Math.round(1.0);
+25: float three = Math.random();
+26: var doubles = new double[] {one, two, three};
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. 0</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 1</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. 2</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. 3</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. 4</p>
+            </div>
+            <p class="question-explanation">
+                C. Remember to watch return types on math operations. One of the tricks is line 24. The
+                round() method returns an int when called with a float. However, we are calling it with
+                a double, so it returns a long. The other trick is line 25. The random() method returns a
+                double. Since two lines have a compiler error, option C is the answer.
+            </p>
+        </div>
+        <div class="question" data-question="7">
+            <h1 class="question-title">Question 7</h1>
+            <p class="question-text">Which of these statements is true of the two values? (Choose all that apply.)</p>
+            <pre class="question-code">
+2022–08–28T05:00 GMT-04:00
+2022–08–28T09:00 GMT-06:00
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. The first date/time is earlier.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. The second date/time is earlier.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Both date/times are the same.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The date/times are two hours apart.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. The date/times are six hours apart.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The date/times are 10 hours apart.</p>
+            </div>
+            <p class="question-explanation">
+                A, E. When dealing with time zones, it is best to convert to GMT first by subtracting the
+                time zone. Remember that subtracting a negative is like adding. The first date/time is 9:00
+                GMT, and the second is 15:00 GMT. Therefore, the first one is earlier by six hours.
+            </p>
+        </div>
+        <div class="question" data-question="8">
+            <h1 class="question-title">Question 8</h1>
+            <p class="question-text">Which of the following return 5 when run independently? (Choose all that apply.)</p>
+            <pre class="question-code">
+var string = "12345";
+var builder = new StringBuilder("12345");
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. builder.charAt(4)</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. builder.replace(2, 4, "6").charAt(3)</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. builder.replace(2, 5, "6").charAt(2)</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. string.charAt(5)</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. string.length</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. string.replace("123", "1").charAt(2)</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                A, B, F. Remember that indexes are zero-based, which means index 4 corresponds to 5, and
+                option A is correct. For option B, the replace() method starts the replacement at index 2
+                and ends before index 4. This means two characters are replaced, and charAt(3) is called
+                on the intermediate value of 1265. The character at index 3 is 5, making option B correct.
+                Option C is similar, making the intermediate value 126 and returning 6.
+                Option D results in an exception since there is no character at index 5. Option E is incorrect.
+                It does not compile because the parentheses for the length() method are missing. Finally,
+                option F’s replace results in the intermediate value 145. The character at index 2 is 5, so
+                option F is correct
+            </p>
+        </div>
+        <div class="question" data-question="9">
+            <h1 class="question-title">Question 9</h1>
+            <p class="question-text">Which of the following are true about arrays? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. The first element is index 0.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. The first element is index 1.</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. Arrays are fixed size.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Arrays are immutable.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Calling equals() on two different arrays containing the same primitive values always returns true.</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. Calling equals() on two different arrays containing the same primitive values always returns false.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. Calling equals() on two different arrays containing the same primitive values can return true or false.</p>
+            </div>
+            <p class="question-explanation">
+                A, C, F. Arrays are zero-indexed, making option A correct and option B incorrect. They are
+                not able to change size, which is option C. The values can be changed, making option D
+                incorrect. An array does not override equals(), so it uses object equality. Since two different objects are not equal, option F is correct, and options E and G are incorrect.
+            </p>
+        </div>
+        <div class="question" data-question="10">
+            <h1 class="question-title">Question 10</h1>
+            <p class="question-text">How many of these lines contain a compiler error? (Choose all that apply.)</p>
+            <pre class="question-code">
+23: int one = Math.min(5, 3);
+24: long two = Math.round(5.5);
+25: double three = Math.floor(6.6);
+26: var doubles = new double[] {one, two, three};
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. 0</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 1</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 2</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. 3</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. 4</p>
+            </div>
+            <p class="question-explanation">
+                A. All of these lines compile. The min() and floor() methods return the same type passed
+                in: int and double, respectively. The round() method returns a long when called with a
+                double. Option A is correct since the code compiles.
+            </p>
+        </div>
+        <div class="question" data-question="11">
+            <h1 class="question-title">Question 11</h1>
+            <p class="question-text">What is the output of the following code?</p>
+            <pre class="question-code">
+var date = LocalDate.of(2022, 4, 3);
+date.plusDays(2);
+date.plusHours(3);
+System.out.println(date.getYear() + " " + date.getMonth()
+  + " " + date.getDayOfMonth());
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. 2022 MARCH 4</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 2022 MARCH 6</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 2022 APRIL 3</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. 2022 APRIL 5</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. A runtime exception is thrown.</p>
+            </div>
+            <p class="question-explanation">
+                E. A LocalDate does not have a time element. Therefore, there is no method to add hours,
+                making option E the answer.
+            </p>
+        </div>
+        <div class="question" data-question="12">
+            <h1 class="question-title">Question 12</h1>
+            <p class="question-text">What is output by the following code? (Choose all that apply.)</p>
+            <pre class="question-code">
+var numbers = "012345678".indent(1);
+numbers = numbers.stripLeading();
+System.out.println(numbers.substring(1, 3));
+System.out.println(numbers.substring(7, 7));
+System.out.print(numbers.substring(7));
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. 12</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 123</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 7</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. 78</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. A blank line</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. An exception is thrown.</p>
+            </div>
+            <p class="question-explanation">
+                A, D, E. First, notice that the indent() call adds a blank space to the beginning of
+                numbers, and stripLeading() immediately removes it. Therefore, these methods cancel
+                each other out and have no effect. The substring() method has two forms. The first takes
+                the index to start with and the index to stop immediately before. The second takes just the
+                index to start with and goes to the end of the String. Remember that indexes are zerobased. The first
+                call starts at index 1 and ends with index 2 since it needs to stop before index
+                3. This gives us option A. The second call starts at index 7 and ends in the same place, resulting in an empty
+                4. String which is option E. This prints out a blank line. The final call starts
+                at index 7 and goes to the end of the String finishing up with option D.
+            </p>
+        </div>
+        <div class="question" data-question="13">
+            <h1 class="question-title">Question 13</h1>
+            <p class="question-text">What is the result of the following code?</p>
+            <pre class="question-code">
+public class Lion {
+  public void roar(String roar1, StringBuilder roar2) {
+    roar1.concat("!!!");
+    roar2.append("!!!");
+  }
+  public static void main(String[] args) {
+    var roar1 = "roar";
+    var roar2 = new StringBuilder("roar");
+    new Lion().roar(roar1, roar2);
+    System.out.println(roar1 + " " + roar2);
+} }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. roar roar</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. roar roar!!!</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. roar!!! roar</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. roar!!! roar!!!</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. An exception is thrown.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code does not compile</p>
+            </div>
+            <p class="question-explanation">
+                B. A String is immutable. Calling concat() returns a new String but does not change
+                the original. A StringBuilder is mutable. Calling append() adds characters to the existing character sequence along with returning a reference to the same object. Therefore, option
+                B is correct
+            </p>
+        </div>
+        <div class="question" data-question="14">
+            <h1 class="question-title">Question 14</h1>
+            <p class="question-text">Given the following, which can correctly fill in the blank? (Choose all that apply.)</p>
+            <pre class="question-code">
+var date = LocalDate.now();
+var time = LocalTime.now();
+var dateTime = LocalDateTime.now();
+var zoneId = ZoneId.systemDefault();
+var zonedDateTime = ZonedDateTime.of(dateTime, zoneId);
+Instant instant = ______________________________;
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. Instant.now()</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. new Instant()</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. date.toInstant()</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. dateTime.toInstant()</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. time.toInstant()</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. zonedDateTime.toInstant()</p>
+            </div>
+            <p class="question-explanation">
+                A, F. Option A correctly creates the current instant. Option F is also a proper conversion.
+                Option B is incorrect because Instant, like many other date/time classes, does not have
+                a public constructor and is instantiated via methods. Options C, D, and E are incorrect
+                because the source object does not represent a point in time. Without a time zone, Java
+                doesn’t know what moment in time to use for the Instant.
+            </p>
+        </div>
+        <div class="question" data-question="15">
+            <h1 class="question-title">Question 15</h1>
+            <p class="question-text">What is the output of the following? (Choose all that apply.)</p>
+            <pre class="question-code">
+var arr = new String[] { "PIG", "pig", "123"};
+Arrays.sort(arr);
+System.out.println(Arrays.toString(arr));
+System.out.println(Arrays.binarySearch(arr, "Pippa"));
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. [pig, PIG, 123]</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. [PIG, pig, 123]</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. [123, PIG, pig]</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. [123, pig, PIG]</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. -3</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. -2</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. The results of binarySearch() are undefined in this example.</p>
+            </div>
+            <p class="question-explanation">
+                C, E. Numbers sort before letters and uppercase sorts before lowercase. This makes option
+                C one of the answers. The binarySearch() method looks at where a value would be
+                inserted, which is before the second element for Pippa. It then negates it and subtracts one,
+                which is option E.
+            </p>
+        </div>
+        <div class="question" data-question="16">
+            <h1 class="question-title">Question 16</h1>
+            <p class="question-text">What is included in the output of the following code? (Choose all that apply.)</p>
+            <pre class="question-code">
+var base = "ewe\nsheep\\t";
+int length = base.length();
+int indent = base.indent(2).length();
+int translate = base.translateEscapes().length();
+var formatted = "%s %s %s".formatted(length, indent, translate);
+System.out.format(formatted);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. 10</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. 11</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 12</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. 13</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. 14</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. 15</p>
+                <p class="question-answer" data-is-correct="True"><input name="G" type="checkbox"/>G. 16</p>
+            </div>
+            <p class="question-explanation">
+                A, B, G. There are 11 characters in base because there are two escape characters. The \n
+                counts as one character representing a new line, and the \\ counts as one character representing a backslash. This makes option B one of the answers. The indent() method adds
+                two characters to the beginning of each of the two lines of base. This gives us four additional characters. However, the method also normalizes by adding a new line to the end if
+                it is missing. The extra character means we add five characters to the existing 11, which is
+                option G. Finally, the translateEscapes() method turns any text escape characters into
+                actual escape characters, making \\t into \t. This gets rid of one character, leaving us with
+                10 characters matching option A.
+            </p>
+        </div>
+        <div class="question" data-question="17">
+            <h1 class="question-title">Question 17</h1>
+            <p class="question-text">Which of these statements are true? (Choose all that apply.)</p>
+            <pre class="question-code">
+var letters = new StringBuilder("abcdefg");
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. letters.substring(1, 2) returns a single-character String.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. letters.substring(2, 2) returns a single-character String.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. letters.substring(6, 5) returns a single-character String.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. letters.substring(6, 6) returns a single-character String.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. letters.substring(1, 2) throws an exception.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. letters.substring(2, 2) throws an exception.</p>
+                <p class="question-answer" data-is-correct="True"><input name="G" type="checkbox"/>G. letters.substring(6, 5) throws an exception.</p>
+                <p class="question-answer" data-is-correct="False"><input name="H" type="checkbox"/>H. letters.substring(6, 6) throws an exception.</p>
+            </div>
+            <p class="question-explanation">
+                A, G. The substring() method includes the starting index but not the ending index.
+                When called with 1 and 2, it returns a single-character String, making option A correct and
+                option E incorrect. Calling substring() with 2 as both parameters is legal. It
+                returns an empty String, making options B and F incorrect. Java does not allow the
+                indexes to be specified in reverse order. Option G is correct because it throws a
+                StringIndexOutOfBoundsException. Finally, option H is incorrect because it returns
+                an empty String
+            </p>
+        </div>
+        <div class="question" data-question="18">
+            <h1 class="question-title">Question 18</h1>
+            <p class="question-text">What is the result of the following code? (Choose all that apply.)</p>
+            <pre class="question-code">
+13: String s1 = """
+14:    purr""";
+15: String s2 = "";
+16:
+17: s1.toUpperCase();
+18: s1.trim();
+19: s1.substring(1, 3);
+20: s1 += "two";
+21:
+22: s2 += 2;
+23: s2 += &#39;c&#39;;
+24: s2 += false;
+25:
+26: if ( s2 == "2cfalse") System.out.println("==");
+27: if ( s2.equals("2cfalse")) System.out.println("equals");
+28: System.out.println(s1.length());
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. 2</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 4</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. 7</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. 10</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. ==</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. equals</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. An exception is thrown.</p>
+                <p class="question-answer" data-is-correct="False"><input name="H" type="checkbox"/>H. The code does not compile.</p>
+            </div>
+            <p class="question-explanation">
+                C, F. This question is tricky because it has several parts. First, you have to know that the text
+                block on lines 13 and 14 is equivalent to a regular String. Since there is no line break at
+                the end, this is four characters. Then, you have to know that String objects are immutable,
+                which means the results of lines 17–19 are ignored. Finally, on line 20, something happens.
+                We concatenate three new characters to s1 and now have a String of length 7, making
+                option C correct.
+                Next, s2 += 2 expands to s2 = s2 + 2. A String concatenated with any other type
+                gives a String. Lines 22, 23, and 24 all append to s2, giving a result of "2cfalse". The
+                if statement on line 27 returns true because the values of the two String objects are
+                the same using object equality. The if statement on line 26 returns false because the two
+                String objects are not the same in memory. One comes directly from the string pool, and
+                the other comes from building using String operations.
+            </p>
+        </div>
+        <div class="question" data-question="19">
+            <h1 class="question-title">Question 19</h1>
+            <p class="question-text">Which of the following fill in the blank to print a positive integer? (Choose all that apply.)</p>
+            <pre class="question-code">
+String[] s1 = { "Camel", "Peacock", "Llama"};
+String[] s2 = { "Camel", "Llama", "Peacock"};
+String[] s3 = { "Camel"};
+String[] s4 = { "Camel", null};
+System.out.println(Arrays.______________________);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. compare(s1, s2)</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. mismatch(s1, s2)</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. compare(s3, s4)</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. mismatch (s3, s4)</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. compare(s4, s4)</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. mismatch (s4, s4)</p>
+            </div>
+            <p class="question-explanation">
+                A, B, D. The compare() method returns a positive integer when the arrays are different and
+                the first is larger. This is the case for option A since the element at index 1 comes first alphabetically. It is not the case for option C because the s4 is longer or for option E because the
+                arrays are the same.
+                The mismatch() method returns a positive integer when the arrays are different in a position index 1 or greater. This is the case for options B and D since the difference is at index 1.
+                It is not the case for option F because there is no difference.
+            </p>
+        </div>
+        <div class="question" data-question="20">
+            <h1 class="question-title">Question 20</h1>
+            <p class="question-text">Note that March 13, 2022 is the weekend that clocks spring ahead for daylight saving time. What is the output of the following? (Choose all that apply.)</p>
+            <pre class="question-code">
+var date = LocalDate.of(2022, Month.MARCH, 13);
+var time = LocalTime.of(1, 30);
+var zone = ZoneId.of("US/Eastern");
+var dateTime1 = ZonedDateTime.of(date, time, zone);
+var dateTime2 = dateTime1.plus(1, ChronoUnit.HOURS);
+long diff = ChronoUnit.HOURS.between(dateTime1, dateTime2);
+int hour = dateTime2.getHour();
+boolean offset = dateTime1.getOffset()
+  == dateTime2.getOffset();
+System.out.println("diff = " + diff);
+System.out.println("hour = " + hour);
+System.out.println("offset = " + offset);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. diff = 1</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. diff = 2</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. hour = 2</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. hour = 3</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. offset = true</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. A runtime exception is thrown.</p>
+            </div>
+            <p class="question-explanation">
+                A, D. The dateTime1 object has a time of 1:30 per initialization. The dateTime2 object
+                is an hour later. However, there is no 2:30 when springing ahead, setting the time to 3:30.
+                Option A is correct because it is an hour later. Option D is also correct because the hour of
+                the new time is 3. Option E is not correct because we have changed the time zone offset due
+                to daylight saving time.
+            </p>
+        </div>
+        <div class="question" data-question="21">
+            <h1 class="question-title">Question 21</h1>
+            <p class="question-text">Which of the following can fill in the blank to print avaJ? (Choose all that apply.)</p>
+            <pre class="question-code">
+3: var puzzle = new StringBuilder("Java");
+4: puzzle.________________________;
+5: System.out.println(puzzle);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. reverse()</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. append("vaJ$").substring(0, 4)</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. append("vaJ$").delete(0, 3).deleteCharAt(puzzle.length() - 1)</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. append("vaJ$").delete(0, 3).deleteCharAt(puzzle.length())</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                A, C. The reverse() method is the easiest way of reversing the characters in a
+                StringBuilder; therefore, option A is correct. In option B, substring() returns a
+                String, which is not stored anywhere. Option C uses method chaining. First, it creates the
+                value "JavavaJ$". Then, it removes the first three characters, resulting in "avaJ$". Finally,
+                it removes the last character, resulting in "avaJ". Option D throws an exception because
+                you cannot delete the character after the last index. Remember that deleteCharAt() uses
+                indexes that are zero-based, and length() counts the number of characters rather than
+                the index
+            </p>
+        </div>
+        <div class="question" data-question="22">
+            <h1 class="question-title">Question 22</h1>
+            <p class="question-text">What is the output of the following code?</p>
+            <pre class="question-code">
+var date = LocalDate.of(2022, Month.APRIL, 30);
+date.plusDays(2);
+date.plusYears(3);
+System.out.println(date.getYear() + " " + date.getMonth()
+  + " " + date.getDayOfMonth());
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. 2022 APRIL 30</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 2022 MAY 2</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 2025 APRIL 2</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. 2025 APRIL 30</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. 2025 MAY 2</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. A runtime exception is thrown.</p>
+            </div>
+            <p class="question-explanation">
+                A. The date starts out as April 30, 2022. Since dates are immutable and the plus methods’
+                return values are ignored, the result is unchanged. Therefore, option A is correct.
+            </p>
+        </div>
+
+        <p class="info"></p>
+    </div>
+    <div>
+        <button type="button" class="start">Start</button>
+        <button type="button" class="finish">Finish</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
