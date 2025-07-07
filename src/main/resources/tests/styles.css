@@ -1,0 +1,95 @@
+html, body {
+    height: 100vh;
+    font-size: 18px;
+    color: #363638;
+}
+
+.test {
+    width: 80%;
+    border: 1px solid lightgray;
+    padding: 32px 60px;
+    overflow: auto;
+    border-radius: 4px;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.question-code {
+    font-size: 16px;
+    padding: 0 16px;
+    color: rgba(28, 28, 27, 0.6);
+}
+
+.question-answers {
+    margin: 32px 0;
+}
+
+.question-answer {
+    margin: 0;
+}
+
+.question-answer input {
+    margin-right: 12px;
+}
+
+.correct-answer {
+    color: rgb(37, 131, 50);
+    font-weight: bold;
+}
+
+.incorrect-answer {
+    color: rgb(213, 108, 108);
+    font-weight: bold;
+}
+
+.question-explanation {
+    margin: 32px 0;
+    visibility: hidden;
+    font-size: 16px;
+    text-align: justify;
+    color: gray;
+}
+
+.info {
+    text-align: center;
+    font-size: 16px;
+    color: lightgray;
+}
+
+.timer {
+    text-align: right;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: gray;
+    width: 100%;
+}
+
+.hidden {
+    overflow: hidden;
+    position: absolute;
+    clip: rect(0 0 0 0);
+    height: 0;
+    width: 0;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
+button {
+    background-color: white;
+    color: gray;
+    padding: 8px 16px;
+    margin: 20px;
+    border-radius: 4px;
+    border: 1px solid lightgray;
+}
+
+button.finish {
+    display: none;
+}
