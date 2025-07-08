@@ -8,8 +8,9 @@ const finishButton = document.querySelector('button.finish');
 const questions = [...document.querySelectorAll(`[data-question]`)];
 const questionsCount = questions.length;
 const questionNumbers = [...document.querySelectorAll(`[data-question]`)].map(q => q.dataset.question);
-    //= shuffled([...document.querySelectorAll(`[data-question]`)].map(q => q.dataset.question));
+//= shuffled([...document.querySelectorAll(`[data-question]`)].map(q => q.dataset.question));
 let questionIndex = 0;
+let isTestFinished = false; // Track if test is finished
 
 const selectQuestion = (number) => document.querySelector(`[data-question="${number}"]`);
 const selectQuestionAnswers = (number) => document.querySelectorAll(`[data-question="${number}"] .question-answers .question-answer`);
@@ -51,6 +52,7 @@ const start = () => {
     startButton.style.display = 'none';
     finishButton.style.display = 'block';
     timerInterval = setInterval(updateTimer, 1000);
+    isTestFinished = false; // Reset test finished state
 };
 const finish = () => {
     const isCorrect = (question) => [...selectQuestionAnswers(question)]
@@ -69,6 +71,7 @@ const finish = () => {
     questionNumbers.forEach((questionNumber) => {
         toggleHint('visible', questionNumber);
     });
+    isTestFinished = true; // Mark test as finished
 };
 
 questions.forEach((question) => question.classList.add("hidden"));
@@ -85,7 +88,9 @@ document.addEventListener('keyup', function (event) {
             if (questionIndex === 0) {
                 return;
             }
-            toggleHint('hidden', currentQuestionNumber);
+            if (!isTestFinished) {
+                toggleHint('hidden', currentQuestionNumber);
+            }
             hideQuestion(currentQuestionNumber);
             questionIndex--;
             break;
@@ -93,17 +98,25 @@ document.addEventListener('keyup', function (event) {
             if (questionIndex === questionsCount - 1) {
                 return;
             }
-            toggleHint('hidden', currentQuestionNumber);
+            if (!isTestFinished) {
+                toggleHint('hidden', currentQuestionNumber);
+            }
             hideQuestion(currentQuestionNumber);
             questionIndex++;
             break;
         case "h":
-            toggleHint('hidden', currentQuestionNumber);
+            if (!isTestFinished) {
+                toggleHint('hidden', currentQuestionNumber);
+            }
             break;
         case "s":
             toggleHint('visible', currentQuestionNumber);
             break;
     }
     showQuestion(questionNumbers[questionIndex]);
+    // If test is finished, show hints for the new question
+    if (isTestFinished) {
+        toggleHint('visible', questionNumbers[questionIndex]);
+    }
     updateInfo();
 });

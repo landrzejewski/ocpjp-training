@@ -31,6 +31,15 @@ public class Main {
         System.out.println(Arrays.binarySearch(numbers, 9)); // -5
 
         System.out.println(LocalDate.of(2025,1, 1));
+
+        long goat = (int)2;
+        goat -= 1.0;
+
+        int a = (short)4;
+        int pig = 0;
+        pig = a++;
+        System.out.println(pig);
+        System.out.println(a);
     }
 
     private static boolean test()  {
