@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Beyond Classes</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="test">
+        <p class="timer">00:00:00</p>
+
+        <div class="question" data-question="1">
+            <h1 class="question-title">Question 1</h1>
+            <p class="question-text">Which of the following are valid record declarations? (Choose all that apply.)</p>
+            <pre class="question-code">
+public record Iguana(int age) {
+  private static final int age = 10; }
+public final record Gecko() {}
+public abstract record Chameleon()  {
+  private static String name; }
+public record BeardedDragon(boolean fun) {
+  @Override public boolean fun() { return false; } }
+public record Newt(long size) {
+  @Override public boolean equals(Object obj) { return false; }
+  public void setSize(long size) {
+    this.size = size;
+  } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Iguana</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. Gecko</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Chameleon</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. BeardedDragon</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Newt</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                B, D. Iguana does not compile, as it declares a static field with the same name as an instance field.
+                Records are implicitly final and cannot be marked abstract, which is why
+                Gecko compiles and Chameleon does not, making option B correct. Notice in Gecko that
+                records are not required to declare any fields. BeardedDragon also compiles, as records
+                may override any accessor methods, making option D correct. Newt does not compile
+                because records are immutable, so any mutator methods that modify fields are not permitted.
+                Overriding the equals() method is allowed, though.
+            </p>
+        </div>
+        <div class="question" data-question="2">
+            <h1 class="question-title">Question 2</h1>
+            <p class="question-text">Which of the following statements can be inserted in the blank line so that the code will compile successfully? (Choose all that apply.)</p>
+            <pre class="question-code">
+interface CanHop {}
+public class Frog implements CanHop {
+  public static void main(String[] args) {
+    ___________ frog = new TurtleFrog();
+  }
+}
+class BrazilianHornedFrog extends Frog {}
+class TurtleFrog extends Frog {}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. Frog</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. TurtleFrog</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. BrazilianHornedFrog</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. CanHop</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. var</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. Long</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above; the code contains a compilation error.</p>
+            </div>
+            <p class="question-explanation">
+                A, B, D, E. The code compiles without issue, so option G is incorrect. The blank can be filled
+                with any class or interface that is a supertype of TurtleFrog. Option A is the direct
+                superclass of TurtleFrog, and option B is the same class, so both are correct.
+                BrazilianHornedFrog is not a superclass of TurtleFrog, so option C is incorrect.
+                TurtleFrog inherits the CanHop interface, so option D is correct. Option E is also correct,
+                as var is permitted when the type is known. Finally, Long is an unrelated class that is not a
+                superclass of TurtleFrog and is therefore incorrect.
+            </p>
+        </div>
+        <div class="question" data-question="3">
+            <h1 class="question-title">Question 3</h1>
+            <p class="question-text">What is the result of the following program?</p>
+            <pre class="question-code">
+public class Favorites {
+  enum Flavors {
+    VANILLA, CHOCOLATE, STRAWBERRY
+    static final Flavors DEFAULT = STRAWBERRY;
+  }
+  public static void main(String[] args) {
+    for(final var e : Flavors.values())
+      System.out.print(e.ordinal()+" ");
+  }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. 0 1 2</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 1 2 3</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. Exactly one line of code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. More than one line of code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code compiles but produces an exception at runtime.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                C. When an enum contains only a list of values, the semicolon (;) after the list is optional.
+                When an enum contains any other members, such as a constructor or variable, the
+                semicolon is required. Since the enum list does not end with a semicolon, the code does not
+                compile, making option C the correct answer. If the missing semicolon were added, the program
+                would print 0 1 2 at runtime.
+            </p>
+        </div>
+        <div class="question" data-question="4">
+            <h1 class="question-title">Question 4</h1>
+            <p class="question-text">What is the output of the following program?</p>
+            <pre class="question-code">
+public sealed class ArmoredAnimal permits Armadillo {
+  public ArmoredAnimal(int size) {}
+  @Override public String toString() { return "Strong"; }
+  public static void main(String[] a) {
+    var c = new Armadillo(10, null);
+    System.out.println(c);
+  }
+}
+class Armadillo extends ArmoredAnimal {
+  @Override public String toString() { return "Cute"; }
+  public Armadillo(int size, String name) {
+    super(size);
+  }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Strong</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Cute</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. The program does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The code compiles but produces an exception at runtime.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                C. A class extending a sealed class must be marked final, sealed, or non-sealed. Since
+                Armadillo is missing a modifier, the code does not compile, and option C is correct.
+            </p>
+        </div>
+        <div class="question" data-question="5">
+            <h1 class="question-title">Question 5</h1>
+            <p class="question-text">Which statements about the following program are correct? (Choose all that apply.)</p>
+            <pre class="question-code">
+1:  interface HasExoskeleton {
+2:     double size = 2.0f;
+3:     abstract int getNumberOfSections();
+4:  }
+5:  abstract class Insect implements HasExoskeleton {
+6:     abstract int getNumberOfLegs();
+7:  }
+8:  public class Beetle extends Insect {
+9:     int getNumberOfLegs() { return 6; }
+10:    int getNumberOfSections(int count) { return 1; }
+11: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. It compiles without issue.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. The code will produce a ClassCastException if called at runtime.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. The code will not compile because of line 2.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The code will not compile because of line 5.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. The code will not compile because of line 8.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code will not compile because of line 10.</p>
+            </div>
+            <p class="question-explanation">
+                E. First, the declarations of HasExoskeleton and Insect are correct and do not contain
+                any errors, making options C and D incorrect. The concrete class Beetle extends
+                Insect and inherits two abstract methods, getNumberOfSections() and
+                getNumberOfLegs(). The Beetle class includes an overloaded version of
+                getNumberOfSections() that takes an int value. The method declaration is valid,
+                making option F incorrect, although it does not satisfy the abstract method requirement inherited
+                from HasExoskeleton. For this reason, only one of the two abstract methods is properly
+                overridden. The Beetle class therefore does not compile, and option E is correct.
+            </p>
+        </div>
+        <div class="question" data-question="6">
+            <h1 class="question-title">Question 6</h1>
+            <p class="question-text">Which statements about the following program are correct? (Choose all that apply.)</p>
+            <pre class="question-code">
+1: public abstract interface Herbivore {
+2:    int amount = 10;
+3:    public void eatGrass();
+4:    public abstract int chew() { return 13; }
+5: }
+6:
+7: abstract class IsAPlant extends Herbivore {
+8:    Object eatGrass(int season) { return null; }
+9: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. It compiles and runs without issue.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. The code will not compile because of line 1.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. The code will not compile because of line 2.</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. The code will not compile because of line 4.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. The code will not compile because of line 7.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code will not compile because line 8 contains an invalid method override.</p>
+            </div>
+            <p class="question-explanation">
+                D, E. Line 4 does not compile, since an abstract method cannot include a body. Line 7
+                also does not compile because the wrong keyword is used. A class implements an interface; it
+                does not extend it. For these reasons, options D and E are correct.
+            </p>
+        </div>
+        <div class="question" data-question="7">
+            <h1 class="question-title">Question 7</h1>
+            <p class="question-text">What is the output of the following program?</p>
+            <pre class="question-code">
+1: interface Aquatic {
+2:    int getNumOfGills(int p);
+3: }
+4: public class ClownFish implements Aquatic {
+5:    String getNumOfGills() { return "14"; }
+6:    int getNumOfGills(int input) { return 15; }
+7:    public static void main(String[] args) {
+8:       System.out.println(new ClownFish().getNumOfGills(-1));
+9: } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. 14</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 15</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. The code will not compile because of line 4.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The code will not compile because of line 5.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. The code will not compile because of line 6.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                E. The inherited interface method getNumOfGills(int) is implicitly public; therefore,
+                it must be declared public in any concrete class that implements the interface. Since the
+                method uses the package (default) modifier in the ClownFish class, line 6 does not compile,
+                making option E the correct answer. If the method declaration were corrected to include
+                public on line 6, then the program would compile and print 15 at runtime, and option B
+                would be the correct answer
+            </p>
+        </div>
+        <div class="question" data-question="8">
+            <h1 class="question-title">Question 8</h1>
+            <p class="question-text">When inserted in order, which modifiers can fill in the blank to create a properly encapsulated class? (Choose all that apply.)</p>
+            <pre class="question-code">
+public class Rabbits {
+  _______ int numRabbits = 0;
+  _______ void multiply() {
+    numRabbits *= 6;
+  }
+  _______ int getNumberOfRabbits() {
+    return numRabbits;
+  }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. private, public, and public</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. private, protected, and private</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. private, private, and protected</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. public, public, and public</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The class cannot be properly encapsulated since multiply() does not begin with set.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                A, B, C. Instance variables must include the private access modifier, making option D
+                incorrect. While it is common for methods to be public, this is not required. Options A, B,
+                and C fulfill this requirement.
+            </p>
+        </div>
+        <div class="question" data-question="9">
+            <h1 class="question-title">Question 9</h1>
+            <p class="question-text">Which of the following statements can be inserted in the blank so that the code will compile successfully? (Choose all that apply.)</p>
+            <pre class="question-code">
+abstract class Snake {}
+class Cobra extends Snake {}
+class GardenSnake extends Cobra {}
+public class SnakeHandler {
+  private Snake snakey;
+  public void setSnake(Snake mySnake) { this.snakey = mySnake; }
+  public static void main(String[] args) {
+    new SnakeHandler().setSnake(_________________);
+  }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. new Cobra()</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. new Snake()</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. new Object()</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. new String("Snake")</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. new GardenSnake()</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. null</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above. The class does not compile, regardless of the value inserted in the blank.</p>
+            </div>
+            <p class="question-explanation">
+                A, E, F. The setSnake() method requires an instance of Snake. Cobra is a direct subclass,
+                while GardenSnake is an indirect subclass. For these reasons, options A and E are correct.
+                Option B is incorrect because Snake is abstract and requires a concrete subclass for
+                instantiation. Option C is incorrect because Object is a supertype of Snake, not a subtype.
+                Option D is incorrect as String is an unrelated class and does not inherit Snake. Finally, a
+                null value can always be passed as an object value, regardless of type, so option
+                F is also correct.
+            </p>
+        </div>
+        <div class="question" data-question="10">
+            <h1 class="question-title">Question 10</h1>
+            <p class="question-text">What types can be inserted in the blanks on the lines marked X and Z that allow the code to compile? (Choose all that apply.)</p>
+            <pre class="question-code">
+interface Walk { private static List move() { return null; } }
+interface Run extends Walk { public ArrayList move(); }
+class Leopard implements Walk {
+  public ________ move() {  // X
+    return null;
+  }
+}
+class Panther implements Run {
+  public ________ move() {  // Z
+    return null;
+  }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. Integer on the line marked X</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. ArrayList on the line marked X</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. List on the line marked X</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. List on the line marked Z</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. ArrayList on the line marked Z</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of the above, since the Run interface does not compile</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. The code does not compile for a different reason.</p>
+            </div>
+            <p class="question-explanation">
+                A, B, C, E. Walk declares a private method that is not inherited in any of its subtypes. For
+                this reason, any valid class is supported on line X, making options A, B, and C correct. Line
+                Z is more restrictive, with only ArrayList or subtypes of ArrayList supported, making
+                option E correct.
+            </p>
+        </div>
+        <div class="question" data-question="11">
+            <h1 class="question-title">Question 11</h1>
+            <p class="question-text">What is the result of the following code? (Choose all that apply.)</p>
+            <pre class="question-code">
+1:  public class Movie {
+2:     private int butter = 5;
+3:     private Movie() {}
+4:     protected class Popcorn {
+5:        private Popcorn() {}
+6:        public static int butter = 10;
+7:        public void startMovie() {
+8:           System.out.println(butter);
+9:        }
+10:    }
+11:    public static void main(String[] args) {
+12:       var movie = new Movie();
+13:       Movie.Popcorn in = new Movie().new Popcorn();
+14:       in.startMovie();
+15:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. The output is 5.</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. The output is 10.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Line 6 generates a compiler error.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Line 12 generates a compiler error.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Line 13 generates a compiler error.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code compiles but produces an exception at runtime.</p>
+            </div>
+            <p class="question-explanation">
+                B. Starting with Java 16, inner classes can contain static variables, so the code compiles.
+                Remember that private constructors can be used by any methods within the outer class.
+                The butter reference on line 8 refers to the inner class variable defined on line 6, with the
+                output being 10 at runtime, and making option B correct.
+            </p>
+        </div>
+        <div class="question" data-question="12">
+            <h1 class="question-title">Question 12</h1>
+            <p class="question-text">Which of the following are true about encapsulation? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. It allows getters.</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. It allows setters.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. It requires specific naming conventions.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. It requires public instance variables.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. It requires private instance variables.</p>
+            </div>
+            <p class="question-explanation">
+                A, B, E. Encapsulation allows using methods to get and set instance variables so other classes
+                are not directly using them, making options A and B correct. Instance variables must be
+                private for this to work, making option E correct and option D incorrect. While there are
+                common naming conventions, they are not required, making option C incorrect.
+            </p>
+        </div>
+        <div class="question" data-question="13">
+            <h1 class="question-title">Question 13</h1>
+            <p class="question-text">What is the result of the following program?</p>
+            <pre class="question-code">
+public class Weather {
+  enum Seasons {
+    WINTER, SPRING, SUMMER, FALL
+  }
+  public static void main(String[] args) {
+    Seasons v = null;
+    switch (v) {
+    case Seasons.SPRING -&gt; System.out.print("s");
+    case Seasons.WINTER -&gt; System.out.print("w");
+    case Seasons.SUMMER -&gt; System.out.print("m");
+    default -&gt; System.out.println("missing data"); }
+  }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. s</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. w</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. m</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. missing data</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Exactly one line of code does not compile.</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. More than one line of code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. The code compiles but produces an exception at runtime.</p>
+            </div>
+            <p class="question-explanation">
+                F. When using an enum in a switch expression, the case statement must be made up of the
+                enum values only. If the enum name is used in the case statement value, then the code does
+                not compile. In this question, SPRING is acceptable, but Seasons.SPRING is not.
+                For this reason, the three case statements do not compile, making option F the correct
+                answer. If these three lines were corrected, then the code would compile and produce a
+                NullPointerException at runtime
+            </p>
+        </div>
+        <div class="question" data-question="14">
+            <h1 class="question-title">Question 14</h1>
+            <p class="question-text">Which statements about sealed classes are correct? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. A sealed interface restricts which subinterfaces may extend it.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. A sealed class cannot be indirectly extended by a class that is not listed in its permits clause.</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. A sealed class can be extended by an abstract class.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. A sealed class can be extended by a subclass that uses the non-sealed modifier.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. A sealed interface restricts which subclasses may implement it.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. A sealed class cannot contain any nested subclasses.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                A, C, E. A sealed interface restricts which interfaces may extend it, or which classes may
+                implement it, making options A and E correct. Option B is incorrect. For example, a
+                non-sealed subclass allows classes not listed in the permits clause to indirectly extend
+                the sealed class. Option C is correct. While a sealed class is commonly extended by a subclass marked final, it can also be extended by a sealed or non-sealed subclass marked
+                abstract. Option D is incorrect, as the modifier is non-sealed, not nonsealed. Finally,
+                option F is incorrect, as sealed classes can contain nested subclasses.
+            </p>
+        </div>
+        <div class="question" data-question="15">
+            <h1 class="question-title">Question 15</h1>
+            <p class="question-text">Which lines, when entered independently into the blank, allow the code to print Not scared at runtime? (Choose all that apply.)</p>
+            <pre class="question-code">
+public class Ghost {
+  public static void boo() {
+    System.out.println("Not scared");
+  }
+  protected final class Spirit {
+    public void boo() {
+      System.out.println("Booo!!!");
+    }
+  }
+  public static void main(String… haunt) {
+    var g = new Ghost().new Spirit() {};
+    __________________________;
+  }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. g.boo()</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. g.super.boo()</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. new Ghost().boo()</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. g.Ghost.boo()</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. new Spirit().boo()</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. Ghost.boo()</p>
+                <p class="question-answer" data-is-correct="True"><input name="G" type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                G. Trick question—the code does not compile! For this reason, option G is correct. The
+                Spirit class is marked final, so it cannot be extended. The main() method uses an
+                anonymous class that inherits from Spirit, which is not allowed. If Spirit were not
+                marked final, then options C and F would be correct. Option A would print Booo!!!,
+                while options B, D, and E would not compile for various reasons.
+            </p>
+        </div>
+        <div class="question" data-question="16">
+            <h1 class="question-title">Question 16</h1>
+            <p class="question-text">The following code appears in a file named Ostrich.java. What is the result of compiling the source file?</p>
+            <pre class="question-code">
+1: public class Ostrich {
+2:    private int count;
+3:    static class OstrichWrangler {
+4:       public int stampede() {
+5:          return count;
+6:       } } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. The code compiles successfully, and one bytecode file is generated: Ostrich.class.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. The code compiles successfully, and two bytecode files are generated: Ostrich.class and OstrichWrangler.class.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. The code compiles successfully, and two bytecode files are generated: Ostrich.class and Ostrich$OstrichWrangler.class.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. A compiler error occurs on line 3.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. A compiler error occurs on line 5.</p>
+            </div>
+            <p class="question-explanation">
+                E. The OstrichWrangler class is a static nested class; therefore, it cannot access the
+                instance member count. For this reason, line 5 does not compile, and option E is correct.
+            </p>
+        </div>
+        <div class="question" data-question="17">
+            <h1 class="question-title">Question 17</h1>
+            <p class="question-text">Which lines of the following interface declarations do not compile? (Choose all that apply.)</p>
+            <pre class="question-code">
+1: public interface Omnivore {
+2:    int amount = 10;
+3:    static boolean gather = true;
+4:    static void eatGrass() {}
+5:    int findMore() { return 2; }
+6:    default float rest() { return 2; }
+7:    protected int chew() { return 13; }
+8:    private static void eatLeaves() {}
+9: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. All of the lines compile without issue.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Line 2</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Line 3</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Line 4</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. Line 5</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. Line 6</p>
+                <p class="question-answer" data-is-correct="True"><input name="G" type="checkbox"/>G. Line 7</p>
+                <p class="question-answer" data-is-correct="False"><input name="H" type="checkbox"/>H. Line 8</p>
+            </div>
+            <p class="question-explanation">
+                E, G. Lines 2 and 3 compile with interface variables implicitly public, static, and
+                final. Line 4 also compiles, as static methods are implicitly public. Line 5 does not
+                compile, making option E correct. Non-static interface methods with a body must be
+                explicitly marked private or default. Line 6 compiles, with the public modifier being
+                added by the compiler. Line 7 does not compile, as interfaces do not have protected members,
+                making option G correct. Finally, line 8 compiles without issue.
+            </p>
+        </div>
+        <div class="question" data-question="18">
+            <h1 class="question-title">Question 18</h1>
+            <p class="question-text">What is printed by the following program?</p>
+            <pre class="question-code">
+public class Deer {
+  enum Food {APPLES, BERRIES, GRASS}
+  protected class Diet {
+    private Food getFavorite() {
+      return Food.BERRIES;
+    }
+  }
+  public static void main(String[] seasons) {
+    System.out.print(switch(new Diet().getFavorite()) {
+      case APPLES -&gt; "a";
+      case BERRIES -&gt; "b";
+      default -&gt; "c";
+    });
+} }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. a</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. b</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. c</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The code declaration of the Diet class does not compile.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. The main() method does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code compiles but produces an exception at runtime.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                E. Diet is an inner class, which requires an instance of Deer to instantiate. Since the
+                main() method is static, there is no such instance. Therefore, the main() method does
+                not compile, and option E is correct. If a reference to Deer were used, such as calling
+                new Deer().new Diet(), then the code would compile and print b at runtime.
+            </p>
+        </div>
+        <div class="question" data-question="19">
+            <h1 class="question-title">Question 19</h1>
+            <p class="question-text">Which of the following are printed by the Bear program? (Choose all that apply.)</p>
+            <pre class="question-code">
+public class Bear {
+  enum FOOD {
+    BERRIES, INSECTS {
+      public boolean isHealthy() { return true; }},
+    FISH, ROOTS, COOKIES, HONEY;
+    public abstract boolean isHealthy();
+  }
+  public static void main(String[] args) {
+    System.out.print(FOOD.INSECTS);
+    System.out.print(FOOD.INSECTS.ordinal());
+    System.out.print(FOOD.INSECTS.isHealthy());
+    System.out.print(FOOD.COOKIES.isHealthy());
+  }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. insects</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. INSECTS</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 0</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. 1</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. false</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. true</p>
+                <p class="question-answer" data-is-correct="True"><input name="G" type="checkbox"/>G. The code does not compile.</p>
+            </div>
+            <p class="question-explanation">
+                G. The isHealthy() method is marked abstract in the enum; therefore, it must be
+                implemented in each enum value declaration. Since only INSECTS implements it, the code
+                does not compile, making option G correct.
+            </p>
+        </div>
+        <div class="question" data-question="20">
+            <h1 class="question-title">Question 20</h1>
+            <p class="question-text">Which statements about polymorphism and method inheritance are correct? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. Given an arbitrary instance of a class, it cannot be determined until runtime which overridden method will be executed in a parent class.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. It cannot be determined until runtime which hidden method will be executed in a parent class.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Marking a method static prevents it from being overridden or hidden.</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. Marking a method final prevents it from being overridden or hidden.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The reference type of the variable determines which overridden method will be called at runtime.</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. The reference type of the variable determines which hidden method will be called at runtime.</p>
+            </div>
+            <p class="question-explanation">
+                A, D, F. Polymorphism is the property of an object to take on many forms. Part of polymorphism
+                is that methods are replaced through overriding wherever they are called, regardless of
+                whether they’re in a parent or child class. For this reason, option A is correct, and option E
+                is incorrect. With hidden static methods, Java relies on the location and reference type to
+                determine which method is called, making option B incorrect and option F correct. Finally,
+                making a method final, not static, prevents it from being overridden, making option D
+                correct and option C incorrect.
+            </p>
+        </div>
+        <div class="question" data-question="21">
+            <h1 class="question-title">Question 21</h1>
+            <p class="question-text">Given the following record declaration, which lines of code can fill in the blank and allow the code to compile? (Choose all that apply.)</p>
+            <pre class="question-code">
+public record RabbitFood(int size, String brand, LocalDate expires) {
+  public static int MAX_STORAGE = 100;
+  public RabbitFood() {
+    _________________________;
+  }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. size = MAX_STORAGE</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. this.size = 10</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. if(expires.isAfter(LocalDate.now())) throw new RuntimeException()</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. if(brand==null) super.brand = "Unknown"</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. throw new RuntimeException()</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                F. The record defines an overloaded constructor using parentheses, not a
+                compact one. For this reason, the first line must be a call to another constructor, such as
+                this(500, "Acme", LocalDate.now()). For this reason, the code does not compile
+                and option F is correct. If the parentheses were removed from the constructor to declare a
+                compact constructor, then options A, C, and E would be correct.
+            </p>
+        </div>
+        <div class="question" data-question="22">
+            <h1 class="question-title">Question 22</h1>
+            <p class="question-text">Which of the following can be inserted in the rest() method? (Choose all that apply.)</p>
+            <pre class="question-code">
+public class Lion {
+  class Cub {}
+  static class Den {}
+  static void rest() {
+    _______________________;
+} }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Cub a = Lion.new Cub()</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Lion.Cub b = new Lion().Cub()</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. Lion.Cub c = new Lion().new Cub()</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. var d = new Den()</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. var e = Lion.new Cub()</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. Lion.Den f = Lion.new Den()</p>
+                <p class="question-answer" data-is-correct="True"><input name="G" type="checkbox"/>G. Lion.Den g = new Lion.Den()</p>
+                <p class="question-answer" data-is-correct="False"><input name="H" type="checkbox"/>H. var h = new Cub()</p>
+            </div>
+            <p class="question-explanation">
+                C, D, G. Option C correctly creates an instance of an inner class Cub using an instance of
+                the outer class Lion. Options A, B, E, and H use incorrect syntax for creating an instance of
+                the Cub class. Options D and G correctly create an instance of the static nested Den class,
+                which does not require an instance of Lion, while option F uses invalid syntax.
+            </p>
+        </div>
+        <div class="question" data-question="23">
+            <h1 class="question-title">Question 23</h1>
+            <p class="question-text">Given the following program, what can be inserted into the blank line that would allow it to print Swim! at runtime?</p>
+            <pre class="question-code">
+interface Swim {
+  default void perform() { System.out.print("Swim!"); }
+}
+interface Dance {
+  default void perform() { System.out.print("Dance!"); }
+}
+public class Penguin implements Swim, Dance {
+  public void perform() { System.out.print("Smile!"); }
+  private void doShow() {
+    __________________________;
+  }
+  public static void main(String[] eggs) {
+    new Penguin().doShow();
+  }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. super.perform()</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Swim.perform()</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. super.Swim.perform()</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. Swim.super.perform()</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code does not compile regardless of what is inserted into the blank.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code compiles, but due to polymorphism, it is not possible to produce the requested output without creating a new object.</p>
+            </div>
+            <p class="question-explanation">
+                D. First, if a class or interface inherits two interfaces containing default methods with the
+                same signature, it must override the method with its own implementation. The Penguin
+                class does this correctly, so option E is incorrect. The way to access an inherited default
+                method is by using the syntax Swim.super.perform(), making option D correct. We
+                agree that the syntax is bizarre, but you need to learn it. Options A, B, and C are incorrect
+                and result in compiler errors.
+            </p>
+        </div>
+        <div class="question" data-question="24">
+            <h1 class="question-title">Question 24</h1>
+            <p class="question-text">Which lines of the following interface do not compile? (Choose all that apply.)</p>
+            <pre class="question-code">
+1: public interface BigCat {
+2:    abstract String getName();
+3:    static int hunt() { getName(); return 5; }
+4:    default void climb() { rest(); }
+5:    private void roar() { getName();  climb(); hunt(); }
+6:    private static boolean sneak() { roar(); return true; }
+7:    private int rest() { return 2; };
+8: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Line 2</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. Line 3</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Line 4</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Line 5</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. Line 6</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. Line 7</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                B, E. Line 3 does not compile because the static method hunt() cannot access an
+                abstract instance method getName(), making option B correct. Line 6 does not compile
+                because the private static method sneak() cannot access the private instance
+                method roar(), making option E correct. The rest of the lines compile without issue.
+            </p>
+        </div>
+        <div class="question" data-question="25">
+            <h1 class="question-title">Question 25</h1>
+            <p class="question-text">What does the following program print?</p>
+            <pre class="question-code">
+1:  public class Zebra {
+2:     private int x = 24;
+3:     public int hunt() {
+4:        String message = "x is ";
+5:        abstract class Stripes {
+6:           private int x = 0;
+7:           public void print() {
+8:              System.out.print(message + Zebra.this.x);
+9:           }
+10:       }
+11:       var s = new Stripes() {};
+12:       s.print();
+13:       return x;
+14:    }
+15:    public static void main(String[] args) {
+16:       new Zebra().hunt();
+17:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. x is 0</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. x is 24</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Line 6 generates a compiler error.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Line 8 generates a compiler error.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Line 11 generates a compiler error.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                B. Zebra.this.x is the correct way to refer to x in the Zebra class. Line 5 defines an
+                abstract local class within a method, while line 11 defines a concrete anonymous class that
+                extends the Stripes class. The code compiles without issue and prints x is 24 at runtime,
+                making option B the correct answer.
+            </p>
+        </div>
+        <div class="question" data-question="26">
+            <h1 class="question-title">Question 26</h1>
+            <p class="question-text">Which statements about the following enum are true? (Choose all that apply.)</p>
+            <pre class="question-code">
+1:  public enum Animals {
+2:     MAMMAL(true), INVERTEBRATE(Boolean.FALSE), BIRD(false),
+3:     REPTILE(false), AMPHIBIAN(false), FISH(false) {
+4:        public int swim() { return 4; }
+5:     }
+6:     final boolean hasHair;
+7:     public Animals(boolean hasHair) {
+8:        this.hasHair = hasHair;
+9:     }
+10:    public boolean hasHair() { return hasHair; }
+11:    public int swim() { return 0; }
+12: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Compiler error on line 2</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Compiler error on line 3</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. Compiler error on line 7</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Compiler error on line 8</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Compiler error on line 10</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. Compiler error on another line</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. The code compiles successfully.</p>
+            </div>
+            <p class="question-explanation">
+                C, F. Enums are required to have a semicolon (;) after the list of values if there is anything
+                else in the enum. Don’t worry; you won’t be expected to track down missing semicolons on
+                the whole exam—only on enum questions. For this reason, line 5 should have a semicolon
+                after it since it is the end of the list of enums, making option F correct. Enum constructors
+                are implicitly private, making option C correct as well. The rest of the enum compiles
+                without issue.
+            </p>
+        </div>
+        <div class="question" data-question="27">
+            <h1 class="question-title">Question 27</h1>
+            <p class="question-text">Assuming a record is defined with at least one field, which components does the compiler always insert,
+                each of which may be overridden or redeclared? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. A no-argument constructor</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. An accessor method for each field</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. The toString() method</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. The equals() method</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. A mutator method for each field</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. A sort method for each field</p>
+                <p class="question-answer" data-is-correct="True"><input name="G" type="checkbox"/>G. The hashCode() method</p>
+            </div>
+            <p class="question-explanation">
+                B, C, D, G. The compiler inserts an accessor for each field, a constructor containing all
+                of the fields in the order they are declared, and useful implementations of equals(),
+                hashCode(), and toString(), making options B, C, D, and G correct. Option A is incorrect,
+                as the compiler would only insert a no-argument constructor if the record had no fields.
+                Option E is incorrect, as records are immutable. Option F is also incorrect and not a property
+                of records.
+            </p>
+        </div>
+        <div class="question" data-question="28">
+            <h1 class="question-title">Question 28</h1>
+            <p class="question-text">Which of the following classes and interfaces do not compile? (Choose all that apply.)</p>
+            <pre class="question-code">
+public abstract class Camel { void travel(); }
+public interface EatsGrass { private abstract int chew(); }
+public abstract class Elephant {
+  abstract private class SleepsAlot {
+    abstract int sleep();
+} }
+public class Eagle { abstract soar(); }
+public interface Spider { default void crawl() {} }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. Camel</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. EatsGrass</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Elephant</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. Eagle</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Spider</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of the classes or interfaces compile.</p>
+            </div>
+            <p class="question-explanation">
+                A, B, D. Camel does not compile because the travel() method does not declare a
+                body, nor is it marked abstract, making option A correct. EatsGrass also does not
+                compile because an interface method cannot be marked both private and abstract,
+                making option B correct. Finally, Eagle does not compile because it declares an abstract
+                method soar() in a concrete class, making option D correct. The other classes compile
+                without issue.
+            </p>
+        </div>
+        <div class="question" data-question="29">
+            <h1 class="question-title">Question 29</h1>
+            <p class="question-text">How many lines of the following program contain a compilation error?</p>
+            <pre class="question-code">
+1:  class Primate {
+2:     protected int age = 2;
+3:     { age = 1; }
+4:     public Primate() {
+5:        this().age = 3;
+6:     }
+7:  }
+8:  public class Orangutan {
+9:     protected int age = 4;
+10:    { age = 5; }
+11:    public Orangutan() {
+12:       this().age = 6;
+13:    }
+14:    public static void main(String[] bananas) {
+15:       final Primate x = (Primate)new Orangutan();
+16:       System.out.println(x.age);
+17:    }
+18: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. None, and the program prints 1 at runtime.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. None, and the program prints 3 at runtime.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. None, but it causes a ClassCastException at runtime.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. 1</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. 2</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. 3</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. 4</p>
+            </div>
+            <p class="question-explanation">
+                F. The code does not compile, so options A through C are incorrect. Both lines 5 and 12 do
+                not compile, as this() is used instead of this. Remember, this() refers to calling a constructor,
+                whereas this is a reference to the current instance. Next, the compiler does not
+                allow casting to an unrelated class type. Since Orangutan is not a subclass of Primate, the
+                cast on line 15 is invalid, and the code does not compile. Due to these three lines containing
+                compilation errors, option F is the correct answer.
+            </p>
+        </div>
+        <div class="question" data-question="30">
+            <h1 class="question-title">Question 30</h1>
+            <p class="question-text">Assuming the following classes are declared as top-level types in the same file, which classes contain compiler errors? (Choose all that apply.)</p>
+            <pre class="question-code">
+sealed class Bird {
+  public final class Flamingo extends Bird {}
+}
+sealed class Monkey {}
+class EmperorTamarin extends Monkey {}
+non-sealed class Mandrill extends Monkey {}
+sealed class Friendly extends Mandrill permits Silly {}
+final class Silly {}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Bird</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Monkey</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. EmperorTamarin</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Mandrill</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. Friendly</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. Silly</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. All of the classes compile without issue.</p>
+            </div>
+            <p class="question-explanation">
+                C, E. Bird and its nested Flamingo subclass compile without issue. The permits clause is
+                optional if the subclass is nested or declared in the same file. For this reason, Monkey and its
+                subclass Mandrill also compile without issue. EmperorTamarin does not compile, as it is
+                missing a non-sealed, sealed, or final modifier, making option C correct. Friendly
+                also does not compile, since it lists a subclass Silly that does not extend it, making option
+                E correct. While the permits clause is optional, the extends clause is not. Silly compiles
+                just fine. Even though it does not extend Friendly, the compiler error is in the sealed class.
+            </p>
+        </div>
+
+        <p class="info"></p>
+    </div>
+    <div>
+        <button type="button" class="start">Start</button>
+        <button type="button" class="finish">Finish</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

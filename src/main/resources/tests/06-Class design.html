@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Class Design</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="test">
+        <p class="timer">00:00:00</p>
+
+        <div class="question" data-question="1">
+            <h1 class="question-title">Question 1</h1>
+            <p class="question-text">Which code can be inserted to have the code print 2?</p>
+            <pre class="question-code">
+public class BirdSeed {
+  private int numberBags;
+  boolean call;
+  public BirdSeed() {
+    // LINE 1
+    call = false;
+    // LINE 2
+  }
+  public BirdSeed(int numberBags) {
+    this.numberBags = numberBags;
+  }
+  public static void main(String[] args) {
+    var seed = new BirdSeed();
+    System.out.print(seed.numberBags);
+} }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Replace line 1 with BirdSeed(2);.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Replace line 2 with BirdSeed(2);.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Replace line 1 with new BirdSeed(2);.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Replace line 2 with new BirdSeed(2);.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. Replace line 1 with this(2);.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. Replace line 2 with this(2);.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. The code prints 2 without any changes.</p>
+            </div>
+            <p class="question-explanation">
+                E. Options A and B will not compile because constructors cannot be called without new.
+                Options C and D will compile but will create a new object rather than setting the fields in
+                this one. The result is the program will print 0, not 2, at runtime. Calling an overloaded constructor,
+                using this(), or a parent constructor, using super(), is only allowed on the first
+                line of the constructor, making option E correct and option F incorrect. Finally, option G is
+                incorrect because the program prints 0 without any changes, not 2.
+            </p>
+        </div>
+        <div class="question" data-question="2">
+            <h1 class="question-title">Question 2</h1>
+            <p class="question-text">Which modifier pairs can be used together in a method declaration? (Choose all that apply.</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. static and final</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. private and static</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. static and abstract</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. private and abstract</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. abstract and final</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. private and final</p>
+            </div>
+            <p class="question-explanation">
+                A, B, F. The final modifier can be used with private and static, making options A
+                and F correct. Marking a private method final is redundant but allowed. A private
+                method may also be marked static, making option B correct. Options C, D, and E are
+                incorrect because methods marked static, private, or final cannot be overridden;
+                therefore, they cannot be marked abstract.
+            </p>
+        </div>
+        <div class="question" data-question="3">
+            <h1 class="question-title">Question 3</h1>
+            <p class="question-text">Which of the following statements about methods are true? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Overloaded methods must have the same signature.</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. Overridden methods must have the same signature.</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. Hidden methods must have the same signature.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Overloaded methods must have the same return type.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Overridden methods must have the same return type.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. Hidden methods must have the same return type.</p>
+            </div>
+            <p class="question-explanation">
+                B, C. Overloaded methods have the same method name but a different signature (the method
+                parameters differ), making option A incorrect. Overridden instance methods and hidden
+                static methods must have the same signature (the name and method parameters must
+                match), making options B and C correct. Overloaded methods can have different return
+                types, while overridden and hidden methods can have covariant return types. None of these
+                methods are required to use the same return type, making options D, E, and F incorrect.
+            </p>
+        </div>
+        <div class="question" data-question="4">
+            <h1 class="question-title">Question 4</h1>
+            <p class="question-text">What is the output of the following program?</p>
+            <pre class="question-code">
+1:  class Mammal {
+2:     private void sneeze() {}
+3:     public Mammal(int age) {
+4:        System.out.print("Mammal");
+5:     } }
+6:  public class Platypus extends Mammal {
+7:     int sneeze() { return 1; }
+8:     public Platypus() {
+9:        System.out.print("Platypus");
+10:    }
+11:    public static void main(String[] args) {
+12:       new Mammal(5);
+13:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Platypus</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Mammal</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. PlatypusMammal</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. MammalPlatypus</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code will compile if line 7 is changed.</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. The code will compile if line 9 is changed.</p>
+            </div>
+            <p class="question-explanation">
+                F. The code will not compile as is, because the parent class Mammal does not define a noargument
+                constructor. For this reason, the first line of a Platypus constructor should be
+                an explicit call to super(int), making option F the correct answer. Option E is incorrect,
+                as line 7 compiles without issue. The sneeze() method in the Mammal class is marked
+                private, meaning it is not inherited and therefore is not overridden in the Platypus class.
+                For this reason, the sneeze() method in the Platypus class is free to define the same
+                method with any return type.
+            </p>
+        </div>
+        <div class="question" data-question="5">
+            <h1 class="question-title">Question 5</h1>
+            <p class="question-text">Which of the following complete the constructor so that this code prints out 50? (Choose all that apply.)</p>
+            <pre class="question-code">
+class Speedster {
+  int numSpots;
+}
+public class Cheetah extends Speedster {
+  int numSpots;
+  public Cheetah(int numSpots) {
+   // INSERT CODE HERE
+  }
+  public static void main(String[] args) {
+    Speedster s = new Cheetah(50);
+    System.out.print(s.numSpots);
+  }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. numSpots = numSpots;</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. numSpots = this.numSpots;</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. this.numSpots = numSpots;</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. numSpots = super.numSpots;</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. super.numSpots = numSpots;</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code does not compile regardless of the code inserted into the constructor.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                E. The code compiles, making option F incorrect. An instance variable with the same name
+                as an inherited instance variable is hidden, not overridden. This means that both variables
+                exist, and the one that is used depends on the location and reference type. Because the
+                main() method uses a reference type of Speedster to access the numSpots variable, the
+                variable in the Speedster class, not the Cheetah class, must be set to 50. Option A is
+                incorrect, as it reassigns the method parameter to itself. Option B is incorrect, as it assigns
+                the method parameter the value of the instance variable in Cheetah, which is 0. Option C
+                is incorrect, as it assigns the value to the instance variable in Cheetah, not Speedster.
+                Option D is incorrect, as it assigns the method parameter the value of the instance variable in
+                Speedster, which is 0. Options A, B, C, and D all print 0 at runtime. Option E is the only
+                correct answer, as it assigns the instance variable numSpots in the Speedster class a value
+                of 50. The numSpots variable in the Speedster class is then correctly referenced in the
+                main() method, printing 50 at runtime.
+            </p>
+        </div>
+        <div class="question" data-question="6">
+            <h1 class="question-title">Question 6</h1>
+            <p class="question-text">Which of the following declare immutable classes? (Choose all that apply.)</p>
+            <pre class="question-code">
+public final class Moose {
+  private final int antlers;
+}
+public class Caribou {
+  private int antlers = 10;
+}
+public class Reindeer {
+  private final int antlers = 5;
+}
+public final class Elk {}
+public final class Deer {
+  private final Object o = new Object();
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Moose</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Caribou</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Reindeer</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. Elk</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. Deer</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                D, E. The Moose class doesn’t compile, as the final variable antlers is not initialized
+                when it is declared, in an instance initializer, or in a constructor. Caribou and Reindeer
+                are not immutable because they are not marked final, which means a subclass could
+                extend them and add mutable fields. Elk and Deer are both immutable classes since they
+                are marked final and only include private final members, making options D and
+                E correct. As shown with Elk, a class doesn’t need to declare any fields to be considered
+                immutable.
+            </p>
+        </div>
+        <div class="question" data-question="7">
+            <h1 class="question-title">Question 7</h1>
+            <p class="question-text">What is the output of the following code?</p>
+            <pre class="question-code">
+1:  class Arthropod {
+2:     protected void printName(long input) {
+3:        System.out.print("Arthropod");
+4:     }
+5:     void printName(int input) {
+6:        System.out.print("Spooky");
+7:     } }
+8:  public class Spider extends Arthropod {
+9:     protected void printName(int input) {
+10:       System.out.print("Spider");
+11:    }
+12:    public static void main(String[] args) {
+13:       Arthropod a = new Spider();
+14:       a.printName((short)4);
+15:       a.printName(4);
+16:       a.printName(5L);
+17:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. SpiderSpiderArthropod</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. SpiderSpiderSpider</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. SpiderSpookyArthropod</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. SpookySpiderArthropod</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code will not compile because of line 5.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code will not compile because of line 9.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                A. The code compiles and runs without issue, so options E and F are incorrect. The
+                Arthropod class defines two overloaded versions of the printName() method. The
+                printName() method that takes an int value on line 5 is correctly overridden in the
+                Spider class on line 9. Remember, an overridden method can have a broader access
+                modifier, and protected access is broader than package access. Because of polymorphism,
+                the overridden method replaces the method on all calls, even if an Arthropod reference
+                variable is used, as is done in the main() method. For these reasons, the overridden method
+                is called on lines 14 and 15, printing Spider twice. Note that the short value is automatically cast
+                to the larger type of int, which then uses the overridden method. Line 16
+                calls the overloaded method in the Arthropod class, as the long value 5L does not match
+                the overridden method, resulting in Arthropod being printed. Therefore, option A is the
+                correct answer
+            </p>
+        </div>
+        <div class="question" data-question="8">
+            <h1 class="question-title">Question 8</h1>
+            <p class="question-text">What is the result of the following code?</p>
+            <pre class="question-code">
+1:  abstract class Bird {
+2:     private final void fly() { System.out.println("Bird"); }
+3:     protected Bird() { System.out.print("Wow-"); }
+4:  }
+5:  public class Pelican extends Bird {
+6:     public Pelican() { System.out.print("Oh-"); }
+7:     protected void fly() { System.out.println("Pelican"); }
+8:     public static void main(String[] args) {
+9:        var chirp = new Pelican();
+10:       chirp.fly();
+11: } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Oh-Bird</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Oh-Pelican</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Wow-Oh-Bird</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. Wow-Oh-Pelican</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code contains a compilation error.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                D. The code compiles without issue. The question is making sure you know that superclass
+                constructors are called in the same manner in abstract classes as they are in non-abstract
+                classes. Line 9 calls the constructor on line 6. The compiler automatically inserts super() as
+                the first line of the constructor defined on line 6. The program then calls the constructor on
+                line 3 and prints Wow-. Control then returns to line 6, and Oh- is printed. Finally, the
+                method call on line 10 uses the version of fly() in the Pelican class, since it is marked
+                private and the reference type of var is resolved as Pelican. The final output is
+                Wow-Oh-Pelican, making option D the correct answer. Remember that private methods
+                cannot be overridden. If the reference type of chirp was Bird, then the code would not
+                compile as it would not be accessible outside the class.
+            </p>
+        </div>
+        <div class="question" data-question="9">
+            <h1 class="question-title">Question 9</h1>
+            <p class="question-text">Which of the following statements about overridden methods are true? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. An overridden method must contain method parameters that are the same or covariant with the method parameters in the inherited method.</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. An overridden method may declare a new exception, provided it is not checked.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. An overridden method must be more accessible than the method in the parent class.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. An overridden method may declare a broader checked exception than the method in the parent class.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. If an inherited method returns void, then the overridden version of the method must return void.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                B, E. The signature must match exactly, making option A incorrect. There is no such thing as
+                a covariant signature. An overridden method must not declare any new checked exceptions
+                or a checked exception that is broader than the inherited method. For this reason, option B is
+                correct, and option D is incorrect. Option C is incorrect because an overridden method may
+                have the same access modifier as the version in the parent class. Finally, overridden methods
+                must have covariant return types, and only void is covariant with void, making option
+                E correct.
+            </p>
+        </div>
+        <div class="question" data-question="10">
+            <h1 class="question-title">Question 10</h1>
+            <p class="question-text">Which of the following pairs, when inserted into the blanks, allow the code to compile? (Choose all that apply.)</p>
+            <pre class="question-code">
+1:  public class Howler {
+2:     public Howler(long shadow) {
+3:        ____________;
+4:     }
+5:     private Howler(int moon) {
+6:        super();
+7:     }
+8:  }
+9:  class Wolf extends Howler {
+10:    protected Wolf(String stars) {
+11:       super(2L);
+12:    }
+13:    public Wolf() {
+14:       ____________;
+15:    }
+16: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. this(3) at line 3, this("") at line 14</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. this() at line 3, super(1) at line 14</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. this((short)1) at line 3, this(null) at line 14</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. super() at line 3, super() at line 14</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. this(2L) at line 3, super((short)2) at line 14</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. this(5) at line 3, super(null) at line 14</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. Remove lines 3 and 14.</p>
+            </div>
+            <p class="question-explanation">
+                A, C. Option A is correct, as this(3) calls the constructor declared on line 5, while
+                this("") calls the constructor declared on line 10. Option B does not compile, as inserting
+                this() at line 3 results in a compiler error, since there is no matching constructor. Option
+                C is correct, as short can be implicitly cast to int, resulting in this((short)1) calling
+                the constructor declared on line 5. In addition, this(null) calls the String constructor
+                declared on line 10. Option D does not compile because inserting super() on line 14 results
+                in an invalid constructor call. The Howler class does not contain a no-argument constructor.
+                Option E is also incorrect. Inserting this(2L) at line 3 results in a recursive constructor
+                definition. The compiler detects this and reports an error. Option F is incorrect, as using
+                super(null) on line 14 does not match any parent constructors. If an explicit cast was
+                used, such as super((Integer)null), then the code would have compiled but would
+                throw an exception at runtime during unboxing. Finally, option G is incorrect because the
+                superclass Howler does not contain a no-argument constructor. Therefore, the constructor
+                declared on line 13 will not compile without an explicit call to an overloaded or parent
+                constructor.
+            </p>
+        </div>
+        <div class="question" data-question="11">
+            <h1 class="question-title">Question 11</h1>
+            <p class="question-text">What is the result of the following?</p>
+            <pre class="question-code">
+1:  public class PolarBear {
+2:     StringBuilder value = new StringBuilder("t");
+3:     { value.append("a"); }
+4:     { value.append("c"); }
+5:     private PolarBear() {
+6:        value.append("b");
+7:     }
+8:     public PolarBear(String s) {
+9:        this();
+10:       value.append(s);
+11:    }
+12:    public PolarBear(CharSequence p) {
+13:       value.append(p);
+14:    }
+15:    public static void main(String[] args) {
+16:       Object bear = new PolarBear();
+17:       bear = new PolarBear("f");
+18:       System.out.println(((PolarBear)bear).value);
+19:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. tacb</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. tacf</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. tacbf</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. tcafb</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. taftacb</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. An exception is thrown.</p>
+            </div>
+            <p class="question-explanation">
+                C. The code compiles and runs without issue, making options F and G incorrect. Line 16 initializes a PolarBear instance and assigns it to the bear reference. The variable declaration
+                and instance initializers are run first, setting value to tac. The constructor declared on line
+                5 is called, resulting in value being set to tacb. Remember, a static main() method can
+                access private constructors declared in the same class. Line 17 creates another PolarBear
+                instance, replacing the bear reference declared on line 16. First, value is initialized to tac
+                as before. Line 17 calls the constructor declared on line 8, since String is the narrowest
+                match of a String literal. This constructor then calls the overloaded constructor declared
+                on line 5, resulting in value being updated to tacb. Control returns to the previous constructor, with line 10 updating value to tacbf, and making option C the correct answer.
+                Note that if the constructor declared on line 8 did not exist, then the constructor on line
+                12 would match. Finally, the bear reference is properly cast to PolarBear on line 18,
+                making the value parameter accessible.
+            </p>
+        </div>
+        <div class="question" data-question="12">
+            <h1 class="question-title">Question 12</h1>
+            <p class="question-text">How many lines of the following program contain a compilation error?</p>
+            <pre class="question-code">
+1:  public class Rodent {
+2:     public Rodent(Integer x) {}
+3:     protected static Integer chew() throws Exception {
+4:        System.out.println("Rodent is chewing");
+5:        return 1;
+6:     }
+7:  }
+8:  class Beaver extends Rodent {
+9:     public Number chew() throws RuntimeException {
+10:       System.out.println("Beaver is chewing on wood");
+11:       return 2;
+12:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. None</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 1</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. 2</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. 3</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. 4</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. 5</p>
+            </div>
+            <p class="question-explanation">
+                C. The code doesn’t compile, so option A is incorrect. The first compilation error is on line
+                8. Since Rodent declares at least one constructor and it is not a no-argument constructor,
+                Beaver must declare a constructor with an explicit call to a super() constructor. Line 9
+                contains two compilation errors. First, the return types are not covariant since Number is
+                a supertype, not a subtype, of Integer. Second, the inherited method is static, but the
+                overridden method is not, making this an invalid override. The code contains three compilation
+                errors, although they are limited to two lines, making option C the correct answer.
+            </p>
+        </div>
+        <div class="question" data-question="13">
+            <h1 class="question-title">Question 13</h1>
+            <p class="question-text">Which of the following statements about inheritance are correct? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. A class can directly extend any number of classes.</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. A class can implement any number of interfaces.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. All variables inheritjava.lang.Object.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. If classA is extended byB, thenB is a superclass ofA.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. If classC implements interfaceD, thenC is a subtype ofD.</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. Multiple inheritance is the property of a class to have multiple direct superclasses.</p>
+            </div>
+            <p class="question-explanation">
+                B, E, F. A class can only directly extend a single class, making option A incorrect. A class can
+                implement any number of interfaces, though, making option B correct. Option C is incorrect because
+                primitive variables types do not inherit java.lang.Object. If a class extends
+                another class, then it is a subclass, not a superclass, making option D incorrect. A class that
+                implements an interface is a subtype of that interface, making option E correct. Finally,
+                option F is correct as it is an accurate description of multiple inheritance, which is not permitted in Java.
+            </p>
+        </div>
+        <div class="question" data-question="14">
+            <h1 class="question-title">Question 14</h1>
+            <p class="question-text">Which statements about the following program are correct? (Choose all that apply.)</p>
+            <pre class="question-code">
+1: abstract class Nocturnal {
+2:    boolean isBlind();
+3: }
+4: public class Owl extends Nocturnal {
+5:    public boolean isBlind() { return false; }
+6:    public static void main(String[] args) {
+7:       var nocturnal = (Nocturnal)new Owl();
+8:       System.out.println(nocturnal.isBlind());
+9: } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. It compiles and printstrue.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. It compiles and printsfalse.</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. The code will not compile because of line 2.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The code will not compile because of line 5.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code will not compile because of line 7.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code will not compile because of line 8.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                C. The code does not compile because the isBlind() method in Nocturnal is not
+                marked abstract and does not contain a method body. The rest of the lines compile
+                without issue, making option C the only correct answer. If the abstract modifier was
+                added to line 2, then the code would compile and print false at runtime, making option B
+                the correct answer.
+            </p>
+        </div>
+        <div class="question" data-question="15">
+            <h1 class="question-title">Question 15</h1>
+            <p class="question-text">What is the result of the following?</p>
+            <pre class="question-code">
+1:  class Arachnid {
+2:     static StringBuilder sb = new StringBuilder();
+3:     { sb.append("c"); }
+4:     static
+5:     { sb.append("u"); }
+6:     { sb.append("r"); }
+7:  }
+8:  public class Scorpion extends Arachnid {
+9:     static
+10:    { sb.append("q"); }
+11:    { sb.append("m"); }
+12:    public static void main(String[] args) {
+13:       System.out.print(Scorpion.sb + " ");
+14:       System.out.print(Scorpion.sb + " ");
+15:       new Arachnid();
+16:       new Scorpion();
+17:       System.out.print(Scorpion.sb);
+18:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. qu qu qumrcrc</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. u u ucrcrm</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. uq uq uqmcrcr</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. uq uq uqcrcrm</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. qu qu qumcrcr</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. qu qu qucrcrm</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. The code does not compile.</p>
+            </div>
+            <p class="question-explanation">
+                D. The code compiles, so option G is incorrect. Based on order of initialization, the static
+                components are initialized first, starting with the Arachnid class, since it is the parent of
+                the Scorpion class, which initializes the StringBuilder to u. The static initializer in
+                Scorpion then updates sb to contain uq, which is printed twice by lines 13 and 14 along
+                with spaces separating the values. Next, an instance of Arachnid is initialized on line 15.
+                There are two instance initializers in Arachnid, and they run in order, appending cr to the
+                StringBuilder, resulting in a value of uqcr. An instance of Scorpion is then initialized
+                on line 16. The instance initializers in the superclass Arachnid run first, appending cr again
+                and updating the value of sb to uqcrcr. Finally, the instance initializer in Scorpion runs
+                and appends m. The program completes with the final value printed being uq uq uqcrcrm,
+                making option D the correct answer.
+            </p>
+        </div>
+        <div class="question" data-question="16">
+            <h1 class="question-title">Question 16</h1>
+            <p class="question-text">Which of the following are true? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. this() can be called from anywhere in a constructor.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. this() can be called from anywhere in an instance method.</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. this.variableName can be called from any instance method in the class.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. this.variableName can be called from any static method in the class.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. You can call the default constructor written by the compiler using this().</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. You can access a private constructor with the main() method in the same class.</p>
+            </div>
+            <p class="question-explanation">
+                C, F. Calling an overloaded constructor with this() may be used only as the first line of a
+                constructor, making options A and B incorrect. Accessing this.variableName can be performed from any instance
+                method, constructor, or instance initializer, but not from a static
+                method or static initializer. For this reason, option C is correct, and option D is incorrect.
+                Option E is tricky. The default constructor is written by the compiler only if no user-defined
+                constructors were provided. And this() can only be called from a constructor in the same
+                class. Since there can be no user-defined constructors in the class if a default constructor was
+                created, it is impossible for option E to be true. Since the main() method is in the same
+                class, it can call private methods in the class, making option F correct.
+            </p>
+        </div>
+        <div class="question" data-question="17">
+            <h1 class="question-title">Question 17</h1>
+            <p class="question-text">Which statements about the following classes are correct? (Choose all that apply.)</p>
+            <pre class="question-code">
+1:  public class Mammal {
+2:     private void eat() {}
+3:     protected static void drink() {}
+4:     public Integer dance(String p) { return null; }
+5:  }
+6:  class Primate extends Mammal {
+7:     public void eat(String p) {}
+8:  }
+9:  class Monkey extends Primate {
+10:    public static void drink() throws RuntimeException {}
+11:    public Number dance(CharSequence p) { return null; }
+12:    public int eat(String p) {}
+13: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. The eat() method inMammal is correctly overridden on line 7.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. The eat() method inMammal is correctly overloaded on line 7.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. The drink() method inMammal is correctly overridden on line 10.</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. The drink() method inMammal is correctly hidden on line 10.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The dance() method inMammal is correctly overridden on line 11.</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. The dance() method inMammal is correctly overloaded on line 11.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. The eat() method inPrimate is correctly hidden on line 12.</p>
+                <p class="question-answer" data-is-correct="False"><input name="H" type="checkbox"/>H. The eat() method inPrimate is correctly overloaded on line 12.</p>
+            </div>
+            <p class="question-explanation">
+                D, F. The eat() method is private in the Mammal class. Since it is not inherited in the
+                Primate class, it is neither overridden nor overloaded, making options A and B incorrect.
+                The drink() method in Mammal is correctly hidden in the Monkey class, as the signature is
+                the same and both are static, making option D correct and option C incorrect. The version
+                in the Monkey class throws a new exception, but it is unchecked; therefore, it is allowed. The
+                dance() method in Mammal is correctly overloaded in the Monkey class because the signatures are not the same,
+                making option E incorrect and option F correct. For methods to be
+                overridden, the signatures must match exactly. Finally, line 12 is an invalid override and does
+                not compile, as int is not covariant with void, making options G and H both incorrect.
+            </p>
+        </div>
+        <div class="question" data-question="18">
+            <h1 class="question-title">Question 18</h1>
+            <p class="question-text">What is the output of the following code?</p>
+            <pre class="question-code">
+1:  class Reptile {
+2:     {System.out.print("A");}
+3:     public Reptile(int hatch) {}
+4:     void layEggs() {
+5:        System.out.print("Reptile");
+6:     } }
+7:  public class Lizard extends Reptile {
+8:     static {System.out.print("B");}
+9:     public Lizard(int hatch) {}
+10:    public final void layEggs() {
+11:       System.out.print("Lizard");
+12:    }
+13:    public static void main(String[] args) {
+14:       var reptile = new Lizard(1);
+15:       reptile.layEggs();
+16:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. AALizard</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. BALizard</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. BLizardA</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. ALizard</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code will not compile because of line 3.</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                F. The Reptile class defines a constructor, but it is not a no-argument constructor. Therefore,
+                the Lizard constructor must explicitly call super(), passing in an int value. For this
+                reason, line 9 does not compile, and option F is the correct answer. If the Lizard class were
+                corrected to call the appropriate super() constructor, then the program would print
+                BALizard at runtime, with the static initializer running first, followed by the instance
+                initializer, and finally the method call using the overridden method.
+            </p>
+        </div>
+        <div class="question" data-question="19">
+            <h1 class="question-title">Question 19</h1>
+            <p class="question-text">Which statement about the following program is correct?</p>
+            <pre class="question-code">
+1:  class Bird {
+2:     int feathers = 0;
+3:     Bird(int x) { this.feathers = x; }
+4:     Bird fly() {
+5:        return new Bird(1);
+6:     } }
+7:  class Parrot extends Bird {
+8:     protected Parrot(int y) { super(y); }
+9:     protected Parrot fly() {
+10:       return new Parrot(2);
+11:    } }
+12: public class Macaw extends Parrot {
+13:    public Macaw(int z) { super(z); }
+14:    public Macaw fly() {
+15:       return new Macaw(3);
+16:    }
+17:    public static void main(String… sing) {
+18:       Bird p = new Macaw(4);
+19:       System.out.print(((Parrot)p.fly()).feathers);
+20:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. One line contains a compiler error.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Two lines contain compiler errors.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Three lines contain compiler errors.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The code compiles but throws aClassCastException at runtime.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. The program compiles and prints3.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The program compiles and prints0.</p>
+            </div>
+            <p class="question-explanation">
+                E. The program compiles and runs without issue, making options A through D incorrect. The
+                fly() method is correctly overridden in each subclass since the signature is the same, the
+                access modifier is less restrictive, and the return types are covariant. For covariance, Macaw is
+                a subtype of Parrot, which is a subtype of Bird, so overridden return types are valid. Likewise,
+                the constructors are all implemented properly, with explicit calls to the parent constructors as
+                needed. Line 19 calls the overridden version of fly() defined in the Macaw class, as
+                overriding replaces the method regardless of the reference type. This results in feathers
+                being assigned a value of 3. The Macaw object is then cast to Parrot, which is allowed
+                because Macaw inherits Parrot. The feathers variable is visible since it is defined in the
+                Bird class, and line 19 prints 3, making option E the correct answer.
+            </p>
+        </div>
+        <div class="question" data-question="20">
+            <h1 class="question-title">Question 20</h1>
+            <p class="question-text">Which of the following are properties of immutable classes? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. The class can contain setter methods, provided they are marked final.</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. The class must not be able to be extended outside the class declaration.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. The class may not contain any instance variables.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The class must be marked static.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The class may not contain any static variables.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The class may only contain private constructors.</p>
+                <p class="question-answer" data-is-correct="True"><input name="G" type="checkbox"/>G. The data for mutable instance variables may be read, provided they cannot be modified by the caller.</p>
+            </div>
+            <p class="question-explanation">
+                B, G. Immutable objects do not include setter methods, making option A incorrect. An
+                immutable class must be marked final or contain only private constructors, so no subclass
+                can extend it and make it mutable, making option B correct. Options C and E are
+                incorrect, as immutable classes can contain both instance and static variables. Option D
+                is incorrect, as marking a class static is not a property of immutable objects. Option F is
+                incorrect. While an immutable class may contain only private constructors, this is not a
+                requirement. Finally, option G is correct. It is allowed for the caller to access data in mutable
+                elements of an immutable object, provided they have no ability to modify these elements.
+            </p>
+        </div>
+        <div class="question" data-question="21">
+            <h1 class="question-title">Question 21</h1>
+            <p class="question-text">What does the following program print?</p>
+            <pre class="question-code">
+1:  class Person {
+2:     static String name;
+3:     void setName(String q) { name = q; } }
+4:  public class Child extends Person {
+5:     static String name;
+6:     void setName(String w) { name = w; }
+7:     public static void main(String[] p) {
+8:        final Child m = new Child();
+9:        final Person t = m;
+10:       m.name = "Elysia";
+11:       t.name = "Sophia";
+12:       m.setName("Webby");
+13:       t.setName("Olivia");
+14:       System.out.println(m.name + " " + t.name);
+15:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Elysia Sophia</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Webby Olivia</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Olivia Olivia</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. Olivia Sophia</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                D. The code compiles and runs without issue, making option E incorrect. The Child class
+                overrides the setName() method and hides the static name variable defined in the
+                inherited Person class. Since variables are only hidden, not overridden, there are two
+                distinct name variables accessible, depending on the location and reference type. Line 8 creates
+                a Child instance, which is implicitly cast to a Person reference type on line 9. Line 10 uses
+                the Child reference type, updating Child.name to Elysia. Line 11 uses the Person reference type,
+                updating Person.name to Sophia. Lines 12 and 13 both call the overridden
+                setName() instance method declared on line 6. This sets Child.name to Webby on line
+                12 and then to Olivia on line 13. The final values of Child.name and Person.name are
+                Olivia and Sophia, respectively, making option D the correct answer.
+            </p>
+        </div>
+        <div class="question" data-question="22">
+            <h1 class="question-title">Question 22</h1>
+            <p class="question-text">What is the output of the following program?</p>
+            <pre class="question-code">
+1:  class Canine {
+2:     public Canine(boolean t) { logger.append("a"); }
+3:     public Canine() { logger.append("q"); }
+4:
+5:     private StringBuilder logger = new StringBuilder();
+6:     protected void print(String v) { logger.append(v); }
+7:     protected String view() { return logger.toString(); }
+8:  }
+9:
+10: class Fox extends Canine {
+11:    public Fox(long x) { print("p"); }
+12:    public Fox(String name) {
+13:       this(2);
+14:       print("z");
+15:    }
+16: }
+17:
+18: public class Fennec extends Fox {
+19:    public Fennec(int e) {
+20:       super("tails");
+21:       print("j");
+22:    }
+23:    public Fennec(short f) {
+24:       super("eevee");
+25:       print("m");
+26:    }
+27:
+28:    public static void main(String… unused) {
+29:       System.out.println(new Fennec(1).view());
+30:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. qpz</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. qpzj</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. jzpa</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. apj</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. apjm</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                B. The program compiles, making option F incorrect. The constructors are called from the
+                child class upward, but since each line of a constructor is a call to another constructor, via
+                this() or super(), they are ultimately executed in a top-down manner. On line 29, the
+                main() method calls the Fennec() constructor declared on line 19. Remember, integer
+                literals in Java are considered int by default. This constructor calls the Fox() constructor
+                defined on line 12, which in turn calls the overloaded Fox() constructor declared on line
+                11. Since the constructor on line 11 does not explicitly call a parent constructor, the compiler
+                inserts a call to the no-argument super() constructor, which exists on line 3 of the Canine
+                class. Line 3 is then executed, adding q to the output, and the compiler chain is unwound.
+                Line 11 then executes, adding p, followed by line 14, adding z. Finally, line 21 is executed,
+                and j is added, resulting in a final value for logger of qpzj, and making option B correct.
+                For the exam, remember to follow constructors from the lowest level upward to determine
+                the correct pathway, but then execute them from the top down using the established order.
+            </p>
+        </div>
+        <div class="question" data-question="23">
+            <h1 class="question-title">Question 23</h1>
+            <p class="question-text">What is printed by the following program?</p>
+            <pre class="question-code">
+1:  class Antelope {
+2:     public Antelope(int p) {
+3:        System.out.print("4");
+4:     }
+5:     { System.out.print("2"); }
+6:     static { System.out.print("1"); }
+7:  }
+8:  public class Gazelle extends Antelope {
+9:     public Gazelle(int p) {
+10:       super(6);
+11:       System.out.print("3");
+12:    }
+13:    public static void main(String hopping[]) {
+14:       new Gazelle(0);
+15:    }
+16:    static { System.out.print("8"); }
+17:    { System.out.print("9"); }
+18: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. 182640</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 182943</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. 182493</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. 421389</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The output cannot be determined until runtime.</p>
+            </div>
+            <p class="question-explanation">
+                C. The code compiles and runs without issue, making options E and F incorrect. First, the
+                class is initialized, starting with the superclass Antelope and then the subclass
+                Gazelle. This involves invoking the static variable declarations and static initializers.
+                The program first prints 1, followed by 8. Then we follow the constructor pathway from the
+                object created on line 14 upward, initializing each class instance using a top-down approach.
+                Within each class, the instance initializers are run, followed by the referenced constructors.
+                The Antelope instance is initialized, printing 24, followed by the Gazelle instance,
+                printing 93. The final output is 182493, making option C the correct answer
+            </p>
+        </div>
+        <div class="question" data-question="24">
+            <h1 class="question-title">Question 24</h1>
+            <p class="question-text">Which of the following are true about a concrete class? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. A concrete class can be declared as abstract.</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. A concrete class must implement all inherited abstract methods.</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. A concrete class can be marked as final.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. A concrete class must be immutable.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. A concrete method that implements an abstract method must match the method declaration of the abstract method exactly.</p>
+            </div>
+            <p class="question-explanation">
+                B, C. Concrete classes are, by definition, not abstract, so option A is incorrect. A concrete
+                class must implement all inherited abstract methods, so option B is correct. Concrete classes
+                can be optionally marked final, so option C is correct. Option D is incorrect; concrete
+                classes need not be immutable. A concrete subclass only needs to override the inherited
+                abstract method, not match the declaration exactly. For example, a covariant return type can
+                be used. For this reason, option E is incorrect.
+            </p>
+        </div>
+        <div class="question" data-question="25">
+            <h1 class="question-title">Question 25</h1>
+            <p class="question-text">What is the output of the following code?</p>
+            <pre class="question-code">
+4:  public abstract class Whale {
+5:     public abstract void dive();
+6:     public static void main(String[] args) {
+7:        Whale whale = new Orca();
+8:        whale.dive(3);
+9:     }
+10: }
+11: class Orca extends Whale {
+12:    static public int MAX = 3;
+13:    public void dive() {
+14:       System.out.println("Orca diving");
+15:    }
+16:    public void dive(int… depth) {
+17:       System.out.println("Orca diving deeper "+MAX);
+18: } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Orca diving</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Orca diving deeper 3</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. The code will not compile because of line 4.</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. The code will not compile because of line 8.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code will not compile because of line 11.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code will not compile because of line 12.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. The code will not compile because of line 17.</p>
+                <p class="question-answer" data-is-correct="False"><input name="H" type="checkbox"/>H. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                D. The classes are structured correctly, but the body of the main() method contains a compiler error.
+                The Orca object is implicitly cast to a Whale reference on line 7. This is permitted because Orca
+                is a subclass of Whale. By performing the cast, the whale reference on
+                line 8 does not have access to the dive(int... depth) method. For this reason, line 8
+                does not compile, making option D correct.
+            </p>
+        </div>
+
+        <p class="info"></p>
+    </div>
+    <div>
+        <button type="button" class="start">Start</button>
+        <button type="button" class="finish">Finish</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

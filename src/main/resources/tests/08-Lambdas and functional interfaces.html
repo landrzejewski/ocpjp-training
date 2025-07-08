@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lambdas and Functional Interfaces</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="test">
+        <p class="timer">00:00:00</p>
+
+        <div class="question" data-question="1">
+            <h1 class="question-title">Question 1</h1>
+            <p class="question-text">What is the result of the following class?</p>
+            <pre class="question-code">
+1:  import java.util.function.*;
+2:
+3:  public class Panda {
+4:     int age;
+5:     public static void main(String[] args) {
+6:        Panda p1 = new Panda();
+7:        p1.age = 1;
+8:        check(p1, p -&gt; p.age &lt; 5);
+9:     }
+10:    private static void check(Panda panda,
+11:       Predicate&lt;Panda&gt; pred) {
+12:       String result =
+13:          pred.test(panda) ? "match" : "not match";
+14:       System.out.print(result);
+15: } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. match</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. not match</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Compiler error on line 8</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Compiler error on lines 10 and 11</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Compiler error on lines 12 and 13</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. A runtime exception is thrown.</p>
+            </div>
+            <p class="question-explanation">
+                A. This code is correct. Line 8 creates a lambda expression that checks whether the age
+                is less than 5, making option A correct. Since there is only one parameter and it does not
+                specify a type, the parentheses around the parameter are optional. Lines 11 and 13 use the
+                Predicate interface, which declares a test() method.
+            </p>
+        </div>
+        <div class="question" data-question="2">
+            <h1 class="question-title">Question 2</h1>
+            <p class="question-text">What is the result of the following code?</p>
+            <pre class="question-code">
+1:  interface Climb {
+2:     boolean isTooHigh(int height, int limit);
+3:  }
+4:
+5:  public class Climber {
+6:     public static void main(String[] args) {
+7:        check((h, m) -&gt; h.append(m).isEmpty(), 5);
+8:     }
+9:     private static void check(Climb climb, int height) {
+10:       if (climb.isTooHigh(height, 10))
+11:          System.out.println("too high");
+12:       else
+13:          System.out.println("ok");
+14:    }
+15: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. ok</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. too high</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. Compiler error on line 7</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Compiler error on line 10</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Compiler error on a different line</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. A runtime exception is thrown.</p>
+            </div>
+            <p class="question-explanation">
+                C. The interface takes two int parameters. The code on line 7 attempts to use them as if
+                h is a String making option C correct. It is tricky to use types in a lambda when they are
+                implicitly specified. Remember to check the interface for the real type.
+            </p>
+        </div>
+        <div class="question" data-question="3">
+            <h1 class="question-title">Question 3</h1>
+            <p class="question-text">Which statements about functional interfaces are true? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. A functional interface can contain default and private methods.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. A functional interface can be defined as a class or an interface.</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. Abstract methods with signatures that are contained in public methods of java.lang.Object do not count toward the abstract method count for a functional interface.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. A functional interface cannot contain static or private static methods.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. A functional interface must be marked with the @FunctionalInterface annotation.</p>
+            </div>
+            <p class="question-explanation">
+                A, C. A functional interface can contain any number of non-abstract methods, including
+                default, private, static, and private static. For this reason, option A is correct,
+                and option D is incorrect. Option B is incorrect, as classes are never considered functional
+                interfaces. A functional interface contains exactly one abstract method, although methods
+                that have matching signatures as public methods in java.lang.Object do not count
+                toward the single method test. For these reasons, option C is correct. Finally, option E is
+                incorrect. While a functional interface can be marked with the @FunctionalInterface
+                annotation, it is not required.
+            </p>
+        </div>
+        <div class="question" data-question="4">
+            <h1 class="question-title">Question 4</h1>
+            <p class="question-text">Which lambda can replace the MySecret class to return the same value? (Choose all that apply.)</p>
+            <pre class="question-code">
+interface Secret {
+  String magic(double d);
+}
+class MySecret implements Secret {
+  public String magic(double d) {
+    return "Poof";
+} }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. (e) -&gt; "Poof"</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. (e) -&gt; {"Poof"}</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. (e) -&gt; { String e = ""; "Poof" }</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. (e) -&gt; { String e = ""; return "Poof"; }</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. (e) -&gt; { String e = ""; return "Poof" }</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. (e) -&gt; { String f = ""; return "Poof"; }</p>
+            </div>
+            <p class="question-explanation">
+                A, F. Option B is incorrect because it does not use the return keyword. Options C, D, and
+                E are incorrect because the variable e is already in use from the lambda and cannot be redefined.
+                Additionally, option C is missing the return keyword, and option E is missing the
+                semicolon. Therefore, options A and F are correct.
+            </p>
+        </div>
+        <div class="question" data-question="5">
+            <h1 class="question-title">Question 5</h1>
+            <p class="question-text">Which of the following functional interfaces contain an abstract method that returns a primitive value? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. BooleanSupplier</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. CharSupplier</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. DoubleSupplier</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. FloatSupplier</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. IntSupplier</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. StringSupplier</p>
+            </div>
+            <p class="question-explanation">
+                A, C, E. Java includes support for three primitive streams, along with numerous functional
+                interfaces to go with them: int, double, and long. For this reason, options C and E are
+                correct. Additionally, there is a BooleanSupplier functional interface, making option A
+                correct. Java does not include primitive streams or related functional interfaces for other
+                numeric data types, making options B and D incorrect. Option F is incorrect because String
+                is not a primitive but an object. Only primitives have custom suppliers.
+            </p>
+        </div>
+        <div class="question" data-question="6">
+            <h1 class="question-title">Question 6</h1>
+            <p class="question-text">Which of the following lambda expressions can be passed to a function of Predicate&lt;String&gt; type? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. s -&gt; s.isEmpty()</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. s --&gt; s.isEmpty()</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. (String s) -&gt; s.isEmpty()</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. (String s) --&gt; s.isEmpty()</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. (StringBuilder s) -&gt; s.isEmpty()</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. (StringBuilder s) --&gt; s.isEmpty()</p>
+            </div>
+            <p class="question-explanation">
+                A, C. Predicate&lt;String&gt; takes a parameter list of one parameter using the specified
+                type. Options E and F are incorrect because they specify the wrong type. Options B and D
+                are incorrect because they use the wrong syntax for the arrow operator. This leaves us with
+                options A and C as the answers.
+            </p>
+        </div>
+        <div class="question" data-question="7">
+            <h1 class="question-title">Question 7</h1>
+            <p class="question-text">Which of these statements is true about the following code?</p>
+            <pre class="question-code">
+public void method() {
+  x((var x) -&gt; {}, (var x, var y) -&gt; false);
+}
+public void x(Consumer&lt;String&gt; x, BinaryOperator&lt;Boolean&gt; y) {}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. The code does not compile because of one of the variables named x.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. The code does not compile because of one of the variables named y.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. The code does not compile for another reason.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The code compiles, and the x in each lambda refers to the same type.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. The code compiles, and the x in each lambda refers to a different type.</p>
+            </div>
+            <p class="question-explanation">
+                E. While there appears to have been a variable name shortage when this code was written,
+                it does compile. Lambda variables and method names are allowed to be the same. The x
+                lambda parameter is scoped to within each lambda, so it is allowed to be reused. The type
+                is inferred by the method it calls. The first lambda maps x to a String and the second to a
+                Boolean. Therefore, option E is correct.
+            </p>
+        </div>
+        <div class="question" data-question="8">
+            <h1 class="question-title">Question 8</h1>
+            <p class="question-text">Which of the following is equivalent to this code? (Choose all that apply.)</p>
+            <pre class="question-code">
+UnaryOperator&lt;Integer&gt; u = x -&gt; x * x;
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. BiFunction&lt;Integer&gt; f = x -&gt; x*x;</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. BiFunction&lt;Integer, Integer&gt; f = x -&gt; x*x;</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. BinaryOperator&lt;Integer, Integer&gt; f = x -&gt; x*x;</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Function&lt;Integer&gt; f = x -&gt; x*x;</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. Function&lt;Integer, Integer&gt; f = x -&gt; x*x;</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                E. The question starts with a UnaryOperator&lt;Integer&gt;, which takes one parameter
+                and returns a value of the same type. Therefore, option E is correct, as UnaryOperator
+                extends Function. Notice that other options don’t even compile because they have the
+                wrong number of generic types for the functional interface provided. You should know that
+                a BiFunction&lt;T,U,R&gt; takes three generic arguments, a BinaryOperator&lt;T&gt; takes one
+                generic argument, and a Function&lt;T,R&gt; takes two generic arguments.
+            </p>
+        </div>
+        <div class="question" data-question="9">
+            <h1 class="question-title">Question 9</h1>
+            <p class="question-text">Which statements are true? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. The Consumer interface is good for printing out an existing value.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. The Supplier interface is good for printing out an existing value.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. The IntegerSupplier interface returns an int.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The Predicate interface returns an int.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The Function interface has a method named test().</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. The Predicate interface has a method named test().</p>
+            </div>
+            <p class="question-explanation">
+                A, F. Option A is correct and option B is incorrect because a Supplier returns a value
+                while a Consumer takes one and acts on it. Option C is tricky. IntSupplier does return
+                an int. However, the option asks about IntegerSupplier, which doesn’t exist. Option
+                D is incorrect because a Predicate returns a boolean. It does have a method named
+                test(), making option F correct. Finally, option E is incorrect because Function has an
+                apply() method.
+            </p>
+        </div>
+        <div class="question" data-question="10">
+            <h1 class="question-title">Question 10</h1>
+            <p class="question-text">Which of the following can be inserted without causing a compilation error? (Choose all that apply.)</p>
+            <pre class="question-code">
+public void remove(List&lt;Character&gt; chars) {
+  char end = &#39;z&#39;;
+  Predicate&lt;Character&gt; predicate = c -&gt; {
+    char start = &#39;a&#39;; return start &lt;= c &amp;&amp; c &lt;= end; };
+  // INSERT LINE HERE
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. char start = &#39;a&#39;;</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. char c = &#39;x&#39;;</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. chars = null;</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. end = &#39;1&#39;;</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                A, B, C. Since the scope of start and c is within the lambda, the variables can be declared
+                or updated after it without issue, making options A, B, and C correct. Option D is incorrect
+                because setting end prevents it from being effectively final.
+            </p>
+        </div>
+        <div class="question" data-question="11">
+            <h1 class="question-title">Question 11</h1>
+            <p class="question-text">How many times istrue printed out by this code?</p>
+            <pre class="question-code">
+import java.util.function.Predicate;
+public class Fantasy {
+  public static void scary(String animal) {
+    var dino = s -&gt; "dino".equals(animal);
+    var dragon = s -&gt; "dragon".equals(animal);
+    var combined = dino.or(dragon);
+    System.out.println(combined.test(animal));
+  }
+  public static void main(String[] args) {
+    scary("dino");
+    scary("dragon");
+    scary("unicorn");
+  }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. One</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Two</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Three</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. A runtime exception is thrown.</p>
+            </div>
+            <p class="question-explanation">
+                D. The code does not compile because the lambdas are assigned to var. The compiler does
+                not have enough information to determine they are of type Predicate&lt;String&gt;. Therefore, option D is correct.
+            </p>
+        </div>
+        <div class="question" data-question="12">
+            <h1 class="question-title">Question 12</h1>
+            <p class="question-text">What does the following code output?</p>
+            <pre class="question-code">
+Function&lt;Integer, Integer&gt; s = a -&gt; a + 4;
+Function&lt;Integer, Integer&gt; t = a -&gt; a * 3;
+Function&lt;Integer, Integer&gt; c = s.compose(t);
+System.out.print(c.apply(1));
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. 7</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 15</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. The code does not compile because of the data types in the lambda expressions.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The code does not compile because of thecompose() call.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code does not compile for another reason.</p>
+            </div>
+            <p class="question-explanation">
+                A. The a.compose(b) method calls the Function parameter b before the reference
+                Function variable a. In this case, that means that we multiply by 3 before adding 4. This
+                gives a result of 7, making option A correct
+            </p>
+        </div>
+        <div class="question" data-question="13">
+            <h1 class="question-title">Question 13</h1>
+            <p class="question-text">Which is true of the following code?</p>
+            <pre class="question-code">
+int length = 3;
+for (int i = 0; i&lt;3; i++) {
+  if (i%2 == 0) {
+    Supplier&lt;Integer&gt; supplier = () -&gt; length; // A
+    System.out.println(supplier.get());        // B
+  } else {
+    int j = i;
+    Supplier&lt;Integer&gt; supplier = () -&gt; j;      // C
+    System.out.println(supplier.get());        // D
+  }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. The first compiler error is on lineA.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. The first compiler error is on lineB.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. The first compiler error is on lineC.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The first compiler error is on lineD.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. The code compiles successfully.</p>
+            </div>
+            <p class="question-explanation">
+                E. Lambdas are only allowed to reference final or effectively final variables. You can tell
+                the variable j is effectively final because adding a final keyword before it wouldn’t
+                introduce a compiler error. Each time the else statement is executed, the variable is redeclared
+                and goes out of scope. Therefore, it is not reassigned. Similarly, length is effectively final.
+                There are no compiler errors, and option E is correct.
+            </p>
+        </div>
+        <div class="question" data-question="14">
+            <h1 class="question-title">Question 14</h1>
+            <p class="question-text">Which of the following are valid lambda expressions? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. (Wolf w, var c) -&gt; 39</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. (final Camel c) -&gt; {}</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. (a,b,c) -&gt; {int b = 3; return 2;}</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. (x,y) -&gt; new RuntimeException()</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. (var y) -&gt; return 0;</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. () -&gt; {float r}</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. (Cat a, b) -&gt; {}</p>
+            </div>
+            <p class="question-explanation">
+                B, D. Option B is a valid functional interface, one that could be assigned to a
+                Consumer&lt;Camel&gt; reference. Notice that the final modifier is permitted on variables in
+                the parameter list. Option D is correct, as the exception is being returned as an object and
+                not thrown. This would be compatible with a BiFunction that included
+                RuntimeException as its return type. Options A and G are incorrect because they mix format
+                types for the parameters. Option C is invalid because the variable b is used twice. Option E is
+                incorrect, as a return statement is permitted only inside braces ({}). Option F is incorrect because the variable declaration
+                requires a semicolon (;) after it.
+            </p>
+        </div>
+        <div class="question" data-question="15">
+            <h1 class="question-title">Question 15</h1>
+            <p class="question-text">Which lambda expression, when entered into the blank line in the following code, causes the program to printhahaha? (Choose all that apply.)</p>
+            <pre class="question-code">
+import java.util.function.Predicate;
+public class Hyena {
+  private int age = 1;
+  public static void main(String[] args) {
+    var p = new Hyena();
+    double height = 10;
+    int age = 1;
+    testLaugh(p,  _________________________);
+    age = 2;
+  }
+  static void testLaugh(Hyena panda, Predicate&lt;Hyena&gt; joke) {
+    var r = joke.test(panda) ? "hahaha" : "silence";
+    System.out.print(r);
+  }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. var -&gt; p.age &lt;= 10</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. shenzi -&gt; age==1</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. p -&gt; true</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. age==1</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. shenzi -&gt; age==2</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. h -&gt; h.age &lt; 5</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above, as the code does not compile</p>
+            </div>
+            <p class="question-explanation">
+                A, F. Option A is a valid lambda expression. While main() is a static method, it can
+                access age since it is using a reference to an instance of Hyena, which is effectively final in
+                this method. Since var is not a reserved word, it may be used for variable names. Option F
+                is also correct, with the lambda variable being a reference to a Hyena object. The variable is
+                processed using deferred execution in the testLaugh() method.
+                Options B and E are incorrect; since the local variable age is not effectively final, this would
+                lead to a compilation error. Option C would also cause a compilation error, since the expression
+                uses the variable name p, which is already declared within the method. Finally, option D
+                is incorrect, as this is not even a lambda expression.
+            </p>
+        </div>
+        <div class="question" data-question="16">
+            <h1 class="question-title">Question 16</h1>
+            <p class="question-text">Which of the following can be inserted without causing a compilation error? (Choose all that apply.)</p>
+            <pre class="question-code">
+public void remove(List&lt;Character&gt; chars) {
+  char end = &#39;z&#39;;
+  // INSERT LINE HERE
+  Predicate&lt;Character&gt; predicate =  c -&gt; {
+  char start = &#39;a&#39;; return start &lt;= c &amp;&amp; c &lt;= end; };
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. char start = &#39;a&#39;;</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. char c = &#39;x&#39;;</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. chars = null;</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. end = &#39;1&#39;;</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                C. Lambdas are not allowed to redeclare local variables, making options A and B incorrect.
+                Option D is incorrect because setting end prevents it from being effectively final. Lambdas
+                are only allowed to reference final or effectively final variables. Option C compiles since
+                chars is not used.
+            </p>
+        </div>
+        <div class="question" data-question="17">
+            <h1 class="question-title">Question 17</h1>
+            <p class="question-text">What is the result of running the following class?</p>
+            <pre class="question-code">
+1:  import java.util.function.*;
+2:
+3:  public class Panda {
+4:     int age;
+5:     public static void main(String[] args) {
+6:        Panda p1 = new Panda();
+7:        p1.age = 1;
+8:        check(p1, p -&gt; {p.age &lt; 5});
+9:     }
+10:    private static void check(Panda panda,
+11:       Predicate&lt;Panda&gt; pred) {
+12:       String result = pred.test(panda)
+13:          ? "match" : "not match";
+14:       System.out.print(result);
+15: } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. match</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. not match</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. Compiler error on line 8</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Compiler error on line 10</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Compiler error on line 12</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. A runtime exception is thrown.</p>
+            </div>
+            <p class="question-explanation">
+                C. Line 8 uses braces around the body. This means the return keyword and semicolon are
+                required. Since the code doesn’t compile, option C is the answer.
+            </p>
+        </div>
+        <div class="question" data-question="18">
+            <h1 class="question-title">Question 18</h1>
+            <p class="question-text">Which functional interfaces complete the following code? For line 7, assumem andn are instances of functional
+                interfaces that exist and have the same type asy. (Choose three.)</p>
+            <pre class="question-code">
+6: _________ x = String::new;
+7: _________ y = m.andThen(n);
+8: _________ z = a -&gt; a + a;
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. BinaryConsumer&lt;String, String&gt;</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. BiConsumer&lt;String, String&gt;</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. BinaryFunction&lt;String, String&gt;</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. BiFunction&lt;String, String&gt;</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Predicate&lt;String&gt;</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. Supplier&lt;String&gt;</p>
+                <p class="question-answer" data-is-correct="True"><input name="G" type="checkbox"/>G. UnaryOperator&lt;String&gt;</p>
+                <p class="question-answer" data-is-correct="False"><input name="H" type="checkbox"/>H. UnaryOperator&lt;String, String&gt;</p>
+            </div>
+            <p class="question-explanation">
+                B, F, G. We can eliminate four choices right away. Options A and C are there to mislead you;
+                these interfaces don’t exist. Option D is incorrect because a BiFunction&lt;T,U,R&gt; takes
+                three generic arguments, not two. Option E is incorrect because none of the examples returns a boolean.
+                The declaration on line 6 doesn’t take any parameters, and it returns a String, so a
+                Supplier&lt;String&gt; can fill in the blank, making option F correct. The declaration on line
+                7 requires you to recognize that Consumer and Function, along with their binary equivalents,
+                have an andThen() method. This makes option B correct. Finally, line 8 takes a single
+                parameter, and it returns the same type, which is a UnaryOperator. Since the types are the
+                same, only one generic parameter is needed, making option G correct.
+            </p>
+        </div>
+        <div class="question" data-question="19">
+            <h1 class="question-title">Question 19</h1>
+            <p class="question-text">Which of the following compiles and prints out the entire set? (Choose all that apply.)</p>
+            <pre class="question-code">
+Set&lt;?&gt; set = Set.of("lion", "tiger", "bear");
+var s = Set.copyOf(set);
+Consumer&lt;Object&gt; consumer =  ____________________;
+s.forEach(consumer);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. () -&gt; System.out.println(s)</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. s -&gt; System.out.println(s)</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. (s) -&gt; System.out.println(s)</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. System.out.println(s)</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. System::out::println</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. System.out::println</p>
+            </div>
+            <p class="question-explanation">
+                F. While there is a lot in this question trying to confuse you, note that there are no options
+                about the code not compiling. This allows you to focus on the lambdas and method references. Option A is incorrect
+                because a Consumer requires one parameter. Options B and C are close. The syntax for a lambda is correct. However, s is
+                already defined as a local variable, and therefore the lambda can’t redefine it. Options D and E use incorrect syntax for a
+                method reference. Option F is correct.
+            </p>
+        </div>
+        <div class="question" data-question="20">
+            <h1 class="question-title">Question 20</h1>
+            <p class="question-text">Which lambdas can replace thenew Sloth() call in themain() method and produce the same output at runtime? (Choose all that apply.)</p>
+            <pre class="question-code">
+import java.util.List;
+interface Yawn {
+  String yawn(double d, List&lt;Integer&gt; time);
+}
+class Sloth implements Yawn {
+  public String yawn(double zzz, List&lt;Integer&gt; time) {
+  return "Sleep: " + zzz;
+} }
+public class Vet {
+  public static String takeNap(Yawn y) {
+    return y.yawn(10, null);
+  }
+  public static void main(String… unused) {
+    System.out.print(takeNap(new Sloth()));
+} }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. (z,f) -&gt; { String x = ""; return "Sleep: " + x }</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. (t,s) -&gt; { String t = ""; return "Sleep: " + t; }</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. (w,q) -&gt; {"Sleep: " + w}</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. (e,u) -&gt; { String g = ""; "Sleep: " + e }</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. (a,b) -&gt; "Sleep: " + (double)(b==null ? a : a)</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. (r,k) -&gt; { String g = ""; return "Sleep:"; }</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above, as the program does not compile</p>
+            </div>
+            <p class="question-explanation">
+                E. Option A does not compile because the second statement within the block is missing
+                a semicolon (;) at the end. Option B is an invalid lambda expression because t is defined
+                twice: in the parameter list and within the lambda expression. Options C and D are both
+                missing a return statement and semicolon. Options E and F are both valid lambda expressions, although only
+                option E matches the behavior of the Sloth class. In particular, option
+                F only prints Sleep:, not Sleep: 10.0.
+            </p>
+        </div>
+        <div class="question" data-question="21">
+            <h1 class="question-title">Question 21</h1>
+            <p class="question-text">Which of the following are valid functional interfaces? (Choose all that apply.)</p>
+            <pre class="question-code">
+public interface Transport {
+  public int go();
+  public boolean equals(Object o);
+}
+public abstract class Car {
+  public abstract Object swim(double speed, int duration);
+}
+public interface Locomotive extends Train {
+  public int getSpeed();
+}
+public interface Train extends Transport {}
+abstract interface Spaceship extends Transport {
+  default int blastOff();
+}
+public interface Boat {
+  int hashCode();
+  int hashCode(String input);
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. Boat</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Car</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Locomotive</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Spaceship</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. Transport</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. Train</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of these is a valid functional interface.</p>
+            </div>
+            <p class="question-explanation">
+                A, E, F. A valid functional interface is one that contains a single abstract method,
+                excluding any public methods that are already defined in the java.lang.Object class.
+                Transport and Boat are valid functional interfaces, as they each contain a single abstract
+                method: go() and hashCode(String), respectively. This gives us options A and E. Since
+                the other methods are part of Object, they do not count as abstract methods. Train is
+                also a functional interface since it extends Transport and does not define any additional
+                abstract methods. This adds option F as the final correct answer.
+                Car is not a functional interface because it is an abstract class. Locomotive is not a
+                functional interface because it includes two abstract methods, one of which is inherited.
+                Finally, Spaceship is not a valid interface, let alone a functional interface, because a
+                default method must provide a body. A quick way to test whether an interface is a
+                functional interface is to apply the @FunctionalInterface annotation and check if the
+                code still compiles.
+            </p>
+        </div>
+
+        <p class="info"></p>
+    </div>
+    <div>
+        <button type="button" class="start">Start</button>
+        <button type="button" class="finish">Finish</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Methods</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="test">
+        <p class="timer">00:00:00</p>
+
+        <div class="question" data-question="1">
+            <h1 class="question-title">Question 1</h1>
+            <p class="question-text">Which statements about the final modifier are correct? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. Instance and static variables can be marked final.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. A variable is effectively final only if it is marked final.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. An object that is marked final cannot be modified.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Local variables cannot be declared with type var and the final modifier.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. A primitive that is marked final cannot be modified.</p>
+            </div>
+            <p class="question-explanation">
+                A, E. Instance and static variables can be marked final, making option A correct. Effectively final means a local variable is not marked final but whose value does not change
+                after it is set, making option B incorrect. Option C is incorrect, as final refers only to
+                the reference to an object, not its contents. Option D is incorrect, as var and final can
+                be used together. Finally, option E is correct: once a primitive is marked final, it cannot
+                be modified.
+            </p>
+        </div>
+        <div class="question" data-question="2">
+            <h1 class="question-title">Question 2</h1>
+            <p class="question-text">Which of the following can fill in the blank in this code to make it compile? (Choose all that apply.)</p>
+            <pre class="question-code">
+public class Ant {
+   _______ void method() {}
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. default</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. final</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. private</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Public</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. String</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. zzz:</p>
+            </div>
+            <p class="question-explanation">
+                B, C. The keyword void is a return type. Only the access modifier or optional specifiers are
+                allowed before the return type. Option C is correct, creating a method with private access.
+                Option B is also correct, creating a method with package access and the optional specifier
+                final. Since package access does not use a modifier, we get to jump right to
+                final. Option A is incorrect because package access omits the access modifier rather than
+                specifying default. Option D is incorrect because Java is case sensitive. It would have been
+                correct if public were the choice. Option E is incorrect because the method already has a
+                void return type. Option F is incorrect because labels are not allowed for methods
+            </p>
+        </div>
+        <div class="question" data-question="3">
+            <h1 class="question-title">Question 3</h1>
+            <p class="question-text">Which of the following methods compile? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. final static void rain() {}</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. public final int void snow() {}</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. private void int hail() {}</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. static final void sleet() {}</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. void final ice() {}</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. void public slush() {}</p>
+            </div>
+            <p class="question-explanation">
+                A, D. Options A and D are correct because the optional specifiers are allowed in any order.
+                Options B and C are incorrect because they each have two return types. Options E and F
+                are incorrect because the return type is before the optional specifier and access modifier,
+                respectively.
+            </p>
+        </div>
+        <div class="question" data-question="4">
+            <h1 class="question-title">Question 4</h1>
+            <p class="question-text">Which of the following can fill in the blank and allow the code to compile? (Choose all that apply.)</p>
+            <pre class="question-code">
+final _______ song = 6;
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. int</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. Integer</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. long</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Long</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. double</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. Double</p>
+            </div>
+            <p class="question-explanation">
+                A, B, C, E. The value 6 can be implicitly promoted to any of the primitive types, making
+                options A, C, and E correct. It can also be autoboxed to Integer, making option B correct.
+                It cannot be both promoted and autoboxed, making options D and F incorrect.
+            </p>
+        </div>
+        <div class="question" data-question="5">
+            <h1 class="question-title">Question 5</h1>
+            <p class="question-text">Which of the following methods compile? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. public void january() { return; }</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. public int february() { return null;}</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. public void march() {}</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. public int april() { return 9;}</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. public int may() { return 9.0;}</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. public int june() { return;}</p>
+            </div>
+            <p class="question-explanation">
+                A, C, D. Options A and C are correct because a void method is optionally allowed to have
+                a return statement as long as it doesn’t try to return a value. Option B does not compile
+                because null requires a reference object as the return type. Since int is primitive, it is not
+                a reference object. Option D is correct because it returns an int value. Option E does not
+                compile because it tries to return a double when the return type is int. Since a
+                double cannot be assigned to an int, it cannot be returned as one either. Option F does not
+                compile because no value is actually returned.
+            </p>
+        </div>
+        <div class="question" data-question="6">
+            <h1 class="question-title">Question 6</h1>
+            <p class="question-text">Which of the following methods compile? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. public void violin(int… nums) {}</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. public void viola(String values, int… nums) {}</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. public void cello(int… nums, String values) {}</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. public void bass(String… values, int… nums) {}</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. public void flute(String[] values, …int nums) {}</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. public void oboe(String[] values, int[] nums) {}</p>
+            </div>
+            <p class="question-explanation">
+                A, B, F. Options A and B are correct because the single varargs parameter is the last parameter declared. Option F is correct because it doesn’t use any varargs parameters. Option C is
+                incorrect because the varargs parameter is not last. Option D is incorrect because two varargs
+                parameters are not allowed in the same method. Option E is incorrect because the ... for a
+                varargs must be after the type, not before it.
+            </p>
+        </div>
+        <div class="question" data-question="7">
+            <h1 class="question-title">Question 7</h1>
+            <p class="question-text">Given the following method, which of the method calls return 2? (Choose all that apply.)</p>
+            <pre class="question-code">
+public int juggle(boolean b, boolean… b2) {
+  return b2.length;
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. juggle();</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. juggle(true);</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. juggle(true, true);</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. juggle(true, true, true);</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. juggle(true, {true, true});</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. juggle(true, new boolean[2]);</p>
+            </div>
+            <p class="question-explanation">
+                D, F. Option D passes the initial parameter plus two more to turn into a varargs array of size
+                2. Option F passes the initial parameter plus an array of size 2. Option A does not compile
+                because it does not pass the initial parameter. Option E does not compile because it does not
+                declare an array properly. It should be new boolean[] {true, true}. Option B creates
+                a varargs array of size 0, and option C creates a varargs array of size 1.
+            </p>
+        </div>
+        <div class="question" data-question="8">
+            <h1 class="question-title">Question 8</h1>
+            <p class="question-text">Which of the following statements is correct?</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Package access is more lenient than protected access.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. A public class that has private fields and package methods is not visible to classes outside the package.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. You can use access modifiers so only some of the classes in a package see a particular package class.</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. You can use access modifiers to allow access to all methods and not any instance variables.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. You can use access modifiers to restrict access to all classes that begin with the word Test.</p>
+            </div>
+            <p class="question-explanation">
+                D. Option D is correct. A common practice is to set all fields to be private and all
+                methods to be public. Option A is incorrect because protected access allows everything
+                that package access allows and additionally allows subclasses access. Option B is incorrect because the
+                class is public. This means that other classes can see the class. However,
+                they cannot call any of the methods or read any of the fields. It is essentially a useless class.
+                Option C is incorrect because package access applies to the whole package. Option E is
+                incorrect because Java has no such wildcard access capability.
+            </p>
+        </div>
+        <div class="question" data-question="9">
+            <h1 class="question-title">Question 9</h1>
+            <p class="question-text">Given the following class definitions, which lines in the main() method generate a compiler error? (Choose all that apply.)</p>
+            <pre class="question-code">
+// Classroom.java
+package my.school;
+public class Classroom {
+  private int roomNumber;
+  protected static String teacherName;
+  static int globalKey = 54321;
+  public static int floor = 3;
+    Classroom(int r, String t) {
+    roomNumber = r;
+    teacherName = t; } }
+// School.java
+1: package my.city;
+2: import my.school.*;
+3: public class School {
+4:    public static void main(String[] args) {
+5:       System.out.println(Classroom.globalKey);
+6:       Classroom room = new Classroom(101, "Mrs. Anderson");
+7:       System.out.println(room.roomNumber);
+8:       System.out.println(Classroom.floor);
+9:       System.out.println(Classroom.teacherName); } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. None: the code compiles fine.</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. Line 5</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. Line 6</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. Line 7</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Line 8</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. Line 9</p>
+            </div>
+            <p class="question-explanation">
+                B, C, D, F. The two classes are in different packages, which means private access and
+                package access will not compile. This causes compiler errors on lines 5, 6, and 7, making
+                options B, C, and D correct answers. Additionally, protected access will not compile since
+                School does not inherit from Classroom. This causes the compiler error on line 9, making
+                option F a correct answer as well.
+            </p>
+        </div>
+        <div class="question" data-question="10">
+            <h1 class="question-title">Question 10</h1>
+            <p class="question-text">What is the output of executing the Chimp program?</p>
+            <pre class="question-code">
+// Rope.java
+1: package rope;
+2: public class Rope {
+3:    public static int LENGTH = 5;
+4:    static {
+5:       LENGTH = 10;
+6:    }
+7:    public static void swing() {
+8:       System.out.print("swing ");
+9:    } }
+// Chimp.java
+1: import rope.*;
+2: import static rope.Rope.*;
+3: public class Chimp {
+4:    public static void main(String[] args) {
+5:       Rope.swing();
+6:       new Rope().swing();
+7:       System.out.println(LENGTH);
+8:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. swing swing 5</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. swing swing 10</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Compiler error on line 2 of Chimp</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Compiler error on line 5 of Chimp</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Compiler error on line 6 of Chimp</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. Compiler error on line 7 of Chimp</p>
+            </div>
+            <p class="question-explanation">
+                B. Rope runs line 3, setting LENGTH to 5, and then immediately after that runs the
+                static initializer, which sets it to 10. Line 5 in the Chimp class calls the static method
+                normally and prints swing and a space. Line 6 also calls the static method. Java allows
+                calling a static method through an instance variable, although it is not recommended.
+                Line 7 uses the static import on line 2 to reference LENGTH. For these reasons, option B
+                is correct
+            </p>
+        </div>
+        <div class="question" data-question="11">
+            <h1 class="question-title">Question 11</h1>
+            <p class="question-text">Which statements are true of the following code? (Choose all that apply.)</p>
+            <pre class="question-code">
+1:  public class Rope {
+2:     public static void swing() {
+3:        System.out.print("swing");
+4:     }
+5:     public void climb() {
+6:        System.out.println("climb");
+7:     }
+8:     public static void play() {
+9:        swing();
+10:       climb();
+11:    }
+12:    public static void main(String[] args) {
+13:       Rope rope = new Rope();
+14:       rope.play();
+15:       Rope rope2 = null;
+16:       System.out.print("-");
+17:       rope2.play();
+18:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. The code compiles as is.</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. There is exactly one compiler error in the code.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. There are exactly two compiler errors in the code.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. If the line(s) with compiler errors are removed, the output is swing-climb.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. If the line(s) with compiler errors are removed, the output is swing-swing.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. If the line(s) with compile errors are removed, the code throws a NullPointerException.</p>
+            </div>
+            <p class="question-explanation">
+                B, E. Line 10 does not compile because static methods are not allowed to call instance
+                methods. Even though we are calling play() as if it were an instance method and an instance exists, Java knows play() is really a static method and treats it as such. Since
+                this is the only line that does not compile, option B is correct. If line 10 is removed, the
+                code prints swing-swing, making option E correct. It does not throw a
+                NullPointerException on line 17 because play() is a static method. Java looks at
+                the type of the reference for rope2 and translates the call to Rope.play().
+            </p>
+        </div>
+        <div class="question" data-question="12">
+            <h1 class="question-title">Question 12</h1>
+            <p class="question-text">How many variables in the following method are effectively final?</p>
+            <pre class="question-code">
+10: public void feed() {
+11:    int monkey = 0;
+12:    if(monkey &gt; 0) {
+13:       var giraffe = monkey++;
+14:       String name;
+15:       name = "geoffrey";
+16:    }
+17:    String name = "milly";
+18:    var food = 10;
+19:    while(monkey &lt;= 10) {
+20:       food = 0;
+21:    }
+22:    name = null;
+23: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. 1</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. 2</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 3</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. 4</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. 5</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of the above. The code does not compile.</p>
+            </div>
+            <p class="question-explanation">
+                B. The test for effectively final is if the final modifier can be added to the local variable
+                and the code still compiles. The monkey variable declared on line 11 is not effectively final
+                because it is modified on line 13. The giraffe and name variables declared on lines 13 and
+                14, respectively, are effectively final and not modified after they are set. The name variable
+                declared on line 17 is not effectively final since it is modified on line 22. Finally, the food
+                variable on line 18 is not effectively final since it is modified on line 20. Since there are two
+                effectively final variables, option B is correct.
+            </p>
+        </div>
+        <div class="question" data-question="13">
+            <h1 class="question-title">Question 13</h1>
+            <p class="question-text">What is the output of the following code?</p>
+            <pre class="question-code">
+// RopeSwing.java
+import rope.*;
+import static rope.Rope.*;
+public class RopeSwing {
+  private static Rope rope1 = new Rope();
+  private static Rope rope2 = new Rope();
+  {
+    System.out.println(rope1.length);
+  }
+  public static void main(String[] args) {
+    rope1.length = 2;
+    rope2.length = 8;
+    System.out.println(rope1.length);
+  }
+}
+// Rope.java
+package rope;
+public class Rope {
+  public static int length = 0;
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. 02</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 08</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 2</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. 8</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. An exception is thrown.</p>
+            </div>
+            <p class="question-explanation">
+                D. There are two details to notice in this code. First, note that RopeSwing has an instance
+                initializer and not a static initializer. Since RopeSwing is never constructed, the instance
+                initializer does not run. The other detail is that length is static. Changes from any object
+                update this common static variable. The code prints 8, making option D correct.
+            </p>
+        </div>
+        <div class="question" data-question="14">
+            <h1 class="question-title">Question 14</h1>
+            <p class="question-text">How many lines in the following code have compiler errors?</p>
+            <pre class="question-code">
+1:  public class RopeSwing {
+2:     private static final String leftRope;
+3:     private static final String rightRope;
+4:     private static final String bench;
+5:     private static final String name = "name";
+6:     static {
+7:        leftRope = "left";
+8:        rightRope = "right";
+9:     }
+10:    static {
+11:       name = "name";
+12:       rightRope = "right";
+13:    }
+14:    public static void main(String[] args) {
+15:       bench = "bench";
+16:    }
+17: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. 0</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 1</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 2</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. 3</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. 4</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. 5</p>
+            </div>
+            <p class="question-explanation">
+                E. If a variable is static final, it must be set exactly once, and it must be in the declaration line or
+                in a static initialization block. Line 4 doesn’t compile because bench is
+                not set in either of these locations. Line 15 doesn’t compile because final variables are not
+                allowed to be set after that point. Line 11 doesn’t compile because name is set twice: once in
+                the declaration and again in the static block. Line 12 doesn’t compile because rightRope
+                is set twice as well. Both are in static initialization blocks. Since four lines do not compile,
+                option E is correct.
+            </p>
+        </div>
+        <div class="question" data-question="15">
+            <h1 class="question-title">Question 15</h1>
+            <p class="question-text">Which of the following can replace line 2 to make this code compile? (Choose all that apply.)</p>
+            <pre class="question-code">
+1: import java.util.*;
+2: // INSERT CODE HERE
+3: public class Imports {
+4:    public void method(ArrayList&lt;String&gt; list) {
+5:       sort(list);
+6:    }
+7: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. import static java.util.Collections;</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. import static java.util.Collections.*;</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. import static java.util.Collections.sort(ArrayList&lt;String&gt;);</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. static import java.util.Collections;</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. static import java.util.Collections.*;</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. static import java.util.Collections.sort(ArrayList&lt;String&gt;);</p>
+            </div>
+            <p class="question-explanation">
+                B. The two valid ways to do this are import static java.util.Collections.*;
+                and import static java.util.Collections.sort;. Option A is incorrect because
+                you can do a static import only on static members. Classes such as Collections require
+                a regular import. Option C is nonsense as method parameters have no business in an
+                import. Options D, E, and F try to trick you into reversing the syntax of import static.
+            </p>
+        </div>
+        <div class="question" data-question="16">
+            <h1 class="question-title">Question 16</h1>
+            <p class="question-text">What is the result of the following statements?</p>
+            <pre class="question-code">
+1:  public class Test {
+2:     public void print(byte x) {
+3:        System.out.print("byte-");
+4:     }
+5:     public void print(int x) {
+6:        System.out.print("int-");
+7:     }
+8:     public void print(float x) {
+9:        System.out.print("float-");
+10:    }
+11:    public void print(Object x) {
+12:       System.out.print("Object-");
+13:    }
+14:    public static void main(String[] args) {
+15:       Test t = new Test();
+16:       short s = 123;
+17:       t.print(s);
+18:       t.print(true);
+19:       t.print(6.789);
+20:    }
+21: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. byte-float-Object-</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. int-float-Object-</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. byte-Object-float-</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. int-Object-float-</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. int-Object-Object-</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. byte-Object-Object-</p>
+            </div>
+            <p class="question-explanation">
+                E. The argument on line 17 is a short. It can be promoted to an int, so print() on line
+                5 is invoked. The argument on line 18 is a boolean. It can be autoboxed to a Boolean,
+                so print() on line 11 is invoked. The argument on line 19 is a double. It can be autoboxed
+                to a Double, so print() on line 11 is invoked. Therefore, the output is
+                int-Object-Object-, and the correct answer is option E.
+            </p>
+        </div>
+        <div class="question" data-question="17">
+            <h1 class="question-title">Question 17</h1>
+            <p class="question-text">What is the result of the following program?</p>
+            <pre class="question-code">
+1:  public class Squares {
+2:     public static long square(int x) {
+3:        var y = x * (long) x;
+4:        x = -1;
+5:        return y;
+6:     }
+7:     public static void main(String[] args) {
+8:        var value = 9;
+9:        var result = square(value);
+10:       System.out.println(value);
+11:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. -1</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. 9</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 81</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Compiler error on line 9</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Compiler error on a different line</p>
+            </div>
+            <p class="question-explanation">
+                B. Since Java is pass-by-value and the variable on line 8 never gets reassigned, it stays as 9.
+                In the method square, x starts as 9. The y value becomes 81, and then x gets set to –1. Line
+                9 does set result to 81. However, we are printing out value, and that is still 9, making
+                option B correct.
+            </p>
+        </div>
+        <div class="question" data-question="18">
+            <h1 class="question-title">Question 18</h1>
+            <p class="question-text">Which of the following are output by the following code? (Choose all that apply.)</p>
+            <pre class="question-code">
+public class StringBuilders {
+  public static StringBuilder work(StringBuilder a,
+    StringBuilder b) {
+    a = new StringBuilder("a");
+    b.append("b");
+    return a;
+  }
+  public static void main(String[] args) {
+    var s1 = new StringBuilder("s1");
+    var s2 = new StringBuilder("s2");
+    var s3 = work(s1, s2);
+    System.out.println("s1 = " + s1);
+    System.out.println("s2 = " + s2);
+    System.out.println("s3 = " + s3);
+  }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. s1 = a</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. s1 = s1</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. s2 = s2</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. s2 = s2b</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. s3 = a</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code does not compile.</p>
+            </div>
+            <p class="question-explanation">
+                B, D, E. Since Java is pass-by-value, assigning a new object to a does not change the caller.
+                Calling append() does affect the caller because both the method parameter and the caller
+                have a reference to the same object. Finally, returning a value does pass the reference to the
+                caller for assignment to s3. For these reasons, options B, D, and E are correct.
+            </p>
+        </div>
+        <div class="question" data-question="19">
+            <h1 class="question-title">Question 19</h1>
+            <p class="question-text">Which of the following will compile when independently inserted in the following code? (Choose all that apply.)</p>
+            <pre class="question-code">
+1:  public class Order3 {
+2:     final String value1 = "red";
+3:     static String value2 = "blue";
+4:     String value3 = "yellow";
+5:     {
+6:        // CODE SNIPPET 1
+7:     }
+8:     static {
+9:        // CODE SNIPPET 2
+10:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Insert at line 6: value1 = "green";</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. Insert at line 6: value2 = "purple";</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. Insert at line 6: value3 = "orange";</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Insert at line 9: value1 = "magenta";</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. Insert at line 9: value2 = "cyan";</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. Insert at line 9: value3 = "turquoise";</p>
+            </div>
+            <p class="question-explanation">
+                B, C, E. The variable value1 is a final instance variable. It can be set only once: in the
+                variable declaration, an instance initializer, or a constructor. Option A does not compile
+                because the final variable was already set in the declaration. The variable value2 is a
+                static variable. Both instance and static initializers are able to access static variables,
+                making options B and E correct. The variable value3 is an instance variable. Options D and
+                F do not compile because a static initializer does not have access to instance variables.
+            </p>
+        </div>
+        <div class="question" data-question="20">
+            <h1 class="question-title">Question 20</h1>
+            <p class="question-text">Which of the following are true about the following code? (Choose all that apply.)</p>
+            <pre class="question-code">
+public class Run {
+  static void execute() {
+    System.out.print("1-");
+  }
+  static void execute(int num) {
+    System.out.print("2-");
+  }
+  static void execute(Integer num) {
+    System.out.print("3-");
+  }
+  static void execute(Object num) {
+    System.out.print("4-");
+  }
+  static void execute(int… nums) {
+    System.out.print("5-");
+  }
+  public static void main(String[] args) {
+    Run.execute(100);
+    Run.execute(100L);
+  }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. The code prints out 2-4-.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. The code prints out 3-4-.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. The code prints out 4-2-.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The code prints out 4-4-.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. The code prints 3-4- if you remove the method static void execute(int num).</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code prints 4-4- if you remove the method static void execute(int num).</p>
+            </div>
+            <p class="question-explanation">
+                A, E. The 100 parameter is an int and so calls the matching int method, making option A
+                correct. When this method is removed, Java looks for the next most specific constructor. Java
+                prefers autoboxing to varargs, so it chooses the Integer constructor. The 100L parameter
+                is a long. Since it can’t be converted into a smaller type, it is autoboxed into a Long, and
+                then the method for Object is called, making option E correct.
+            </p>
+        </div>
+        <div class="question" data-question="21">
+            <h1 class="question-title">Question 21</h1>
+            <p class="question-text">Which method signatures are valid overloads of the following method signature? (Choose all that apply.)</p>
+            <pre class="question-code">
+public void moo(int m, int… n)
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. public void moo(int a, int… b)</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. public int moo(char ch)</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. public void moooo(int… z)</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. private void moo(int… x)</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. public void moooo(int y)</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. public void moo(int… c, int d)</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. public void moo(int… i, int j…)</p>
+            </div>
+            <p class="question-explanation">
+                B, D. Option A is incorrect because it has the same parameter list of types and therefore the
+                same signature as the original method. Options B and D are valid method overloads because
+                the types of parameters in the list change. When overloading methods, the return type and
+                access modifiers do not need to be the same. Options C and E are incorrect because the
+                method name is different. Options F and G do not compile. There can be at most one varargs
+                parameter, and it must be the last element in the parameter list.
+            </p>
+        </div>
+
+        <p class="info"></p>
+    </div>
+    <div>
+        <button type="button" class="start">Start</button>
+        <button type="button" class="finish">Finish</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

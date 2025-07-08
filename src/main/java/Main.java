@@ -1,5 +1,8 @@
+
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
 
@@ -40,6 +43,26 @@ public class Main {
         pig = a++;
         System.out.println(pig);
         System.out.println(a);
+
+        System.out.print(glide("a"));
+        System.out.print(glide("a", "b"));
+
+    }
+
+    public static String glide(String s) {
+        return "1";
+    }
+
+//    public static String glide(String... s) {
+//        return "2";
+//    }
+
+    public static String glide(Object o) {
+        return "3";
+    }
+
+    public static String glide(String s, String t) {
+        return "4";
     }
 
     private static boolean test()  {
