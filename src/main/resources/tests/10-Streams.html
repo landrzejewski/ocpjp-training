@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Streams</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="test">
+        <p class="timer">00:00:00</p>
+
+        <div class="question" data-question="1">
+            <h1 class="question-title">Question 1</h1>
+            <p class="question-text">What could be the output of the following?</p>
+            <pre class="question-code">
+var stream = Stream.iterate("", (s) -&gt; s + "1");
+System.out.println(stream.limit(2).map(x -&gt; x + "2"));
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. 12112</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 212</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 212112</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. java.util.stream.ReferencePipeline$3@4517d9a3</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. An exception is thrown.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. The code hangs.</p>
+            </div>
+            <p class="question-explanation">
+                D. No terminal operation is called, so the stream never executes. The first line creates an infinite stream reference.
+                If the stream were executed on the second line, it would get the first
+                two elements from that infinite stream, "" and "1", and add an extra character, resulting in
+                "2" and "12", respectively. Since the stream is not executed, the reference is printed instead,
+                giving us option D.
+            </p>
+        </div>
+        <div class="question" data-question="2">
+            <h1 class="question-title">Question 2</h1>
+            <p class="question-text">What could be the output of the following?</p>
+            <pre class="question-code">
+Predicate&lt;String&gt; predicate = s -&gt; s.startsWith("g");
+var stream1 = Stream.generate(() -&gt; "growl!");
+var stream2 = Stream.generate(() -&gt; "growl!");
+var b1 = stream1.anyMatch(predicate);
+var b2 = stream2.allMatch(predicate);
+System.out.println(b1 + " " + b2);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. true false</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. true true</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. java.util.stream.ReferencePipeline$3@4517d9a3</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. An exception is thrown.</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. The code hangs.</p>
+            </div>
+            <p class="question-explanation">
+                F. Both streams created in this code snippet are infinite streams. The variable b1 is set to
+                true since anyMatch() terminates. Even though the stream is infinite, Java finds a match
+                on the first element and stops looking. However, when allMatch() runs, it needs to keep
+                going until the end of the stream since it keeps finding matches. Since all elements continue
+                to match, the program hangs, making option F the answer
+            </p>
+        </div>
+        <div class="question" data-question="3">
+            <h1 class="question-title">Question 3</h1>
+            <p class="question-text">What could be the output of the following?</p>
+            <pre class="question-code">
+Predicate&lt;String&gt; predicate = s -&gt; s.length()&gt; 3;
+var stream = Stream.iterate("-", s -&gt; ! s.isEmpty(), (s) -&gt; s + s);
+var b1 = stream.noneMatch(predicate);
+var b2 = stream.anyMatch(predicate);
+System.out.println(b1 + " " + b2);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. false false</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. false true</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. java.util.stream.ReferencePipeline$3@4517d9a3</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. An exception is thrown.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code hangs.</p>
+            </div>
+            <p class="question-explanation">
+                E. An infinite stream is generated where each element is twice as long as the previous one.
+                While this code uses the three-parameter iterate() method, the condition is never false.
+                The variable b1 is set to false because Java finds an element that matches when it gets to
+                the element of length 4. However, the next line tries to operate on the same stream. Since
+                streams can be used only once, this throws an exception that the “stream has already been
+                operated upon or closed” and making option E the answer. If two different streams were
+                used, the result would be option B.
+            </p>
+        </div>
+        <div class="question" data-question="4">
+            <h1 class="question-title">Question 4</h1>
+            <p class="question-text">Which are true statements about terminal operations in a stream that runs successfully? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. At most one terminal operation can exist in a stream pipeline.</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. Terminal operations are a required part of the stream pipeline in order to get a result.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Terminal operations have Stream as the return type.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The peek() method is an example of a terminal operation.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The referenced Stream may be used after calling a terminal operation.</p>
+            </div>
+            <p class="question-explanation">
+                A, B. Terminal operations are the final step in a stream pipeline. Exactly one is required,
+                because it triggers the execution of the entire stream pipeline. Therefore, options A and B are
+                correct. Option C is true of intermediate operations rather than terminal operations. Option
+                D is incorrect because peek() is an intermediate operation. Finally, option E is incorrect
+                because once a stream pipeline is run, the Stream is marked invalid.
+            </p>
+        </div>
+        <div class="question" data-question="5">
+            <h1 class="question-title">Question 5</h1>
+            <p class="question-text">Which of the following sets result to 8.0? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. double result = LongStream.of(6L, 8L, 10L).mapToInt(x -&gt; (int) x).collect(Collectors.groupingBy(x -&gt; x)).keySet().stream().collect(Collectors.averagingInt(x -&gt; x));</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. double result = LongStream.of(6L, 8L, 10L).mapToInt(x -&gt; x).boxed().collect(Collectors.groupingBy(x -&gt; x)).keySet().stream().collect(Collectors.averagingInt(x -&gt; x));</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. double result = LongStream.of(6L, 8L, 10L).mapToInt(x -&gt; (int) x).boxed().collect(Collectors.groupingBy(x -&gt; x)).keySet().stream().collect(Collectors.averagingInt(x -&gt; x));</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. double result = LongStream.of(6L, 8L, 10L).mapToInt(x -&gt; (int) x).collect(Collectors.groupingBy(x -&gt; x, Collectors.toSet())).keySet().stream().collect(Collectors.averagingInt(x -&gt; x));</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. double result = LongStream.of(6L, 8L, 10L).mapToInt(x -&gt; x).boxed().collect(Collectors.groupingBy(x -&gt; x, Collectors.toSet())).keySet().stream().collect(Collectors.averagingInt(x -&gt; x));</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. double result = LongStream.of(6L, 8L, 10L).mapToInt(x -&gt; (int) x).boxed().collect(Collectors.groupingBy(x -&gt; x, Collectors.toSet())).keySet().stream().collect(Collectors.averagingInt(x -&gt; x));</p>
+            </div>
+            <p class="question-explanation">
+                C, F. Yes, we know this question is a lot of reading. Remember to look for the differences
+                between options rather than studying each line. These options all have much in common. All
+                of them start out with a LongStream and attempt to convert it to an IntStream. However,
+                options B and E are incorrect because they do not cast the long to an int, resulting in
+                a compiler error on the mapToInt() calls.
+                Next, we hit the second difference. Options A and D are incorrect because they are missing
+                boxed() before the collect() call. Since groupingBy() is creating a Collection, we
+                need a nonprimitive Stream. The final difference is that option F specifies the type of
+                Collection. This is allowed, though, meaning both options C and F are correct.
+            </p>
+        </div>
+        <div class="question" data-question="6">
+            <h1 class="question-title">Question 6</h1>
+            <p class="question-text">Which of the following can fill in the blank so that the code prints out false? (Choose all that apply.)</p>
+            <pre class="question-code">
+var s = Stream.generate(() -&gt; "meow");
+var match = s.______(String::isEmpty);
+System.out.println(match);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. allMatch</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. anyMatch</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. findAny</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. findFirst</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. noneMatch</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                A. Options C and D do not compile because these methods do not take a Predicate
+                parameter and do not return a boolean. When working with streams, it is important to
+                remember the behavior of the underlying functional interfaces. Options B and E are incorrect.
+                While the code compiles, it runs infinitely. The stream has no way to know that a match
+                won’t show up later. Option A is correct because it is safe to return false as soon as one
+                element passes through the stream that doesn’t match.
+            </p>
+        </div>
+        <div class="question" data-question="7">
+            <h1 class="question-title">Question 7</h1>
+            <p class="question-text">We have a method that returns a sorted list without changing the original. Which of the following can replace the
+                method implementation to do the same with streams?</p>
+            <pre class="question-code">
+private static List&lt;String&gt; sort(List&lt;String&gt; list) {
+  var copy = new ArrayList&lt;String&gt;(list);
+  Collections.sort(copy, (a, b) -&gt; b.compareTo(a));
+  return copy;
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. return list.stream().compare((a, b) -&gt; b.compareTo(a)).collect(Collectors.toList());</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. return list.stream().compare((a, b) -&gt; b.compareTo(a)).sort();</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. return list.stream().compareTo((a, b) -&gt; b.compareTo(a)).collect(Collectors.toList());</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. return list.stream().compareTo((a, b) -&gt; b.compareTo(a)).sort();</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. return list.stream().sorted((a, b) -&gt; b.compareTo(a)).collect();</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. return list.stream().sorted((a, b) -&gt; b.compareTo(a)).collect(Collectors.toList());</p>
+            </div>
+            <p class="question-explanation">
+                F. There is no Stream&lt;T&gt; method called compare() or compareTo(), so options A
+                through D can be eliminated. The sorted() method is correct to use in a stream pipeline
+                to return a sorted Stream. The collect() method can be used to turn the stream into a
+                List. The collect() method requires a collector be selected, making option E incorrect
+                and option F correct.
+            </p>
+        </div>
+        <div class="question" data-question="8">
+            <h1 class="question-title">Question 8</h1>
+            <p class="question-text">Which of the following are true given this declaration? (Choose all that apply.)</p>
+            <pre class="question-code">
+var is = IntStream.empty();
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. is.average() returns the type int.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. is.average() returns the type OptionalInt.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. is.findAny() returns the type int.</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. is.findAny() returns the type OptionalInt.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. is.sum() returns the type int.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. is.sum() returns the type OptionalInt.</p>
+            </div>
+            <p class="question-explanation">
+                D, E. The average() method returns an OptionalDouble since averages of any type can
+                result in a fraction. Therefore, options A and B are both incorrect. The findAny() method
+                returns an OptionalInt because there might not be any elements to find. Therefore, option
+                D is correct. The sum() method returns an int rather than an OptionalInt because the
+                sum of an empty list is zero. Therefore, option E is correct.
+            </p>
+        </div>
+        <div class="question" data-question="9">
+            <h1 class="question-title">Question 9</h1>
+            <p class="question-text">Which of the following can we add after line 6 for the code to run without error and not produce any output? (Choose all that apply.)</p>
+            <pre class="question-code">
+4: var stream = LongStream.of(1, 2, 3);
+5: var opt = stream.map(n -&gt; n * 10)
+6:    .filter(n -&gt; n &lt; 5).findFirst();
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. if (opt.isPresent()) System.out.println(opt.get());</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. if (opt.isPresent())System.out.println(opt.getAsLong());</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. opt.ifPresent(System.out.println);</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. opt.ifPresent(System.out::println);</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. None of these; the code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of these; line 6 throws an exception at runtime.</p>
+            </div>
+            <p class="question-explanation">
+                B, D. Lines 4–6 compile and run without issue, making option F incorrect. Line 4 creates a
+                stream of elements [1, 2, 3]. Line 5 maps the stream to a new stream with values
+                [10, 20, 30]. Line 6 filters out all items not less than 5, which in this case results in an
+                empty stream. For this reason, findFirst() returns an empty Optional.
+                Option A does not compile. It would work for a Stream&lt;T&gt; object, but we have a
+                LongStream and therefore need to call getAsLong(). Option C also does not compile, as
+                it is missing the :: that would make it a method reference. Options B and D both compile
+                and run without error, although neither produces any output at runtime since the stream is
+                empty.
+            </p>
+        </div>
+        <div class="question" data-question="10">
+            <h1 class="question-title">Question 10</h1>
+            <p class="question-text">Given the four statements (L, M, N, O), select and order the ones that would complete the expression and cause the
+                code to output 10 lines. (Choose all that apply.)</p>
+            <pre class="question-code">
+Stream.generate(() -&gt; "1")
+  L: .filter(x -&gt; x.length()&gt; 1)
+  M: .forEach(System.out::println)
+  N: .limit(10)
+  O: .peek(System.out::println)
+;
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. L, N</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. L, N, O</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. L, N, M</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. L, N, M, O</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. L, O, M</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. N, M</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. N, O</p>
+            </div>
+            <p class="question-explanation">
+                F. Only one of the method calls, forEach(), is a terminal operation, so any answer in
+                which M is not the last line will not execute the pipeline. This eliminates all but options C, E,
+                and F. Option C is incorrect because filter() is called before limit(). Since none of the
+                elements of the stream meets the requirement for the Predicate&lt;String&gt;, the filter()
+                operation will run infinitely, never passing any elements to limit(). Option E is incorrect
+                because there is no limit() operation, which means that the code would run infinitely.
+                Only option F is correct. It first limits the infinite stream to a finite stream of ten elements
+                and then prints the result.
+            </p>
+        </div>
+        <div class="question" data-question="11">
+            <h1 class="question-title">Question 11</h1>
+            <p class="question-text">What changes need to be made together for this code to print the string 12345? (Choose all that apply.)</p>
+            <pre class="question-code">
+Stream.iterate(1, x -&gt; x++)
+  .limit(5).map(x -&gt; x)
+  .collect(Collectors.joining());
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Change Collectors.joining() to Collectors.joining(",").</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. Change map(x -&gt; x) to map(x -&gt; "" + x).</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. Change x -&gt; x++ to x -&gt; ++x.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Add .forEach(System.out::print) after the call to collect().</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. Wrap the entire line in a System.out.print statement.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of the above. The code already prints 12345.</p>
+            </div>
+            <p class="question-explanation">
+                B, C, E. As written, the code doesn’t compile because the Collectors.joining() expects
+                to get a Stream&lt;String&gt;. Option B fixes this, at which point nothing is output because
+                the collector creates a String without outputting the result. Option E fixes this and causes
+                the output to be 11111. Since the post-increment operator is used, the stream contains an
+                infinite number of the character 1. Option C fixes this and causes the stream to contain
+                increasing numbers.
+            </p>
+        </div>
+        <div class="question" data-question="12">
+            <h1 class="question-title">Question 12</h1>
+            <p class="question-text">Which is true of the following code?</p>
+            <pre class="question-code">
+Set&lt;String&gt; birds = Set.of("oriole", "flamingo");
+Stream.concat(birds.stream(), birds.stream(), birds.stream())
+  .sorted()       // line X
+  .distinct()
+  .findAny()
+  .ifPresent(System.out::println);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. It is guaranteed to print flamingo as is and when line X is removed.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. It is guaranteed to print oriole as is and when line X is removed.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. It is guaranteed to print flamingo as is, but not when line X is removed.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. It is guaranteed to print oriole as is, but not when line X is removed.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The output may vary as is.</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. It throws an exception because the same list is used as the source for multiple streams.</p>
+            </div>
+            <p class="question-explanation">
+                F. The code does not compile because Stream.concat() takes two parameters, not the
+                three provided. This makes the answer option F
+            </p>
+        </div>
+        <div class="question" data-question="13">
+            <h1 class="question-title">Question 13</h1>
+            <p class="question-text">Which of the following is true?</p>
+            <pre class="question-code">
+List&lt;Integer&gt; x1 = List.of(1, 2, 3);
+List&lt;Integer&gt; x2 = List.of(4, 5, 6);
+List&lt;Integer&gt; x3 = List.of();
+Stream.of(x1, x2, x3).map(x -&gt; x + 1)
+  .flatMap(x -&gt; x.stream())
+  .forEach(System.out::print);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. The code compiles and prints 123456.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. The code compiles and prints 234567.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. The code compiles but does not print anything.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The code compiles but prints stream references.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code runs infinitely.</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. The code throws an exception.</p>
+            </div>
+            <p class="question-explanation">
+                F. If the map() and flatMap() calls were reversed, option B would be correct. In this case,
+                the Stream created from the source is of type Stream&lt;List&gt;. Trying to use the addition
+                operator (+) on a List is not supported in Java. Therefore, the code does not compile, and
+                option F is correct.
+            </p>
+        </div>
+        <div class="question" data-question="14">
+            <h1 class="question-title">Question 14</h1>
+            <p class="question-text">Which of the following are true? (Choose all that apply.)</p>
+            <pre class="question-code">
+4: Stream&lt;Integer&gt; s = Stream.of(1);
+5: IntStream is = s.boxed();
+6: DoubleStream ds = s.mapToDouble(x -&gt; x);
+7: Stream&lt;Integer&gt; s2 = ds.mapToInt(x -&gt; x);
+8: s2.forEach(System.out::print);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Line 4 causes a compiler error.</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. Line 5 causes a compiler error.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Line 6 causes a compiler error.</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. Line 7 causes a compiler error.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Line 8 causes a compiler error.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code compiles but throws an exception at runtime.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. The code compiles and prints 1.</p>
+            </div>
+            <p class="question-explanation">
+                B, D. Line 4 creates a Stream and uses autoboxing to put the Integer wrapper of 1
+                inside. Line 5 does not compile because boxed() is available only on primitive streams like
+                IntStream, not Stream&lt;Integer&gt;. This makes option B one answer. Line 6 converts
+                to a double primitive, which works since Integer can be unboxed to a value that can be
+                implicitly cast to a double. Line 7 does not compile for two reasons making option D the
+                second answer. First, converting from a double to an int would require an explicit cast.
+                Also, mapToInt() returns an IntStream, so the data type of s2 is incorrect. The rest of
+                the lines compile without issue
+            </p>
+        </div>
+        <div class="question" data-question="15">
+            <h1 class="question-title">Question 15</h1>
+            <p class="question-text">Given the generic type String, the partitioningBy() collector creates a
+                Map&lt;Boolean, List&lt;String&gt;&gt; when passed to collect() by default. When a downstream
+                collector is passed to partitioningBy(), which return types can be created? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Map&lt;boolean, List&lt;String&gt;&gt;</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. Map&lt;Boolean, List&lt;String&gt;&gt;</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Map&lt;Boolean, Map&lt;String&gt;&gt;</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. Map&lt;Boolean, Set&lt;String&gt;&gt;</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Map&lt;Long, TreeSet&lt;String&gt;&gt;</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                B, D. Options A and C do not compile because they are invalid generic declarations.
+                Primitives are not allowed as generics, and Map must have two generic type parameters. Option
+                E is incorrect because partitioning only gives a Boolean key. Options B and D are correct
+                because they return a Map with a Boolean key and a value type that can be customized to
+                any Collection.
+            </p>
+        </div>
+        <div class="question" data-question="16">
+            <h1 class="question-title">Question 16</h1>
+            <p class="question-text">Which of the following statements are true about this code? (Choose all that apply.)</p>
+            <pre class="question-code">
+20: Predicate&lt;String&gt; empty = String::isEmpty;
+21: Predicate&lt;String&gt; notEmpty = empty.negate();
+22:
+23: var result = Stream.generate(() -&gt; "")
+24:    .limit(10)
+25:    .filter(notEmpty)
+26:    .collect(Collectors.groupingBy(k -&gt; k))
+27:    .entrySet()
+28:    .stream()
+29:    .map(Entry::getValue)
+30:    .flatMap(Collection::stream)
+31:    .collect(Collectors.partitioningBy(notEmpty));
+32: System.out.println(result);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. It outputs {}.</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. It outputs {false=[], true=[]}.</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. If we changed line 31 from partitioningBy(notEmpty) to groupingBy(n -&gt; n), it would output {}.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. If we changed line 31 from partitioningBy(notEmpty) to groupingBy(n -&gt; n), it would output {false=[], true=[]}.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code compiles but does not terminate at runtime.</p>
+            </div>
+            <p class="question-explanation">
+                B, C. First, this mess of code does compile. While it starts with an infinite stream on line
+                23, it becomes finite on line 24 thanks to limit(), making option F incorrect. The pipeline
+                preserves only nonempty elements on line 25. Since there aren’t any of those, the pipeline is
+                empty. Line 26 converts this to an empty map.
+                Lines 27 and 28 create a Set with no elements and then another empty stream. Lines 29 and
+                30 convert the generic type of the Stream to List&lt;String&gt; and then String. Finally,
+                line 31 gives us another Map&lt;Boolean, List&lt;String&gt;&gt;.
+                The partitioningBy() operation always returns a map with two Boolean keys, even
+                if there are no corresponding values. Therefore, option B is correct if the code is kept as is.
+                By contrast, groupingBy() returns only keys that are actually needed, making option C
+                correct if the code is modified on line 31.
+            </p>
+        </div>
+        <div class="question" data-question="17">
+            <h1 class="question-title">Question 17</h1>
+            <p class="question-text">What is the result of the following?</p>
+            <pre class="question-code">
+var s = DoubleStream.of(1.2, 2.4);
+s.peek(System.out::println).filter(x -&gt; x&gt; 2).count();
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. 1</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. 2</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 2.4</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. 1.2 and 2.4</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. There is no output.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. An exception is thrown.</p>
+            </div>
+            <p class="question-explanation">
+                D. The terminal operation is count(). Since there is a terminal operation, the intermediate
+                operations run. The peek() operation comes before the filter(), so both numbers are
+                printed, making option D the answer. After the filter(), the count() happens to be 1
+                since one of the numbers is filtered out. However, the result of the stream pipeline isn’t stored
+                in a variable or printed, and it is ignored.
+            </p>
+        </div>
+        <div class="question" data-question="18">
+            <h1 class="question-title">Question 18</h1>
+            <p class="question-text">What is the output of the following?</p>
+            <pre class="question-code">
+11: public class Paging {
+12:    record Sesame(String name, boolean human)  {
+13:       @Override public String toString() {
+14:          return name();
+15:       }
+16:    }
+17:    record Page(List&lt;Sesame&gt; list, long count)  {}
+18:
+19:    public static void main(String[] args) {
+20:       var monsters = Stream.of(new Sesame("Elmo", false));
+21:       var people = Stream.of(new Sesame("Abby", true));
+22:       printPage(monsters, people);
+23:    }
+24:
+25:    private static void printPage(Stream&lt;Sesame&gt; monsters,
+26:          Stream&lt;Sesame&gt; people) {
+27:       Page page = Stream.concat(monsters, people)
+28:          .collect(Collectors.teeing(
+29:             Collectors.filtering(s -&gt; s.name().startsWith("E"),
+30:                Collectors.toList()),
+31:             Collectors.counting(),
+32:             (l, c) -&gt; new Page(l, c)));
+33:       System.out.println(page);
+34:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Page[list=[Abby], count=1]</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Page[list=[Abby], count=2]</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Page[list=[Elmo], count=1]</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. Page[list=[Elmo], count=2]</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code does not compile due to Stream.concat().</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code does not compile due to Collectors.teeing().</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. The code does not compile for another reason.</p>
+            </div>
+            <p class="question-explanation">
+                D. This compiles, ruling out options E, F, and G. Since line 29 filters by names starting with
+                E, that rules out options A and B. Finally, line 31 counts the entire list, which is of size 2,
+                giving us option D as the answer.
+            </p>
+        </div>
+        <div class="question" data-question="19">
+            <h1 class="question-title">Question 19</h1>
+            <p class="question-text">What is the simplest way of rewriting this code?</p>
+            <pre class="question-code">
+List&lt;Integer&gt; x = IntStream.range(1, 6)
+  .mapToObj(i -&gt; i)
+  .collect(Collectors.toList());
+x.forEach(System.out::println);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. IntStream.range(1, 6);</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. IntStream.range(1, 6).forEach(System.out::println);</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. IntStream.range(1, 6).mapToObj(i -&gt; i).forEach(System.out::println);</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. None of the above is equivalent.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The provided code does not compile.</p>
+            </div>
+            <p class="question-explanation">
+                B. Both lists and streams have forEach() methods. There is no reason to collect into a list
+                just to loop through it. Option A is incorrect because it does not contain a terminal operation
+                or print anything. Options B and C both work. However, the question asks about the simplest way, which is option B.
+            </p>
+        </div>
+        <div class="question" data-question="20">
+            <h1 class="question-title">Question 20</h1>
+            <p class="question-text">Which of the following throw an exception when an Optional is empty? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. opt.orElse("");</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. opt.orElseGet(() -&gt; "");</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. opt.orElseThrow();</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. opt.orElseThrow(() -&gt; throw new Exception());</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. opt.orElseThrow(RuntimeException::new);</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. opt.get();</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. opt.get("");</p>
+            </div>
+            <p class="question-explanation">
+                C, E, F. Options A and B compile and return an empty string without throwing an
+                exception, using a String and Supplier parameter, respectively. Option G does
+                not compile as the get() method does not take a parameter. Options C and F throw a
+                NoSuchElementException. Option E throws a RuntimeException. Option D looks
+                correct but will compile only if the throw is removed. Remember, the orElseThrow()
+                should get a lambda expression or method reference that returns an exception, not one that
+                throws an exception.
+            </p>
+        </div>
+        <div class="question" data-question="21">
+            <h1 class="question-title">Question 21</h1>
+            <p class="question-text">What is the output of the following?</p>
+            <pre class="question-code">
+var spliterator = Stream.generate(() -&gt; "x").spliterator();
+spliterator.tryAdvance(System.out::print);
+var split = spliterator.trySplit();
+split.tryAdvance(System.out::print);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. x</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. xx</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. A long list of x&#39;s</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. There is no output.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code compiles but does not terminate at runtime.</p>
+            </div>
+            <p class="question-explanation">
+                B. We start with an infinite stream where each element is x. The spliterator()
+                method is a terminal operation since it returns a Spliterator rather than a Stream.
+                The tryAdvance() method gets the first element and prints a single x. The trySplit()
+                method takes a large number of elements from the stream. Since this is an infinite stream, it
+                doesn’t attempt to take half. Then tryAdvance() is called on the new split variable, and
+                another x is printed. Since there are two values printed, option B is correct.
+            </p>
+        </div>
+
+        <p class="info"></p>
+    </div>
+    <div>
+        <button type="button" class="start">Start</button>
+        <button type="button" class="finish">Finish</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

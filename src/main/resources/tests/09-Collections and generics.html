@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Collections and Generics</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="test">
+        <p class="timer">00:00:00</p>
+
+        <div class="question" data-question="1">
+            <h1 class="question-title">Question 1</h1>
+            <p class="question-text">Suppose you need to display a collection of products for sale, which may contain duplicates. Additionally,
+                you have a collection of sales that you need to track, sorted by the natural order of the sale ID, and you need to retrieve the
+                text of each. Which two of the following from the java.util package best suit your needs for this scenario? (Choose two.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. ArrayList</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. HashMap</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. HashSet</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. LinkedList</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. TreeMap</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. TreeSet</p>
+            </div>
+            <p class="question-explanation">
+                A, E. For the first scenario, the answer needs to implement List because the scenario allows
+                duplicates, narrowing it down to options A and D. Option A is a better answer than option D
+                because LinkedList is both a List and a Queue, and you just need a regular List.
+                For the second scenario, the answer needs to implement Map because you are dealing with
+                key/value pairs per the unique id field. This narrows it down to options B and E. Since the
+                question talks about ordering, you need the TreeMap. Therefore, the answer is option E.
+            </p>
+        </div>
+        <div class="question" data-question="2">
+            <h1 class="question-title">Question 2</h1>
+            <p class="question-text">Which of the following are true? (Choose all that apply.)</p>
+            <pre class="question-code">
+12: List&lt;?&gt; q = List.of("mouse", "parrot");
+13: var v = List.of("mouse", "parrot");
+14:
+15: q.removeIf(String::isEmpty);
+16: q.removeIf(s -&gt; s.length() == 4);
+17: v.removeIf(String::isEmpty);
+18: v.removeIf(s -&gt; s.length() == 4);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. This code compiles and runs without error.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Exactly one of these lines contains a compiler error.</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. Exactly two of these lines contain a compiler error.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Exactly three of these lines contain a compiler error.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Exactly four of these lines contain a compiler error.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. If any lines with compiler errors are removed, this code runs without throwing an exception.</p>
+                <p class="question-answer" data-is-correct="True"><input name="G" type="checkbox"/>G. If any lines with compiler errors are removed, this code throws an exception.</p>
+            </div>
+            <p class="question-explanation">
+                C, G. Line 12 creates a List&lt;?&gt;, which means it is treated as if all the elements are of type
+                Object rather than String. Lines 15 and 16 do not compile since they call the String
+                methods isEmpty() and length(), which are not defined on Object. Line 13 creates
+                a List&lt;String&gt; because var uses the type that it deduces from the context. Lines 17
+                and 18 do compile. However, List.of() creates an immutable list, so both of those lines
+                would throw an UnsupportedOperationException if run. Therefore, options C and G
+                are correct.
+            </p>
+        </div>
+        <div class="question" data-question="3">
+            <h1 class="question-title">Question 3</h1>
+            <p class="question-text">What is the result of the following statements?</p>
+            <pre class="question-code">
+3:  var greetings = new ArrayDeque&lt;String&gt;();
+4:  greetings.offerLast("hello");
+5:  greetings.offerLast("hi");
+6:  greetings.offerFirst("ola");
+7:  greetings.pop();
+8:  greetings.peek();
+9:  while (greetings.peek() != null)
+10:    System.out.print(greetings.pop());
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. hello</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. hellohi</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. hellohiola</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. hiola</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. An exception is thrown.</p>
+            </div>
+            <p class="question-explanation">
+                B. This is a double-ended queue. On lines 4 and 5, we add to the back, giving us
+                [hello, hi]. On line 6, we add to the front and have [ola, hello, hi]. On line 7,
+                we remove the first element, which is "ola". On line 8, we look at the new first element
+                ("hello") but don’t remove it. On lines 9 and 10, we remove each element in turn until no
+                elements are left, printing hello and hi together which makes option B the answer.
+            </p>
+        </div>
+        <div class="question" data-question="4">
+            <h1 class="question-title">Question 4</h1>
+            <p class="question-text">Which of these statements compile? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. HashSet&lt;Number&gt; hs = new HashSet&lt;Integer&gt;();</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. HashSet&lt;? super ClassCastException&gt; set = new HashSet&lt;Exception&gt;();</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. List&lt;&gt; list = new ArrayList&lt;String&gt;();</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. List&lt;Object&gt; values = new HashSet&lt;Object&gt;();</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. List&lt;Object&gt; objects = new ArrayList&lt;? extends Object&gt;();</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. Map&lt;String, ? extends Number&gt; hm = new HashMap&lt;String, Integer&gt;();</p>
+            </div>
+            <p class="question-explanation">
+                B, F. Option A does not compile because the generic types are not compatible. We could say
+                HashSet&lt;? extends Number&gt; hs2 = new HashSet&lt;Integer&gt;();. Option B uses
+                a lower bound, so it allows superclass generic types. Option C does not compile because the
+                diamond operator is allowed only on the right side. Option D does not compile because a
+                Set is not a List. Option E does not compile because upper bounds are not allowed when
+                instantiating the type. Finally, option F does compile because the upper bound is on the
+                correct side of the =.
+            </p>
+        </div>
+        <div class="question" data-question="5">
+            <h1 class="question-title">Question 5</h1>
+            <p class="question-text">What is the result of the following code?</p>
+            <pre class="question-code">
+1: public record Hello&lt;T&gt;(T t) {
+2:    public Hello(T t) { this.t = t; }
+3:    private &lt;T&gt; void println(T message) {
+4:       System.out.print(t + "-" + message);
+5:    }
+6:    public static void main(String[] args) {
+7:       new Hello&lt;String&gt;("hi").println(1);
+8:       new Hello("hola").println(true);
+9:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. hi followed by a runtime exception</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. hi-1hola-true</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. The first compiler error is on line 1.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The first compiler error is on line 3.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The first compiler error is on line 8.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The first compiler error is on another line.</p>
+            </div>
+            <p class="question-explanation">
+                B. The record compiles and runs without issue. Line 8 gives a compiler warning for not
+                using generics but not a compiler error. Line 7 creates the Hello class with the generic type
+                String. It also passes an int to the println() method, which gets autoboxed into an
+                Integer. While the println() method takes a generic parameter of type T, it is not the
+                same &lt;T&gt; defined for the class on line 1. Instead, it is a different T defined as part of the
+                method declaration on line 3. Therefore, the String argument on line 7 applies only to the
+                class. The method can take any object as a parameter, including autoboxed primitives. Line
+                8 creates the Hello class with the generic type Object since no type is specified for that
+                instance. It passes a boolean to println(), which gets autoboxed into a Boolean. The
+                result is that hi-1hola-true is printed, making option B correct.
+            </p>
+        </div>
+        <div class="question" data-question="6">
+            <h1 class="question-title">Question 6</h1>
+            <p class="question-text">Which of the following can fill in the blank to print [7, 5, 3]? (Choose all that apply.)</p>
+            <pre class="question-code">
+8:  public record Platypus(String name, int beakLength) {
+9:     @Override public String toString() {return "" + beakLength;}
+10:
+11:    public static void main(String[] args) {
+12:       Platypus p1 = new Platypus("Paula", 3);
+13:       Platypus p2 = new Platypus("Peter", 5);
+14:       Platypus p3 = new Platypus("Peter", 7);
+15:
+16:       List&lt;Platypus&gt; list = Arrays.asList(p1, p2, p3);
+17:
+18:       Collections.sort(list, Comparator.comparing______);
+19:
+20:       System.out.println(list);
+21:    }
+22: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. (Platypus::beakLength)</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. (Platypus::beakLength).reversed()</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. (Platypus::name).thenComparing(Platypus::beakLength)</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. (Platypus::name).thenComparing(Comparator.comparing(Platypus::beakLength).reversed())</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. (Platypus::name).thenComparingNumber(Platypus::beakLength).reversed()</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. (Platypus::name).thenComparingInt(Platypus::beakLength).reversed()</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                B, F. We’re looking for a Comparator definition that sorts in descending order by
+                beakLength. Option A is incorrect because it sorts in ascending order by beakLength.
+                Similarly, option C is incorrect because it sorts by beakLength in ascending order within
+                those matches that have the same name. Option E is incorrect because there is no
+                thenComparingNumber() method.
+                Option B is a correct answer, as it sorts by beakLength in descending order. Options D
+                and F are trickier. First, notice that we can call either thenComparing() or
+                thenComparingInt() because the former will simply autobox the int into an
+                Integer. Then observe what reversed() applies to. Option D is incorrect because it sorts
+                by name in ascending order and only reverses the beak length of those with the same name.
+                Option F creates a comparator that sorts by name in ascending order and then by beak size
+                in ascending order. Finally, it reverses the result. This is just what we want, so option F is
+                correct.
+            </p>
+        </div>
+        <div class="question" data-question="7">
+            <h1 class="question-title">Question 7</h1>
+            <p class="question-text">Which of the following method signatures are valid overrides of the hairy() method in the Alpaca class? (Choose all that apply.)</p>
+            <pre class="question-code">
+import java.util.*;
+public class Alpaca {
+  public List&lt;String&gt; hairy(List&lt;String&gt; list) { return null; }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. public List&lt;String&gt; hairy(List&lt;CharSequence&gt; list) { return null; }</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. public List&lt;String&gt; hairy(ArrayList&lt;String&gt; list) { return null; }</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. public List&lt;String&gt; hairy(List&lt;Integer&gt; list) { return null; }</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. public List&lt;CharSequence&gt; hairy(List&lt;String&gt; list) { return null; }</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. public Object hairy(List&lt;String&gt; list) { return null; }</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. public ArrayList&lt;String&gt; hairy(List&lt;String&gt; list) { return null; }</p>
+            </div>
+            <p class="question-explanation">
+                B, F. A valid override of a method with generic arguments must have a return type that is
+                covariant, with matching generic type parameters. Options D and E are incorrect because
+                the return type is too broad. Additionally, the generic arguments must have the same signature
+                with the same generic types. This eliminates options A and C. The remaining options are
+                correct, making the answer options B and F
+            </p>
+        </div>
+        <div class="question" data-question="8">
+            <h1 class="question-title">Question 8</h1>
+            <p class="question-text">What is the result of the following program?</p>
+            <pre class="question-code">
+3:  public class MyComparator implements Comparator&lt;String&gt; {
+4:     public int compare(String a, String b) {
+5:        return b.toLowerCase().compareTo(a.toLowerCase());
+6:     }
+7:     public static void main(String[] args) {
+8:        String[] values = { "123", "Abb", "aab" };
+9:        Arrays.sort(values, new MyComparator());
+10:       for (var s: values)
+11:          System.out.print(s + " ");
+12:    }
+13: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. Abb aab 123</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. aab Abb 123</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. 123 Abb aab</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. 123 aab Abb</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. A runtime exception is thrown.</p>
+            </div>
+            <p class="question-explanation">
+                A. The array is sorted using MyComparator, which sorts the elements in reverse alphabetical
+                order in a case-insensitive fashion. Normally, numbers sort before letters. This code
+                reverses that by calling the compareTo() method on b instead of a. Therefore, option A
+                is correct.
+            </p>
+        </div>
+        <div class="question" data-question="9">
+            <h1 class="question-title">Question 9</h1>
+            <p class="question-text">Which of these statements can fill in the blank so that the Helper class compiles successfully? (Choose all that apply.)</p>
+            <pre class="question-code">
+2:  public class Helper {
+3:     public static &lt;U extends Exception&gt;
+4:        void printException(U u) {
+5:
+6:        System.out.println(u.getMessage());
+7:     }
+8:     public static void main(String[] args) {
+9:        Helper.____________________________________;
+10:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. printException(new FileNotFoundException("A"))</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. printException(new Exception("B"))</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. &lt;Throwable&gt;printException(new Exception("C"))</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. &lt;NullPointerException&gt;printException(new NullPointerException ("D"))</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. printException(new Throwable("E"))</p>
+            </div>
+            <p class="question-explanation">
+                A, B, D. The generic type must be Exception or a subclass of Exception since this is an
+                upper bound, making options A and B correct. Options C and E are wrong because
+                Throwable is a superclass of Exception. Additionally, option D is correct despite the odd
+                syntax by explicitly listing the type. You should still be able to recognize it as acceptable.
+            </p>
+        </div>
+        <div class="question" data-question="10">
+            <h1 class="question-title">Question 10</h1>
+            <p class="question-text">Which of the following will compile when filling in the blank? (Choose all that apply.)</p>
+            <pre class="question-code">
+var list = List.of(1, 2, 3);
+var set = Set.of(1, 2, 3);
+var map = Map.of(1, 2, 3, 4);
+_______.forEach(System.out::println);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. list</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. set</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. map</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. map.keys()</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. map.keySet()</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. map.values()</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. map.valueSet()</p>
+            </div>
+            <p class="question-explanation">
+                A, B, E, F. The forEach() method works with a List or a Set. Therefore, options A and
+                B are correct. Additionally, options E and F return a Set and can be used as well. Options
+                D and G refer to methods that do not exist. Option C is tricky because a Map does have a
+                forEach() method. However, it uses two lambda parameters rather than one. Since there is
+                no matching System.out.println method, it does not compile.
+            </p>
+        </div>
+        <div class="question" data-question="11">
+            <h1 class="question-title">Question 11</h1>
+            <p class="question-text">Which of these statements can fill in the blank so that the Wildcard class compiles successfully? (Choose all that apply.)</p>
+            <pre class="question-code">
+3:  public class Wildcard {
+4:     public void showSize(List&lt;?&gt; list) {
+5:        System.out.println(list.size());
+6:     }
+7:     public static void main(String[] args) {
+8:        Wildcard card = new Wildcard();
+9:        ____________________________________;
+10:       card.showSize(list);
+11:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. List&lt;?&gt; list = new HashSet &lt;String&gt;()</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. ArrayList&lt;? super Date&gt; list = new ArrayList&lt;Date&gt;()</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. List&lt;?&gt; list = new ArrayList&lt;?&gt;()</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. List&lt;Exception&gt; list = new LinkedList&lt;java.io.IOException&gt;()</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. ArrayList &lt;? extends Number&gt; list = new ArrayList &lt;Integer&gt;()</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                B, E. The showSize() method can take any type of List since it uses an unbounded wildcard.
+                Option A is incorrect because it is a Set and not a List. Option C is incorrect because
+                the wildcard is not allowed to be on the right side of an assignment. Option D is incorrect
+                because the generic types are not compatible.
+                Option B is correct because a lower-bounded wildcard allows that same type to be the
+                generic. Option E is correct because Integer is a subclass of Number.
+            </p>
+        </div>
+        <div class="question" data-question="12">
+            <h1 class="question-title">Question 12</h1>
+            <p class="question-text">What is the result of the following program?</p>
+            <pre class="question-code">
+3:  public record Sorted(int num, String text)
+4:     implements Comparable&lt;Sorted&gt;, Comparator&lt;Sorted&gt; {
+5:
+6:     public String toString() { return "" + num; }
+7:     public int compareTo(Sorted s) {
+8:        return text.compareTo(s.text);
+9:     }
+10:    public int compare(Sorted s1, Sorted s2) {
+11:       return s1.num - s2.num;
+12:    }
+13:    public static void main(String[] args) {
+14:       var s1 = new Sorted(88, "a");
+15:       var s2 = new Sorted(55, "b");
+16:       var t1 = new TreeSet&lt;Sorted&gt;();
+17:       t1.add(s1); t1.add(s2);
+18:       var t2 = new TreeSet&lt;Sorted&gt;(s1);
+19:       t2.add(s1); t2.add(s2);
+20:       System.out.println(t1 + " " + t2);
+21:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. [55, 88] [55, 88]</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. [55, 88] [88, 55]</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. [88, 55] [55, 88]</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. [88, 55] [88, 55]</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. A runtime exception is thrown.</p>
+            </div>
+            <p class="question-explanation">
+                C. This question is difficult because it defines both Comparable and Comparator on
+                the same object. The t1 object doesn’t specify a Comparator, so it uses the Comparable
+                object’s compareTo() method. This sorts by the text instance variable. The t2 object
+                does specify a Comparator when calling the constructor, so it uses the compare() method,
+                which sorts by the int. This gives us option C as the answer.
+            </p>
+        </div>
+        <div class="question" data-question="13">
+            <h1 class="question-title">Question 13</h1>
+            <p class="question-text">What is the result of the following code? (Choose all that apply.)</p>
+            <pre class="question-code">
+Comparator&lt;Integer&gt; c1 = (o1, o2) -&gt; o2 - o1;
+Comparator&lt;Integer&gt; c2 = Comparator.naturalOrder();
+Comparator&lt;Integer&gt; c3 = Comparator.reverseOrder();
+var list = Arrays.asList(5, 4, 7, 2);
+Collections.sort(list,_________);
+Collections.reverse(list);
+Collections.reverse(list);
+System.out.println(Collections.binarySearch(list, 2));
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. One or more of the comparators can fill in the blank so that the code prints 0.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. One or more of the comparators can fill in the blank so that the code prints 1.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. One or more of the comparators can fill in the blank so that the code prints 2.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The result is undefined regardless of which comparator is used.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. A runtime exception is thrown regardless of which comparator is used.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code does not compile.</p>
+            </div>
+            <p class="question-explanation">
+                A. When using binarySearch(), the List must be sorted in the same order that the
+                Comparator uses. Since the binarySearch() method does not specify a Comparator
+                explicitly, the default sort order is used. Only c2 uses that sort order and correctly identifies
+                that the value 2 is at index 0. Therefore, option A is correct. The other two comparators sort
+                in descending order. Therefore, the precondition for binarySearch() is not met, and the
+                result is undefined for those two. The two calls to reverse() are just there to distract you;
+                they cancel each other out.
+            </p>
+        </div>
+        <div class="question" data-question="14">
+            <h1 class="question-title">Question 14</h1>
+            <p class="question-text">Which of the following lines can be inserted to make the code compile? (Choose all that apply.)</p>
+            <pre class="question-code">
+class W {}
+class X extends W {}
+class Y extends X {}
+class Z&lt;Y&gt; {
+  // INSERT CODE HERE
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. W w1 = new W();</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. W w2 = new X();</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. W w3 = new Y();</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Y y1 = new W();</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Y y2 = new X();</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. Y y1 = new Y();</p>
+            </div>
+            <p class="question-explanation">
+                A, B. Y is both a class and a type parameter. This means that within the class Z, when we
+                refer to Y, it uses the type parameter. All of the choices that mention class Y are incorrect
+                because it no longer means the class Y. Only options A and B are correct
+            </p>
+        </div>
+        <div class="question" data-question="15">
+            <h1 class="question-title">Question 15</h1>
+            <p class="question-text">Which options are true of the following code? (Choose all that apply.)</p>
+            <pre class="question-code">
+3:______________  q = new LinkedList&lt;&gt;();
+4: q.add(10);
+5: q.add(12);
+6: q.remove(1);
+7: System.out.print(q);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. If we fill in the blank with List&lt;Integer&gt;, the output is [10].</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. If we fill in the blank with Queue&lt;Integer&gt;, the output is [10].</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. If we fill in the blank with var, the output is [10].</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. One or more of the scenarios does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. One or more of the scenarios throws a runtime exception.</p>
+            </div>
+            <p class="question-explanation">
+                A, C. A LinkedList implements both List and Queue. The List interface has a method
+                to remove by index. Since this method exists, Java does not autobox to call the other method,
+                making the output [10] and option A correct. Similarly, option C is correct because the
+                method to remove an element by index is available on a LinkedList&lt;Object&gt; (which is
+                what var represents here). By contrast, Queue has only the remove by object method, so
+                Java does autobox there. Since the number 1 is not in the list, Java does not remove anything
+                for the Queue, and the output is [10, 12].
+            </p>
+        </div>
+        <div class="question" data-question="16">
+            <h1 class="question-title">Question 16</h1>
+            <p class="question-text">What is the result of the following code?</p>
+            <pre class="question-code">
+4: Map m = new HashMap();
+5: m.put(123, "456");
+6: m.put("abc", "def");
+7: System.out.println(m.contains("123"));
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. false</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. true</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Compiler error on line 4</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Compiler error on line 5</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. Compiler error on line 7</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. A runtime exception is thrown.</p>
+            </div>
+            <p class="question-explanation">
+                E. This question looks like it is about generics, but it’s not. It is trying to see whether you
+                noticed that Map does not have a contains() method. It has containsKey() and
+                containsValue() instead, making option E the answer. If containsKey() were
+                called, the answer would be false because 123 is an Integer key in the Map, rather
+                than a String.
+            </p>
+        </div>
+        <div class="question" data-question="17">
+            <h1 class="question-title">Question 17</h1>
+            <p class="question-text">What is the result of the following code? (Choose all that apply.)</p>
+            <pre class="question-code">
+48: var map = Map.of(1,2, 3, 6);
+49: var list = List.copyOf(map.entrySet());
+50:
+51: List&lt;Integer&gt; one = List.of(8, 16, 2);
+52: var copy = List.copyOf(one);
+53: var copyOfCopy = List.copyOf(copy);
+54: var thirdCopy = new ArrayList&lt;&gt;(copyOfCopy);
+55:
+56: list.replaceAll(x -&gt; x * 2);
+57: one.replaceAll(x -&gt; x * 2);
+58: thirdCopy.replaceAll(x -&gt; x * 2);
+59:
+60: System.out.println(thirdCopy);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. One line fails to compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Two lines fail to compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Three lines fail to compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The code compiles but throws an exception at runtime.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. If any lines with compiler errors are removed, the code throws an exception at runtime.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. If any lines with compiler errors are removed, the code prints [16, 32, 4].</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. The code compiles and prints [16, 32, 4] without any changes.</p>
+            </div>
+            <p class="question-explanation">
+                A, E. The key to this question is keeping track of the types. Line 48 is a
+                Map&lt;Integer, Integer&gt;. Line 49 builds a List out of a Set of Entry objects, giving
+                us List&lt;Entry&lt;Integer, Integer&gt;&gt;. This causes a compiler error on line 56 since we
+                can’t multiply an Entry object by two.
+                Lines 51–54 are all of type List&lt;Integer&gt;. The first three are immutable, and the one on
+                line 54 is mutable. This means line 57 throws an UnsupportedOperationException
+                since we attempt to modify the list. Line 58 would work if we could get to it. Since there is
+                one compiler error and one runtime error, options A and E are correct.
+            </p>
+        </div>
+        <div class="question" data-question="18">
+            <h1 class="question-title">Question 18</h1>
+            <p class="question-text">What code change is needed to make the method compile, assuming there is no class named T?</p>
+            <pre class="question-code">
+public static T identity(T t) {
+  return t;
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Add &lt;T&gt; after the public keyword.</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. Add &lt;T&gt; after the static keyword.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Add &lt;T&gt; after T.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Add &lt;?&gt; after the public keyword.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Add &lt;?&gt; after the static keyword.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. No change is required. The code already compiles.</p>
+            </div>
+            <p class="question-explanation">
+                B. When using generic types in a method, the generic specification goes before the return
+                type and option B is correct.
+            </p>
+        </div>
+        <div class="question" data-question="19">
+            <h1 class="question-title">Question 19</h1>
+            <p class="question-text">What is the result of the following?</p>
+            <pre class="question-code">
+var map = new HashMap&lt;Integer, Integer&gt;();
+map.put(1, 10);
+map.put(2, 20);
+map.put(3, null);
+map.merge(1, 3, (a,b) -&gt; a + b);
+map.merge(3, 3, (a,b) -&gt; a + b);
+System.out.println(map);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. {1=10, 2=20}</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. {1=10, 2=20, 3=null}</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. {1=10, 2=20, 3=3}</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. {1=13, 2=20}</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. {1=13, 2=20, 3=null}</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. {1=13, 2=20, 3=3}</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="H" type="checkbox"/>H. An exception is thrown.</p>
+            </div>
+            <p class="question-explanation">
+                F. The first call to merge() calls the mapping function and adds the numbers to get 13. It
+                then updates the map. The second call to merge() sees that the map currently has a null
+                value for that key. It does not call the mapping function but instead replaces it with the new
+                value of 3. Therefore, option F is correct.
+            </p>
+        </div>
+        <div class="question" data-question="20">
+            <h1 class="question-title">Question 20</h1>
+            <p class="question-text">Which of the following statements are true? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Comparable is in the java.util package.</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. Comparator is in the java.util package.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. compare() is in the Comparable interface.</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. compare() is in the Comparator interface.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. compare() takes one method parameter.</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. compare() takes two method parameters.</p>
+            </div>
+            <p class="question-explanation">
+                B, D, F. The java.lang.Comparable interface is implemented on the object to
+                compare. It specifies the compareTo() method, which takes one parameter. The
+                java.util.Comparator interface specifies the compare() method, which takes two
+                parameters. This gives us options B, D, and F as the answers.
+            </p>
+        </div>
+
+        <p class="info"></p>
+    </div>
+    <div>
+        <button type="button" class="start">Start</button>
+        <button type="button" class="finish">Finish</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
