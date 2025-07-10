@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modules</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="test">
+        <p class="timer">00:00:00</p>
+
+        <div class="question" data-question="1">
+            <h1 class="question-title">Question 1</h1>
+            <p class="question-text">Which statement is true of the following module?</p>
+            <pre class="question-code">
+|---zoo
+  |-- staff
+    |-- Vet.java
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. The directory structure shown is a valid module.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. The directory structure would be a valid module if module.java were added directly underneath zoo/staff.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. The directory structure would be a valid module if module.java were added directly underneath zoo.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The directory structure would be a valid module if module-info.java were added directly underneath zoo/staff.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. The directory structure would be a valid module if module-info.java were added directly underneath zoo.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of these changes would make this directory structure a valid module.</p>
+            </div>
+            <p class="question-explanation">
+                E. Modules are required to have a module-info.java file at the root directory of the
+                module. Option E matches this requirement.
+            </p>
+        </div>
+        <div class="question" data-question="2">
+            <h1 class="question-title">Question 2</h1>
+            <p class="question-text">Suppose module puppy depends on module dog and module dog depends on module animal. Fill in the blank so that code in
+                module dog can access the animal.behavior package in module animal.</p>
+            <pre class="question-code">
+module animal {
+  ________ animal.behavior;
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. export</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. exports</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. require</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. requires</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. require transitive</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. requires transitive</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                B. Options A, C, and E are incorrect because they refer to directives that don’t exist. The
+                exports directive is used when allowing a package to be called by code outside of the
+                module, making option B the correct answer. Notice that options D and F are incorrect
+                because of requires.
+            </p>
+        </div>
+        <div class="question" data-question="3">
+            <h1 class="question-title">Question 3</h1>
+            <p class="question-text">Fill in the blanks so this command to run the program is correct:</p>
+            <pre class="question-code">
+java
+_______ zoo.animal.talks/zoo/animal/talks/Peacocks
+_______ modules
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. -d and -m</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. -d and –p</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. -m and -d</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. -m and -p</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. -p and -d</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. -p and -m</p>
+                <p class="question-answer" data-is-correct="True"><input name="G" type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                G. The -m or --module option is used to specify the module and class name. The -p or
+                --module-path option is used to specify the location of the modules. Option D would be
+                correct if the rest of the command were correct. However, running a program requires specifying the
+                package name with periods (.) instead of slashes. Since the command is incorrect,
+                option G is correct.
+            </p>
+        </div>
+        <div class="question" data-question="4">
+            <h1 class="question-title">Question 4</h1>
+            <p class="question-text">Which of the following pairs make up a service?</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Consumer and service locator</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Consumer and service provider interface</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Service locator and service provider</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. Service locator and service provider interface</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Service provider and service provider interface</p>
+            </div>
+            <p class="question-explanation">
+                D. A service consists of the service provider interface and logic to look up implementations
+                using a service locator. This makes option D correct. Make sure you know that the service
+                provider itself is the implementation, which is not considered part of the service.
+            </p>
+        </div>
+        <div class="question" data-question="5">
+            <h1 class="question-title">Question 5</h1>
+            <p class="question-text">A(n) _______________ module is on the classpath while a(n) ____________ module is on the module path. (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. automatic, named</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. automatic, unnamed</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. named, automatic</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. named, unnamed</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. unnamed, automatic</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. unnamed, named</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                E, F. Automatic modules are on the module path but do not have a module-info.java
+                file. Named modules are on the module path and do have a module-info. Unnamed modules are on the classpath.
+                Therefore, options E and F are correct.
+            </p>
+        </div>
+        <div class="question" data-question="6">
+            <h1 class="question-title">Question 6</h1>
+            <p class="question-text">Which of the following statements are true in a module-info.java file? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. The opens directive allows the use of reflection.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. The opens directive declares that an API is called.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. The use directive allows the use of reflection.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The use directive declares that an API is called.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The uses directive allows the use of reflection.</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. The uses directive declares that an API is called.</p>
+            </div>
+            <p class="question-explanation">
+                A, F. Options C and D are incorrect because there is no use directive. Options A and F are
+                correct because opens is for reflection and uses declares that an API consumes a service.
+            </p>
+        </div>
+        <div class="question" data-question="7">
+            <h1 class="question-title">Question 7</h1>
+            <p class="question-text">An automatic module name is generated if one is not supplied. Which of the following JAR filenames and generated
+                automatic module name pairs are correct? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. emily-1.0.0.jar and emily</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. emily-1.0.0-SNAPSHOT.jar and emily</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. emily_the_cat-1.0.0.jar and emily_the_cat</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. emily_the_cat-1.0.0.jar and emily-the-cat</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. emily.$.jar and emily</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. emily.$.jar and emily.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. emily.$.jar and emily..</p>
+            </div>
+            <p class="question-explanation">
+                A, B, E. Any version information at the end of the JAR filename is removed, making options
+                A and B correct. Underscores (_) are turned into dots (.), making options C and D incorrect.
+                Other special characters like a dollar sign ($) are also turned into dots. However, adjacent
+                dots are merged, and leading/trailing dots are removed. Therefore, option E is correct.
+            </p>
+        </div>
+        <div class="question" data-question="8">
+            <h1 class="question-title">Question 8</h1>
+            <p class="question-text">Which of the following statements are true? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. Modules with cyclic dependencies will not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Packages with a cyclic dependency will not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. A cyclic dependency always involves exactly two modules.</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. A cyclic dependency always involves at least two requires statements.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. An unnamed module can be involved in a cyclic dependency with an automatic module.</p>
+            </div>
+            <p class="question-explanation">
+                A, D. A cyclic dependency is when a module graph forms a circle. Option A is correct
+                because the Java Platform Module System does not allow cyclic dependencies between modules.
+                No such restriction exists for packages, making option B incorrect. A cyclic dependency
+                can involve two or more modules that require each other, making option D correct, while
+                option C is incorrect. Finally, option E is incorrect because unnamed modules cannot be
+                referenced from an automatic module.
+            </p>
+        </div>
+        <div class="question" data-question="9">
+            <h1 class="question-title">Question 9</h1>
+            <p class="question-text">Suppose you are creating a service provider that contains the following class. Which line of code needs to be in your module-info.java?</p>
+            <pre class="question-code">
+package dragon;
+import magic.*;
+public class Dragon implements Magic {
+  public String getPower() {
+    return "breathe fire";
+  }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. provides dragon.Dragon by magic.Magic;</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. provides dragon.Dragon using magic.Magic;</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. provides dragon.Dragon with magic.Magic;</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. provides magic.Magic by dragon.Dragon;</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. provides magic.Magic using dragon.Dragon;</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. provides magic.Magic with dragon.Dragon;</p>
+            </div>
+            <p class="question-explanation">
+                F. The provides directive takes the interface name first and the implementing class
+                name second and also uses with. Only option F meets these two criteria, making it the
+                correct answer.
+            </p>
+        </div>
+        <div class="question" data-question="10">
+            <h1 class="question-title">Question 10</h1>
+            <p class="question-text">What is true of a module containing a file named module-info.java with the following contents? (Choose all that apply.)</p>
+            <pre class="question-code">
+module com.food.supplier {}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. All packages inside the module are automatically exported.</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. No packages inside the module are automatically exported.</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. A main method inside the module can be run.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. A main method inside the module cannot be run since the class is not exposed.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The module-info.java file contains a compiler error.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The module-info.java filename is incorrect.</p>
+            </div>
+            <p class="question-explanation">
+                B, C. Packages inside a module are not exported by default, making option B correct and
+                option A incorrect. Exporting is necessary for other code to use the packages; it is not
+                necessary to call the main() method at the command line, making option C correct and
+                option D incorrect. The module-info.java file has the correct name and compiles, making options E and F incorrect.
+            </p>
+        </div>
+        <div class="question" data-question="11">
+            <h1 class="question-title">Question 11</h1>
+            <p class="question-text">Suppose module puppy depends on module dog and module dog depends on module animal. Which lines allow module puppy to access
+                the animal.behavior package in module animal? (Choose all that apply.)</p>
+            <pre class="question-code">
+module animal {
+  exports animal.behavior;
+}
+module dog {
+  _______  animal;  // line S
+}
+module puppy {
+  _______ dog;      // line T
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. require on line S</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. require on line T</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. requires on line S</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. requires on line T</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. require transitive on line S</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. require transitive on line T</p>
+                <p class="question-answer" data-is-correct="True"><input name="G" type="checkbox"/>G. requires transitive on line S</p>
+                <p class="question-answer" data-is-correct="True"><input name="H" type="checkbox"/>H. requires transitive on line T</p>
+            </div>
+            <p class="question-explanation">
+                D, G, H. Options A, B, E, and F are incorrect because they refer to directives that don’t exist.
+                The requires transitive directive is used when specifying a module to be used by the
+                requesting module and any other modules that use the requesting module. Therefore, dog
+                needs to specify the transitive relationship, and option G is correct. The module puppy just
+                needs requires dog, and it gets the transitive dependencies, making option D correct.
+                However, requires transitive does everything requires does and more, which
+                makes option H the final answer.
+            </p>
+        </div>
+        <div class="question" data-question="12">
+            <h1 class="question-title">Question 12</h1>
+            <p class="question-text">Which of the following modules are provided by the JDK? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. java.base</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. java.desktop</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. java.logging</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. java.util</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. jdk.base</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. jdk.compiler</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. jdk.xerces</p>
+            </div>
+            <p class="question-explanation">
+                A, B, C, F. Option D is incorrect because it is a package name rather than a module name.
+                Option E is incorrect because java.base is the module name, not jdk.base. Option G is
+                wrong because we made it up. Options A, B, C, and F are correct.
+            </p>
+        </div>
+        <div class="question" data-question="13">
+            <h1 class="question-title">Question 13</h1>
+            <p class="question-text">Which of the following compiles and is equivalent to this loop?</p>
+            <pre class="question-code">
+List&lt;Unicorn&gt; all  = new ArrayList&lt;&gt;();
+for (Unicorn current : ServiceLoader.load(Unicorn.class))
+all.add(current);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. List&lt;Unicorn&gt; all = ServiceLoader.load(Unicorn.class).getStream().collect(Collectors.toList());</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. List&lt;Unicorn&gt; all = ServiceLoader.load(Unicorn.class).stream().collect(Collectors.toList());</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. List&lt;Unicorn&gt; all = ServiceLoader.load(Unicorn.class).getStream().map(Provider::get).collect(Collectors.toList());</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. List&lt;Unicorn&gt; all = ServiceLoader.load(Unicorn.class).stream().map(Provider::get).collect(Collectors.toList());</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                D. There is no getStream() method on a ServiceLoader, making options A and C
+                incorrect. Option B does not compile because the stream() method returns a list of
+                Provider interfaces and needs to be converted to the Unicorn interface we are interested
+                in. Therefore, option D is correct.
+            </p>
+        </div>
+        <div class="question" data-question="14">
+            <h1 class="question-title">Question 14</h1>
+            <p class="question-text">Which of the following are legal commands to run a modular program where n is the module name and c is the
+                fully qualified class name? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. java --module-path x -m n.c</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. java --module-path x -p n.c</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. java --module-path x-x -m n/c</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. java --module-path x -p n/c</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. java --module-path x-x -m n-c</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. java --module-path x -p n-c</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                C. The -p option is a shorter form of --module-path. Since the same option cannot
+                be specified twice, options B, D, and F are incorrect. The --module-path option is an
+                alternate form of -p. The module name and class name are separated with a slash, making
+                option C the answer. Note that x-x is legal because the module path is a folder name, so
+                dashes are allowed.
+            </p>
+        </div>
+        <div class="question" data-question="15">
+            <h1 class="question-title">Question 15</h1>
+            <p class="question-text">For a top-down migration, all modules other than named modules are _____________ modules and are on the ____________.</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. automatic, classpath</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. automatic, module path</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. unnamed, classpath</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. unnamed, module path</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                B. A top-down migration strategy first places all JARs on the module path. Then it migrates
+                the top-level module to be a named module, leaving the other modules as automatic modules.
+                Option B is correct as it matches both of those characteristics.
+            </p>
+        </div>
+        <div class="question" data-question="16">
+            <h1 class="question-title">Question 16</h1>
+            <p class="question-text">Suppose you have separate modules for a service provider interface, service provider, service locator, and consumer.
+                If you add a second service provider module, how many of these modules do you need to recompile?</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. Zero</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. One</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Two</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Three</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Four</p>
+            </div>
+            <p class="question-explanation">
+                A. Since this is a new module, you need to compile it. However, none of the existing modules
+                needs to be recompiled, making option A correct. The service locator will see the new service
+                provider simply by having that new service provider on the module path.
+            </p>
+        </div>
+        <div class="question" data-question="17">
+            <h1 class="question-title">Question 17</h1>
+            <p class="question-text">Suppose we have a JAR file named cat-1.2.3-RC1.jar, and Automatic-Module-Name in the MANIFEST.MF is set to dog.
+                What should an unnamed module referencing this automatic module include in module-info.java?</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. requires cat;</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. requires cat.RC;</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. requires cat-RC;</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. requires dog;</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                E. Trick question! An unnamed module doesn’t use a module-info.java file. Therefore,
+                option E is correct. An unnamed module can access an automatic module. The unnamed
+                module would simply treat the automatic module as a regular JAR without involving the
+                module.info file
+            </p>
+        </div>
+        <div class="question" data-question="18">
+            <h1 class="question-title">Question 18</h1>
+            <p class="question-text">Which commands are used to create a smaller Java image and work with native code, respectively?</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. jimage and jlink</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. jimage and jmod</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. jlink and jimage</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. jlink and jmod</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. jmod and jimage</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. jmod and jmod</p>
+            </div>
+            <p class="question-explanation">
+                D. The jlink command creates a directory with a smaller Java runtime containing just
+                what is needed. The JMOD format is for native code. Therefore, option D is correct.
+            </p>
+        </div>
+        <div class="question" data-question="19">
+            <h1 class="question-title">Question 19</h1>
+            <p class="question-text">Which are true statements about the following module? (Choose all that apply.)</p>
+            <pre class="question-code">
+class dragon {
+  exports com.dragon.fire;
+  exports com.dragon.scales to castle;
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. All modules can reference the com.dragon.fire package.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. All modules can reference the com.dragon.scales package.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Only the castle module can reference the com.dragon.fire package.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Only the castle module can reference the com.dragon.scales package.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                E. There is a trick here. A module definition uses the keyword module rather than class.
+                Since the code does not compile, option E is correct. If the code did compile, options A and D
+                would be correct.
+            </p>
+        </div>
+        <div class="question" data-question="20">
+            <h1 class="question-title">Question 20</h1>
+            <p class="question-text">Which would you expect to see when describing any module?</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. requires java.base mandated</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. requires java.core mandated</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. requires java.lang mandated</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. requires mandated java.base</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. requires mandated java.core</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. requires mandated java.lang</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                A. When running java with the -d option, all the required modules are listed. Additionally,
+                the java.base module is listed since it is included automatically. The line ends with
+                mandated, making option A correct. The java.lang is a trick since it is a package that is
+                imported by default in a class rather than a module.
+            </p>
+        </div>
+        <div class="question" data-question="21">
+            <h1 class="question-title">Question 21</h1>
+            <p class="question-text">Suppose you have separate modules for a service provider interface, service provider, service locator, and consumer.
+                Which module(s) need to specify a requires directive on the service provider?</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Service locator</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Service provider interface</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Consumer</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Consumer and service locator</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. Consumer and service provider</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. Service locator and service provider interface</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. Consumer, service locator, and service provider interface</p>
+                <p class="question-answer" data-is-correct="True"><input name="H" type="checkbox"/>H. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                H. This question is tricky. The service locator must have a uses directive, but that is on the
+                service provider interface. No modules need to specify requires on the service provider
+                since that is the implementation. Since none are correct, option H is the answer.
+            </p>
+        </div>
+        <div class="question" data-question="22">
+            <h1 class="question-title">Question 22</h1>
+            <p class="question-text">Which are true statements? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. An automatic module exports all packages to named modules.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. An automatic module exports only the specified packages to named modules.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. An automatic module exports no packages to named modules.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. An unnamed module exports only the named packages to named modules.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. An unnamed module exports all packages to named modules.</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. An unnamed module exports no packages to named modules.</p>
+            </div>
+            <p class="question-explanation">
+                A, F. An automatic module exports all packages, making option A correct. An unnamed
+                module is not available to any modules on the module path. Therefore, it doesn’t export any
+                packages, and option F is correct.
+            </p>
+        </div>
+        <div class="question" data-question="23">
+            <h1 class="question-title">Question 23</h1>
+            <p class="question-text">Which is the first line to contain a compiler error?</p>
+            <pre class="question-code">
+1: module snake {
+2:    exports com.snake.tail;
+3:    exports com.snake.fangs to bird;
+4:    requires skin;
+5:    requires transitive skin;
+6: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Line 1</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Line 2</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Line 3</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Line 4</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. Line 5</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code does not contain any compiler errors.</p>
+            </div>
+            <p class="question-explanation">
+                E. The module name is valid, as are the exports statements. Lines 4 and 5 are tricky
+                because each is valid independently. However, the same module name is not allowed to be
+                used in two requires statements. The second one fails to compile on line 5, making option
+                E the answer.
+            </p>
+        </div>
+        <div class="question" data-question="24">
+            <h1 class="question-title">Question 24</h1>
+            <p class="question-text">Which are true statements about a package in a JAR on the classpath containing a module-info.java file? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. It is possible to make the package available to all other modules on the classpath.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. It is possible to make the package available to all other modules on the module path.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. It is possible to make the package available to exactly one other specific module on the classpath.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. It is possible to make the package available to exactly one other specific module on the module path.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. It is possible to make sure the package is not available to any other modules on the classpath</p>
+            </div>
+            <p class="question-explanation">
+                A. Since the JAR is on the classpath, it is treated as a regular unnamed module even though
+                it has a module-info.java file inside. Remember from learning about top-down migration that modules on the module
+                path are not allowed to refer to the classpath, making
+                options B and D incorrect. The classpath does not have a facility to restrict packages, making
+                option A correct and options C and E incorrect
+            </p>
+        </div>
+        <div class="question" data-question="25">
+            <h1 class="question-title">Question 25</h1>
+            <p class="question-text">Suppose you have separate modules for a service provider interface, service provider, service locator, and consumer.
+                Which statements are true about the directives you need to specify? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. The consumer must use the requires directive.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. The consumer must use the uses directive.</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. The service locator must use the requires directive.</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. The service locator must use the uses directive.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                A, C, D. Options A and C are correct because both the consumer and the service locator
+                depend on the service provider interface. Additionally, option D is correct because the service
+                locator must specify that it uses the service provider interface to look it up
+            </p>
+        </div>
+
+        <p class="info"></p>
+    </div>
+    <div>
+        <button type="button" class="start">Start</button>
+        <button type="button" class="finish">Finish</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>I/O</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="test">
+        <p class="timer">00:00:00</p>
+
+        <div class="question" data-question="1">
+            <h1 class="question-title">Question 1</h1>
+            <p class="question-text">Which class would be best to use to read a binary file into a Java object?</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. BufferedStream</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. FileReader</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. ObjectInputStream</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. ObjectReader</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. ObjectOutputStream</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. ObjectWriter</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                C. Since the question asks about putting data into a structured object, the best class would
+                be one that deserializes the data. Therefore, ObjectInputStream is the best choice, which
+                is option C. ObjectWriter, BufferedStream, and ObjectReader are not I/O stream
+                classes. ObjectOutputStream is an I/O class but is used to serialize data, not deserialize
+                it. FileReader can be used to read text file data and construct an object, but the question
+                asks what would be the best class to use for binary data.
+            </p>
+        </div>
+        <div class="question" data-question="2">
+            <h1 class="question-title">Question 2</h1>
+            <p class="question-text">Assuming that / is the root directory within the file system, which of the following are true statements? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. /home/parrot is an absolute path.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. /home/parrot is a directory.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. /home/parrot is a relative path.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. new File("/home") will throw an exception if /home does not exist.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. new File("/home").delete() will throw an exception if /home does not exist.</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. A Reader offers character encoding, making it more useful when working with String data than an InputStream.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. A Reader offers multithreading support, making it more useful than an InputStream.</p>
+            </div>
+            <p class="question-explanation">
+                A, F. Paths that begin with the root directory are absolute paths, so option A is correct, and
+                option C is incorrect. Option B is incorrect because the path could be a file or directory
+                within the file system. There is no rule that files have to end with a file extension. Option D is
+                incorrect, as it is possible to create a File reference to files and directories that do not exist.
+                Option E is also incorrect. The delete() method returns false if the file or directory
+                cannot be deleted. Character stream classes often include built-in convenience methods for
+                working with String data, so option F is correct. There is no such optimization for multithreading, making option G incorrect.
+            </p>
+        </div>
+        <div class="question" data-question="3">
+            <h1 class="question-title">Question 3</h1>
+            <p class="question-text">What are possible results of executing the following code? (Choose all that apply.)</p>
+            <pre class="question-code">
+public static void main(String[] args) throws IOException {
+  String line;
+  var c = System.console();
+  Writer w = c.writer();
+  try (w) {
+  if ((line = c.readLine("Enter your name: ")) != null)
+    w.append(line);
+    w.flush();
+  }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. The code runs, but nothing is printed.</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. The code prints what was entered by the user.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. The code behaves the same if throws IOException is removed.</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. A NullPointerException may be thrown.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. A NullPointerException will always be thrown.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. A NullPointerException will never be thrown.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. The code does not compile.</p>
+            </div>
+            <p class="question-explanation">
+                B, D. If the console is unavailable, System.console() will return null, making
+                option D correct and options E and F incorrect. The writer methods throw a checked
+                IOException, making option C incorrect. The code works correctly, prompting for input
+                and printing it. Therefore, option A is incorrect and option B is correct.
+            </p>
+        </div>
+        <div class="question" data-question="4">
+            <h1 class="question-title">Question 4</h1>
+            <p class="question-text">For which values of path sent to this method would it be possible for the following code to output Success? (Choose all that apply.)</p>
+            <pre class="question-code">
+public void removeBadFile(Path path) {
+  if(Files.isDirectory(path))
+    System.out.println(Files.deleteIfExists(path)
+    ? "Success": "Try Again");
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. path refers to a regular file in the file system.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. path refers to a symbolic link in the file system.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. path refers to an empty directory in the file system.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. path refers to a directory with content in the file system.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. path does not refer to a record that exists within the file system.</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. The code does not compile.</p>
+            </div>
+            <p class="question-explanation">
+                F. The code does not compile, as Files.deleteIfExists() declares the checked
+                IOException that must be handled or declared. Remember, most Files methods declare
+                IOException, especially the ones that modify a file or directory. For this reason, option F is
+                correct. If the method were corrected to declare the appropriate exceptions, option C would
+                be correct. Option B would also be correct if the method were provided a symbolic link
+                that pointed to an empty directory. Options A and E would not print anything, as
+                Files.isDirectory() returns false for both. Finally, option D would throw a
+                DirectoryNotEmptyException at runtime.
+            </p>
+        </div>
+        <div class="question" data-question="5">
+            <h1 class="question-title">Question 5</h1>
+            <p class="question-text">Assume that the directory /animals exists and is empty. What is the result of executing the following code?</p>
+            <pre class="question-code">
+Path path = Path.of("/animals");
+try (var z = Files.walk(path)) {
+  boolean b = z
+    .filter((p,a) -&gt; a.isDirectory() &amp;&amp; !path.equals(p)) // x
+    .findFirst().isPresent();  // y
+  System.out.print(b ? "No Sub": "Has Sub");
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. It prints No Sub.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. It prints Has Sub.</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. The code will not compile because of line x.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The code will not compile because of line y.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The output cannot be determined.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. It produces an infinite loop at runtime.</p>
+            </div>
+            <p class="question-explanation">
+                C. The filter() operation applied to a Stream&lt;Path&gt; takes only one parameter, not
+                two, so the code does not compile, and option C is correct. If the code were rewritten to
+                use the Files.find() method with the BiPredicate as input (along with a maxDepth
+                value), the output would be option B, Has Sub, since the directory is given to be empty. For
+                fun, we reversed the expected output of the ternary operation.
+            </p>
+        </div>
+        <div class="question" data-question="6">
+            <h1 class="question-title">Question 6</h1>
+            <p class="question-text">What would be the value of name if the instance of Eagle created in the main() method were serialized and then deserialized?</p>
+            <pre class="question-code">
+import java.io.Serializable;
+class Bird {
+  protected transient String name;
+  public void setName(String name) { this.name = name; }
+  public String getName() { return name; }
+  public Bird() {
+    this.name = "Matt";
+  }
+}
+public class Eagle extends Bird implements Serializable {
+  { this.name = "Olivia"; }
+  public Eagle() {
+    this.name = "Bridget";
+  }
+  public static void main(String[] args) {
+    var e = new Eagle();
+    e.name = "Adeline";
+  }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Adeline</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Bridget</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. Matt</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Olivia</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. null</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. The code compiles but throws an exception at runtime.</p>
+            </div>
+            <p class="question-explanation">
+                C. The code compiles and runs without issue, so options F and G are incorrect. The key
+                here is that while Eagle is serializable, its parent class, Bird, is not. Therefore, none of the
+                members of Bird will be serialized. Even if you didn’t know that, you should know what
+                happens on deserialization. During deserialization, Java calls the constructor of the first nonserializable parent.
+                In this case, the Bird constructor is called, with name being set to
+                Matt, making option C correct. Note that none of the constructors or instance initializers in
+                Eagle are executed as part of deserialization
+            </p>
+        </div>
+        <div class="question" data-question="7">
+            <h1 class="question-title">Question 7</h1>
+            <p class="question-text">Assume that /kang exists as a symbolic link to the directory /mammal/kangaroo within the file system. Which of the
+                following statements are correct about this code snippet? (Choose all that apply.)</p>
+            <pre class="question-code">
+var path = Paths.get("/kang");
+if(Files.isDirectory(path) &amp;&amp; Files.isSymbolicLink(path))
+  Files.createDirectory(path.resolve("joey"));
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. A new directory will always be created.</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. A new directory may be created.</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. If the code creates a directory, it will be reachable at /kang/joey.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. If the code creates a directory, it will be reachable at /mammal/joey.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code will compile but will always throw an exception at runtime.</p>
+            </div>
+            <p class="question-explanation">
+                B, C. The code snippet will attempt to create a directory if the target of the symbolic link
+                exists and is a directory. If the directory already exists, though, it will throw an exception.
+                For this reason, option A is incorrect, and option B is correct. It will be created in
+                /mammal/kangaroo/joey and also reachable at /kang/joey because of the symbolic
+                link, making option C correct.
+            </p>
+        </div>
+        <div class="question" data-question="8">
+            <h1 class="question-title">Question 8</h1>
+            <p class="question-text">Assuming that the /fox/food-schedule.csv file exists with the specified contents, what is the expected output of calling printData() on it?</p>
+            <pre class="question-code">
+/fox/food-schedule.csv
+6am,Breakfast
+9am,SecondBreakfast
+12pm,Lunch
+6pm,Dinner
+//---//
+void printData(Path path) throws IOException {
+  Files.readAllLines(path) // r1
+   .flatMap(p -&gt; Stream.of(p.split(","))) // r2
+   .map(q -&gt; q.toUpperCase())  // r3
+   .forEach(System.out::println);
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. The code will not compile because of line r1.</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. The code will not compile because of line r2.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. The code will not compile because of line r3.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. It throws an exception at runtime.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. It does not print anything at runtime.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                B. The readAllLines() method returns a List, not a Stream. Therefore, the call
+                to flatMap() is invalid, and option B is correct. If the Files.lines() method were
+                used instead, it would print the contents of the file one capitalized word at a time with the
+                commas removed.
+            </p>
+        </div>
+        <div class="question" data-question="9">
+            <h1 class="question-title">Question 9</h1>
+            <p class="question-text">Given the following method, which statements are correct? (Choose all that apply.)</p>
+            <pre class="question-code">
+public void copyFile(File file1, File file2) throws Exception {
+  var reader = new InputStreamReader(new FileInputStream(file1));
+  try (var writer = new FileWriter(file2)) {
+    char[] buffer = new char[10];
+    while(reader.read(buffer) != -1) {
+      writer.write(buffer);
+      // n1
+    }
+  }
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. The code does not compile because reader is not a buffered stream.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. The code does not compile because writer is not a buffered stream.</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. The code compiles and correctly copies the data between some files.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The code compiles and correctly copies the data between all files.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. If we check file2 on line n1 within the file system after five iterations of the while loop, it may be empty.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. If we check file2 on line n1 within the file system after five iterations, it will contain exactly 50 characters.</p>
+                <p class="question-answer" data-is-correct="True"><input name="G" type="checkbox"/>G. This method contains a resource leak.</p>
+            </div>
+            <p class="question-explanation">
+                C, E, G. First, the method does compile, so options A and B are incorrect. Methods to
+                read/write byte[] values exist in the abstract parent of all I/O stream classes. This implementation is not correct,
+                though, as the return value of read(buffer) is not used properly.
+                It will only correctly copy files whose character count is a multiple of 10, making option C
+                correct and option D incorrect. Option E is also correct as the data may not have made it to
+                disk yet. Option F would be correct if the flush() method were called after every write.
+                Finally, option G is correct as the reader stream is never closed.
+            </p>
+        </div>
+        <div class="question" data-question="10">
+            <h1 class="question-title">Question 10</h1>
+            <p class="question-text">Which of the following correctly create Path instances? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. new Path("jaguar.txt")</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. FileSystems.getDefault().getPath("puma.txt")</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Path.get("cats","lynx.txt")</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. new java.io.File("tiger.txt").toPath()</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. new FileSystem().getPath("lion")</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. Paths.getPath("ocelot.txt")</p>
+                <p class="question-answer" data-is-correct="True"><input name="G" type="checkbox"/>G. Path.of(Path.of(".").toUri())</p>
+            </div>
+            <p class="question-explanation">
+                B, D, G. Options A and E are incorrect because Path and FileSystem, respectively, are
+                abstract types that should be instantiated using a factory method. Option C is incorrect
+                because the static method in the Path interface is of(), not get(). Option F is incorrect
+                because the static method in the Paths class is get(), not getPath(). Options B and
+                D are correct ways to obtain a Path instance. Option G is also correct, as there is an overloaded static
+                method in Path that takes a URI instead of a String.
+            </p>
+        </div>
+        <div class="question" data-question="11">
+            <h1 class="question-title">Question 11</h1>
+            <p class="question-text">Which classes will allow the following to compile? (Choose all that apply.)</p>
+            <pre class="question-code">
+var is = new BufferedInputStream(new FileInputStream("z.txt"));
+InputStream wrapper = new ______________ (is);
+try (wrapper) {}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. BufferedInputStream</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. BufferedReader</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. BufferedWriter</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. FileInputStream</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. ObjectInputStream</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. ObjectOutputStream</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above, as the first line does not compile</p>
+            </div>
+            <p class="question-explanation">
+                A, E. The code will compile if the correct classes are used, so option G is incorrect.
+                Remember, a try-with-resources statement can use resources declared before the start of the
+                statement. The reference type of wrapper is InputStream, so we need a class that inherits
+                InputStream. We can eliminate BufferedWriter, ObjectOutputStream, and
+                BufferedReader since their names do not end in InputStream. Next, we see the class
+                must take another stream as input, so we need to choose the remaining streams that are highlevel streams.
+                BufferedInputStream is a high-level stream, so option A is correct. Even
+                though the instance is already a BufferedInputStream, there’s no rule that it can’t be
+                wrapped multiple times by a high-level stream. Option D is incorrect, as
+                FileInputStream operates on a file, not another stream. Finally, option E is correct—an
+                ObjectInputStream is a high-level stream that operates on other streams
+            </p>
+        </div>
+        <div class="question" data-question="12">
+            <h1 class="question-title">Question 12</h1>
+            <p class="question-text">What is the result of executing the following code? (Choose all that apply.)</p>
+            <pre class="question-code">
+4: var p = Paths.get("sloth.schedule");
+5: var a = Files.readAttributes(p, BasicFileAttributes.class);
+6: Files.mkdir(p.resolve(".backup"));
+7: if(a.size()&gt;0 &amp;&amp; a.isDirectory()) {
+8:    a.setTimes(null,null,null);
+9: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. It compiles and runs without issue.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. The code will not compile because of line 5.</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. The code will not compile because of line 6.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The code will not compile because of line 7.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. The code will not compile because of line 8.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                C, E. The method to create a directory in the Files class is createDirectory(), not
+                mkdir(). For this reason, line 6 does not compile, and option C is correct. In addition, the
+                setTimes() method is available only on BasicFileAttributeView, not the read-only
+                BasicFileAttributes, so line 8 will also not compile, making option E correct.
+            </p>
+        </div>
+        <div class="question" data-question="13">
+            <h1 class="question-title">Question 13</h1>
+            <p class="question-text">Which of the following are true statements about serialization in Java? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. All non-null instance members of the class must be serializable or marked transient.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. Records are automatically serializable.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Serialization involves converting data into Java objects.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Serializable is a functional interface.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The class must declare a static serialVersionUID variable.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The class must extend the Serializable class.</p>
+                <p class="question-answer" data-is-correct="True"><input name="G" type="checkbox"/>G. The class must implement the Serializable interface.</p>
+            </div>
+            <p class="question-explanation">
+                A, G. For a class to be serialized, it must implement the Serializable interface and
+                contain instance members that are serializable or marked transient. For these reasons,
+                options A and G are correct and option F is incorrect. Option B is incorrect because even
+                records are required to implement Serializable to be serialized. Option C is incorrect
+                because it describes deserialization. The Serializable interface is a marker interface that
+                does not contain any abstract methods, making option D incorrect. While it is a good practice
+                for a serializable class to include a static serialVersionUID variable, it is not
+                required. Therefore, option E is incorrect as well.
+            </p>
+        </div>
+        <div class="question" data-question="14">
+            <h1 class="question-title">Question 14</h1>
+            <p class="question-text">What is the output of the following code? (Choose three.)</p>
+            <pre class="question-code">
+22: var p1 = Path.of("/zoo/./bear","../food.txt");
+23: p1.normalize().relativize(Path.of("/lion"));
+24: System.out.println(p1);
+25:
+26: var p2 = Paths.get("/zoo/animals/bear/koala/food.txt");
+27: System.out.println(p2.subpath(1,3).getName(1));
+28:
+29: var p3 = Path.of("/pets/../cat.txt");
+30: var p4 = Paths.get("./dog.txt");
+31: System.out.println(p4.resolve(p3));
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. ../../lion</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. /zoo/./bear/../food.txt</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. animal</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. bear</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. /pets/../cat.txt</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. /pets/../cat.txt/./dog.txt</p>
+            </div>
+            <p class="question-explanation">
+                B, D, E. Path is immutable, so line 23 is ignored. If it were assigned to p1, option A would
+                be correct. Since it is not assigned, the original value is still present, which is option B.
+                Moving on to the second section, the subpath() method on line 27 is applied to the absolute path,
+                which returns the relative path animals/bear. Next, the getName() method
+                is applied to the relative path, and since this is indexed from 0, it returns the relative path
+                bear. Therefore, option D is correct. Finally, remember calling resolve() with an absolute
+                path as a parameter returns the absolute path, so option E is correct
+            </p>
+        </div>
+        <div class="question" data-question="15">
+            <h1 class="question-title">Question 15</h1>
+            <p class="question-text">Suppose that the working directory is /weather and the absolute path /weather/winter/snow.dat
+                represents a file that exists within the file system. Which of the following lines of code create an object
+                that represents the file? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. new File("/weather", "winter", "snow.dat")</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. new File("/weather/winter/snow.dat")</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. new File("/weather/winter", new File("snow.dat"))</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. new File("weather", "/winter/snow.dat")</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. new File(new File("/weather/winter"), "snow.dat")</p>
+                <p class="question-answer" data-is-correct="True"><input name="F" type="checkbox"/>F. Path.of("/weather/winer/snow.dat").toFile();</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                B, E, F. Option A does not compile, as there is no File constructor that takes three parameters. Option B is
+                correct and is the proper way to create a File instance with a single
+                String parameter. Option C is incorrect, as there is no constructor that takes a String
+                followed by a File. There is a constructor that takes a File followed by a String, making option E correct.
+                Option D is incorrect because the first parameter is missing a slash
+                (/) to indicate it is an absolute path. Since it’s a relative path, it is correct only when the
+                user’s current directory is the root directory. Finally, option F is correct as it creates a File
+                from a Path.
+            </p>
+        </div>
+        <div class="question" data-question="16">
+            <h1 class="question-title">Question 16</h1>
+            <p class="question-text">Assuming zoo-data.txt exists and is not empty, what statements about the following method are correct? (Choose all that apply.)</p>
+            <pre class="question-code">
+private void echo() throws IOException {
+  var o = new FileWriter("new-zoo.txt");
+  try (var f = new FileReader("zoo-data.txt");
+  var b = new BufferedReader(f); o) {
+      o.write(b.readLine());
+  }
+  o.write("");
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. When run, the method creates a new file with one line of text in it.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. When run, the method creates a new file with two lines of text in it.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. When run, the method creates a new file with the same number of lines as the original file.</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. The method compiles but will produce an exception at runtime.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The method does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The method uses byte stream classes.</p>
+            </div>
+            <p class="question-explanation">
+                A, D. The method compiles, so option E is incorrect. The method creates a new-zoo.txt
+                file and copies the first line from zoo-data.txt into it, making option A correct. The trywith-resources
+                statement closes all of the declared resources, including the FileWriter o.
+                For this reason, the Writer is closed when the last o.write() is called, resulting in an
+                IOException at runtime and making option D correct. Option F is incorrect because this
+                implementation uses the character stream classes, which inherit from Reader or Writer.
+            </p>
+        </div>
+        <div class="question" data-question="17">
+            <h1 class="question-title">Question 17</h1>
+            <p class="question-text">Which are true statements? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. NIO.2 includes a method to delete an entire directory tree.</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. NIO.2 includes a method to traverse a directory tree.</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. NIO.2 includes methods that are aware of symbolic links.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Files.readAttributes() cannot access file-system dependent attributes.</p>
+                <p class="question-answer" data-is-correct="True"><input name="E" type="checkbox"/>E. Files.readAttributes() is often more performant since it reads multiple attributes rather than accessing individual attributes.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. Files.readAttributes() works with the File object.</p>
+            </div>
+            <p class="question-explanation">
+                B, C, E. Options B and C are properties of NIO.2 and are good reasons to use it over the
+                java.io.File class. Option A is incorrect as both APIs can delete only empty directories,
+                not a directory tree. Using a view to read multiple attributes leads to fewer round trips
+                between the process and the file system and better performance, making option E correct.
+                Views can be used to access file system–specific attributes that are not available in Files
+                methods; therefore, option D is correct. Files is part of NIO.2, whereas File is part of
+                java.io, which means option F is incorrect.
+            </p>
+        </div>
+        <div class="question" data-question="18">
+            <h1 class="question-title">Question 18</h1>
+            <p class="question-text">Assume that reader is a valid stream whose next characters are PEACOCKS. What is true about the output
+                of the following code snippet? (Choose all that apply.)</p>
+            <pre class="question-code">
+var sb = new StringBuilder();
+sb.append((char)reader.read());
+reader.mark(10);
+for(int i=0; i&lt;2; i++) {
+  sb.append((char)reader.read());
+  reader.skip(2);
+}
+reader.reset();
+reader.skip(0);
+sb.append((char)reader.read());
+System.out.println(sb.toString());
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. The code may print PEAE.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. The code may print PEOA.</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. The code may print PEOE.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. The code may print PEOS.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code will always print PEAE.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code will always print PEOA.</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. The code will always print PEOE.</p>
+                <p class="question-answer" data-is-correct="False"><input name="H" type="checkbox"/>H. The code will always print PEOS.</p>
+            </div>
+            <p class="question-explanation">
+                C. Since a Reader may or may not support mark(), we can rule out options E, F, G, and
+                H. Assuming mark() is supported, P is added to the StringBuilder first. Next, the position in the
+                stream is marked before E. The E is added to the StringBuilder, with AC being
+                skipped, and then the O is added to the StringBuilder, with CK being skipped. The stream
+                is then reset() to the position before the E. The call to skip(0) doesn’t do anything since
+                there are no characters to skip, so E is added onto the StringBuilder in the next read()
+                call. The value PEOE is printed, and option C is correct.
+            </p>
+        </div>
+        <div class="question" data-question="19">
+            <h1 class="question-title">Question 19</h1>
+            <p class="question-text">Assuming that the directories and files referenced exist and are not symbolic links, what is the result of executing the following code?</p>
+            <pre class="question-code">
+var p1 = Path.of("/lizard",".").resolve(Path.of("walking.txt"));
+var p2 = new File("/lizard/././actions/../walking.txt").toPath();
+System.out.print(Files.isSameFile(p1,p2));
+System.out.print(" ");
+System.out.print(p1.equals(p2));
+System.out.print(" ");
+System.out.print(Files.mismatch(p1,p2));
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. true true -1</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. true true 0</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. true false -1</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. true false 0</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. false true -1</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. false true 0</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input name="H" type="checkbox"/>H. The result cannot be determined.</p>
+            </div>
+            <p class="question-explanation">
+                C. The code compiles and runs without issue, so option G is incorrect. If you simplify the
+                redundant path symbols, p1 and p2 represent the same path, /lizard/walking.txt.
+                Therefore, isSameFile() returns true. The second output is false, because equals()
+                checks only if the path values are the same, without reducing the path symbols. Finally,
+                mismatch() sees that the contents are the same and returns -1. For these reasons, option C
+                is correct.
+            </p>
+        </div>
+        <div class="question" data-question="20">
+            <h1 class="question-title">Question 20</h1>
+            <p class="question-text">Assume that monkey.txt is a file that exists in the current working directory. Which statements about the following
+                code snippet are correct? (Choose all that apply.)</p>
+            <pre class="question-code">
+Files.move(Path.of("monkey.txt"), Paths.get("/animals"),
+  StandardCopyOption.ATOMIC_MOVE, LinkOption.NOFOLLOW_LINKS);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. If /animals/monkey.txt exists, it will be overwritten at runtime.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. If /animals exists as an empty directory, /animals/monkey.txt will be the new location of the file.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. If monkey.txt is a symbolic link, the file it points to will be moved at runtime.</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. If the move is successful and another process is monitoring the file system, it will not see an incomplete file at runtime.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                D. The target path of the file after the move() operation is /animals, not
+                /animals/monkey.txt, so options A and B are both incorrect. Both will throw an
+                exception at runtime since /animals already exists and is a directory. Next, the
+                NOFOLLOW_LINKS option means that if the source is a symbolic link, the link itself and not
+                the target will be copied at runtime, so option C is also incorrect. The option ATOMIC_MOVE
+                means that any process monitoring the file system will not see an incomplete file during the
+                move, so option D is correct.
+            </p>
+        </div>
+        <div class="question" data-question="21">
+            <h1 class="question-title">Question 21</h1>
+            <p class="question-text">Assume that /monkeys exists as a directory containing multiple files, symbolic links, and subdirectories. Which statement about the following code is correct?</p>
+            <pre class="question-code">
+var f = Path.of("/monkeys");
+try (var m =
+  Files.find(f, 0, (p,a) -&gt; a.isSymbolicLink())) { // y1
+  m.map(s -&gt; s.toString())
+    .collect(Collectors.toList())
+    .stream()
+    .filter(s -&gt; s.toString().endsWith(".txt")) // y2
+    .forEach(System.out::println);
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. It will print all symbolic links in the directory tree ending in .txt.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. It will print the target of all symbolic links in the directory ending in .txt.</p>
+                <p class="question-answer" data-is-correct="True"><input name="C" type="checkbox"/>C. It will print nothing.</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. It does not compile because of line y1.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. It does not compile because of line y2.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. It compiles but throws an exception at runtime.</p>
+            </div>
+            <p class="question-explanation">
+                C. The code compiles and runs without issue, so options D, E, and F are incorrect. The most
+                important thing to notice is that the depth parameter specified as the second argument to
+                find() is 0, meaning the only record that will be searched is the top-level directory. Since
+                we know that the top directory is a directory and not a symbolic link, no other paths will be
+                visited, and nothing will be printed. For these reasons, option C is the correct answer.
+            </p>
+        </div>
+        <div class="question" data-question="22">
+            <h1 class="question-title">Question 22</h1>
+            <p class="question-text">Which of the following fields will be null after an instance of the class created on line 17 is serialized and then deserialized
+                using ObjectOutputStream and ObjectInputStream? (Choose all that apply.)</p>
+            <pre class="question-code">
+1:  import java.io.Serializable;
+2:  import java.util.List;
+3:  public class Zebra implements Serializable {
+4:     private transient String name = "George";
+5:     private static String birthPlace = "Africa";
+6:     private transient Integer age;
+7:     List&lt;Zebra&gt; friends = new java.util.ArrayList&lt;&gt;();
+8:     private Object stripes = new Object();
+9:     { age = 10;}
+10:    public Zebra() {
+11:       this.name = "Sophia";
+12:    }
+13:    static Zebra writeAndRead(Zebra z) {
+14:       // Implementation omitted
+15:    }
+16:    public static void main(String[] args) {
+17:       var zebra = new Zebra();
+18:       zebra = writeAndRead(zebra);
+19:    }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. age</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. birthplace</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. friends</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. name</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. stripes</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="True"><input name="G" type="checkbox"/>G. The code compiles but throws an exception at runtime.</p>
+            </div>
+            <p class="question-explanation">
+                G. The code compiles, so option F is incorrect. To be serializable, a class must implement
+                the Serializable interface, which Zebra does. It must also contain instance members
+                that either are marked transient or are serializable. The instance member stripes is of
+                type Object, which is not serializable. If Object implemented Serializable, all objects
+                would be serializable by default, defeating the purpose of having the Serializable interface.
+                Therefore, the Zebra class is not serializable, with the program throwing an exception
+                at runtime if serialized and making option G correct. If stripes were removed from the
+                class, options A and D would be the correct answers, as name and age are both marked
+                transient.
+            </p>
+        </div>
+        <div class="question" data-question="23">
+            <h1 class="question-title">Question 23</h1>
+            <p class="question-text">What are some possible results of executing the following code? (Choose all that apply.)</p>
+            <pre class="question-code">
+var x = Path.of("/animals/fluffy/..");
+Files.walk(x.toRealPath().getParent())      // u1
+  .map(p -&gt; p.toAbsolutePath().toString()) // u2
+  .filter(s -&gt; s.endsWith(".java"))
+  .forEach(System.out::println);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input name="A" type="checkbox"/>A. It prints some files in the root directory.</p>
+                <p class="question-answer" data-is-correct="False"><input name="B" type="checkbox"/>B. It prints all files in the root directory.</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. FileSystemLoopException is thrown at runtime.</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. Another exception is thrown at runtime.</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The code will not compile because of line u1.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The code will not compile because of line u2.</p>
+            </div>
+            <p class="question-explanation">
+                A, D. The code compiles without issue, so options E and F are incorrect. The
+                toRealPath() method will simplify the path to /animals and throw an exception if it
+                does not exist, making option D correct. If the path does exist, calling getParent() on it
+                returns the root directory. Walking the root directory with the filter expression will print all
+                .java files in the root directory (along with all .java files in the directory tree), making
+                option A correct. Option B is incorrect because it will skip files and directories that do not
+                end in the .java extension. Option C is also incorrect as Files.walk() does not follow
+                symbolic links by default. Only if the FOLLOW_LINKS option is provided and a cycle is
+                encountered will the exception be thrown.
+            </p>
+        </div>
+        <div class="question" data-question="24">
+            <h1 class="question-title">Question 24</h1>
+            <p class="question-text">Assume that the source instance passed to the following method represents a file that exists.
+                Also assume that /flip/sounds.txt exists as a file prior to executing this method. When this method is executed,
+                which statement correctly copies the file to the path specified by /flip/sounds.txt?</p>
+            <pre class="question-code">
+void copyIntoFlipDirectory(Path source) throws IOException {
+  var dolphinDir = Path.of("/flip");
+  dolphinDir = Files.createDirectories(dolphinDir);
+  var n = Paths.get("sounds.txt");
+  ________________________;
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. Files.copy(source, dolphinDir)</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. Files.copy(source, dolphinDir.resolve(n), StandardCopyOption.REPLACE_EXISTING)</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. Files.copy(source, dolphinDir, StandardCopyOption.REPLACE_EXISTING )</p>
+                <p class="question-answer" data-is-correct="False"><input name="D" type="checkbox"/>D. Files.copy(source, dolphinDir.resolve(n))</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. The method does not compile, regardless of what is placed in the blank.</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. The method compiles but throws an exception at runtime, regardless of what is placed in the blank.</p>
+            </div>
+            <p class="question-explanation">
+                B. The method compiles without issue, so option E is incorrect. Option F is also incorrect.
+                Even though /flip exists, createDirectories() does not throw an exception if the
+                path already exists. If createDirectory() were used instead, option F would be correct.
+                Next, the copy() command takes a target that is the path to the new file location, not the
+                directory to be copied into. Therefore, the target path should be /flip/sounds.txt,
+                not /flip. For this reason, options A and C are incorrect. Since the question says the file
+                already exists, the REPLACE_EXISTING option must be specified or an exception will be
+                thrown at runtime, making option B the correct answer.
+            </p>
+        </div>
+        <div class="question" data-question="25">
+            <h1 class="question-title">Question 25</h1>
+            <p class="question-text">Suppose that you need to read text data from a file and want the data to be performant on large files.
+                Which two java.io stream classes can be chained together to best achieve this result? (Choose two.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input name="A" type="checkbox"/>A. BufferedInputStream</p>
+                <p class="question-answer" data-is-correct="True"><input name="B" type="checkbox"/>B. BufferedReader</p>
+                <p class="question-answer" data-is-correct="False"><input name="C" type="checkbox"/>C. FileInputStream</p>
+                <p class="question-answer" data-is-correct="True"><input name="D" type="checkbox"/>D. FileReader</p>
+                <p class="question-answer" data-is-correct="False"><input name="E" type="checkbox"/>E. PrintInputStream</p>
+                <p class="question-answer" data-is-correct="False"><input name="F" type="checkbox"/>F. ObjectInputStream</p>
+                <p class="question-answer" data-is-correct="False"><input name="G" type="checkbox"/>G. PrintReader</p>
+            </div>
+            <p class="question-explanation">
+                B, D. Since you need to read characters, the Reader classes are appropriate. Therefore, you
+                can eliminate options A, C, and F. Additionally, options E and G are incorrect, as they reference classes
+                that do not exist. Options B and D are correct since they read from a file and
+                buffer for performance.
+            </p>
+        </div>
+
+        <p class="info"></p>
+    </div>
+    <div>
+        <button type="button" class="start">Start</button>
+        <button type="button" class="finish">Finish</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
