@@ -1,0 +1,21 @@
+https://mylearn.oracle.com/ou/story/105037?filters=Area-Java
+https://education.oracle.com/java-se-21-developer-professional/pexam_1Z0-830
+https://education.oracle.com/java-se-17-developer/pexam_1Z0-829
+
+https://medium.com/wearewaes/all-you-need-to-know-on-how-to-become-an-ocp-java-se-17-developer-918d3ebd60d2
+
+#Books
+https://github.com/landrzejewski/ocpj21-book
+https://www.amazon.pl/Oracle-Certified-Professional-Developer-Study/dp/1394286619
+
+#Mock tests
+http://www.java2s.com/ref/java/java-basic.html
+https://www.javamockexams.com/index.html
+https://www.myexamcloud.com/onlineexam/1z0-829-java-se-17-developer-exam-practice-tests.course
+https://www.certification-questions.com/java-dumps/1z0-808.html
+https://www.certification-questions.com/oracle-dumps/1z0-819.html
+https://www.whizlabs.com/ocpjd-java-se-11-developer-1z0-819/#
+https://enthuware.com/
+https://www.udemy.com/course/java-11_1z0-815/
+https://www.udemy.com/course/java-se-11-certification-exam-1z0-819-practice-tests/
+https://www.udemy.com/course/ocp_java-se-11_1z0-819_p2

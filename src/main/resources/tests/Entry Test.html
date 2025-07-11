@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="test">
+        <p class="timer">00:00:00</p>
+
+        <div class="question" data-question="1">
+            <h1 class="question-title">Question 1</h1>
+            <p class="question-text">What is the result of executing the following code snippet?</p>
+            <pre class="question-code">
+41: final int score1 = 8, score2 = 3;
+42: char myScore = 7;
+43: var goal = switch (myScore) {
+44:    default -&gt; {if(10&gt;score1) yield "unknown";}
+45:    case score1 -&gt; "great";
+46:    case 2, 4, 6 -&gt; "good";
+47:    case score2, 0 -&gt; {"bad";}
+48: };
+49: System.out.println(goal);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. unknown</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. great</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>C. good</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. bad</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. unknowngreatgoodbad</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>F. Exactly one line needs to be changed for the code to compile.</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>G. Exactly two lines need to be changed for the code to compile.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>H. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                G. The question does not compile because line 44 and line 47 do not always return a value
+                in the case block, which is required when a switch expression is used in an assignment
+                operation. Line 44 is missing a yield statement when the if statement evaluates to false,
+                while line 47 is missing a yield statement entirely. Since two lines don’t compile, option G
+                is the answer.
+            </p>
+        </div>
+        <div class="question" data-question="2">
+            <h1 class="question-title">Question 2</h1>
+            <p class="question-text">What is the output of the following code snippet?</p>
+            <pre class="question-code">
+int moon = 9, star = 2 + 2 * 3;
+float sun = star&gt;10 ? 1 : 3;
+double jupiter = (sun + moon) - 1.0f;
+int mars = --moon &lt;= 8 ? 2 : 3;
+System.out.println(sun+", "+jupiter+", "+mars);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. 1, 11, 2</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>B. 3.0, 11.0, 2</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>C. 1.0, 11.0, 3</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. 3.0, 13.0, 3</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. 3.0f, 12, 2</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>F. The code does not compile because one of the assignments requires an explicit numeric cast.</p>
+            </div>
+            <p class="question-explanation">
+                B. Initially, moon is assigned a value of 9, while star is assigned a value of 8. The multiplication
+                operator (*) has a higher order of precedence than the addition operator (+), so it
+                gets evaluated first. Since star is not greater than 10, sun is assigned a value of 3, which is
+                promoted to 3.0f as part of the assignment. The value of jupiter is (3.0f + 9) - 1.0,
+                which is 11.0f. This value is implicitly promoted to double when it is assigned. In the last
+                assignment, moon is decremented from 9 to 8, with the value of the expression returned as 8.
+                Since 8 less than or equal to 8 is true, mars is set to a value of 2. The final output is 3.0,
+                11.0, 2, making option B the correct answer. Note that while Java outputs the decimal
+                for both float and double values, it does not output the f for float values.
+            </p>
+        </div>
+        <div class="question" data-question="3">
+            <h1 class="question-title">Question 3</h1>
+            <p class="question-text">Which changes, when made independently, guarantee the following code snippet prints 100 at runtime? (Choose all that apply.)</p>
+            <pre class="question-code">
+List&lt;Integer&gt; data = new ArrayList&lt;&gt;();
+IntStream.range(0,100).parallel().forEach(s -&gt; data.add(s));
+System.out.println(data.size());
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. Change data to an instance variable and mark it volatile.</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>B. Remove parallel() in the stream operation.</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>C. Change forEach() to forEachOrdered() in the stream operation.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. Change parallel() to serial() in the stream operation.</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>E. Wrap the lambda body with a synchronized block.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>F. The code snippet will always print 100 as is.</p>
+            </div>
+            <p class="question-explanation">
+                B, C, E. The code may print 100 without any changes, but since the data class is not threadsafe,
+                this behavior is not guaranteed. For this reason, option F is incorrect. Option A is also
+                incorrect, as volatile does not guarantee thread-safety. Options B and C are correct, as
+                they both cause the stream to apply the add() operation in a synchronized manner. Option
+                D is incorrect, as serial() is not a stream method. Option E is correct. Synchronization
+                will cause each thread to wait so that the List is modified one element at a time.
+            </p>
+        </div>
+        <div class="question" data-question="4">
+            <h1 class="question-title">Question 4</h1>
+            <p class="question-text">What is the output of this code?</p>
+            <pre class="question-code">
+20: Predicate&lt;String&gt; empty = String::isEmpty;
+21: Predicate&lt;String&gt; notEmpty = empty.negate();
+22:
+23: var result = Stream.generate(() -&gt; "")
+24:    .filter(notEmpty)
+25:    .collect(Collectors.groupingBy(k -&gt; k))
+26:    .entrySet()
+27:    .stream()
+28:    .map(Entry::getValue)
+29:    .flatMap(Collection::stream)
+30:    .collect(Collectors.partitioningBy(notEmpty));
+31: System.out.println(result);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. It outputs {}.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. It outputs {false=[], true=[]}.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>C. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>D. The code does not terminate.</p>
+            </div>
+            <p class="question-explanation">
+                D. First, this mess of code does compile. However, the source is an infinite stream. The filter
+                operation will check each element in turn to see whether any are not empty. While nothing
+                passes the filter, the code does not terminate. Therefore, option D is correct
+            </p>
+        </div>
+        <div class="question" data-question="5">
+            <h1 class="question-title">Question 5</h1>
+            <p class="question-text">What is the result of the following program?</p>
+            <pre class="question-code">
+1: public class MathFunctions {
+2:    public static void addToInt(int x, int amountToAdd) {
+3:       x = x + amountToAdd;
+4:    }
+5:    public static void main(String[] args) {
+6:       var a = 15;
+7:       var b = 10;
+8:       MathFunctions.addToInt(a, b);
+9:       System.out.println(a);   } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. 10</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>B. 15</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>C. 25</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. Compiler error on line 3</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. Compiler error on line 8</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                B. The code compiles successfully, so options D and E are incorrect. The value of a cannot be
+                changed by the addToInt() method, no matter what the method does, because only a copy
+                of the variable is passed into the parameter x. Therefore, a does not change, and the output
+                on line 9 is 15 which is option B.
+            </p>
+        </div>
+        <div class="question" data-question="6">
+            <h1 class="question-title">Question 6</h1>
+            <p class="question-text">Suppose that we have the following property files and code. What values are printed on lines 8 and 9, respectively?</p>
+            <pre class="question-code">
+Penguin.properties
+name=Billy
+age=1
+//--
+Penguin_de.properties
+name=Chilly
+age=4
+//--
+Penguin_en.properties
+name=Willy
+//--
+5: Locale fr = new Locale("fr");
+6: Locale.setDefault(new Locale("en", "US"));
+7: var b = ResourceBundle.getBundle("Penguin", fr);
+8: System.out.println(b.getString("name"));
+9: System.out.println(b.getString("age"));
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. Billy and 1</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. Billy and null</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>C. Willy and 1</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. Willy and null</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. Chilly and null</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>F. The code does not compile.</p>
+            </div>
+            <p class="question-explanation">
+                C. Java will use Penguin_en.properties as the matching resource bundle on line 7.
+                Since there is no match for French, the default locale is used. Line 8 finds a matching
+                key in the Penguin_en.properties file. Line 9 does not find a match in the
+                Penguin_en.properties file; therefore, it has to look higher up in the hierarchy to
+                Penguin.properties. This makes option C the answer
+            </p>
+        </div>
+        <div class="question" data-question="7">
+            <h1 class="question-title">Question 7</h1>
+            <p class="question-text">What is guaranteed to be printed by the following code? (Choose all that apply.</p>
+            <pre class="question-code">
+int[] array = {6,9,8};
+System.out.println("B" + Arrays.binarySearch(array,9));
+System.out.println("C" + Arrays.compare(array,
+new int[] {6, 9, 8}));
+System.out.println("M" + Arrays.mismatch(array,
+new int[] {6, 9, 8}));
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. B1</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. B2</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>C. C-1</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>D. C0</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>E. M-1</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>F. M0</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>G. The code does not compile.</p>
+            </div>
+            <p class="question-explanation">
+                D, E. The array is allowed to use an anonymous initializer because it is in the same line as
+                the declaration. The results of the binary search are undefined since the array is not sorted.
+                Since the question asks about guaranteed output, options A and B are incorrect.
+                Option D is correct because the compare() method returns 0 when the arrays are the same
+                length and have the same elements. Option E is correct because the mismatch() method
+                returns a -1 when the arrays are equivalent.
+            </p>
+        </div>
+        <div class="question" data-question="8">
+            <h1 class="question-title">Question 8</h1>
+            <p class="question-text">Which functional interfaces complete the following code, presuming variable r exists? (Choose all that apply.)</p>
+            <pre class="question-code">
+6:  ______ x = r.negate();
+7:  ______ y = () -&gt; System.out.println();
+8:  ______ z = (a, b) -&gt; a - b;
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. BinaryPredicate&lt;Integer, Integer&gt;</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. Comparable&lt;Integer&gt;</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>C. Comparator&lt;Integer&gt;</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. Consumer&lt;Integer&gt;</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>E. Predicate&lt;Integer&gt;</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>F. Runnable</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>G. Runnable&lt;Integer&gt;</p>
+            </div>
+            <p class="question-explanation">
+                C, E, F. First, note that option A is incorrect because the interface should be BiPredicate
+                and not BinaryPredicate. Line 6 requires you to know that negate() is a convenience
+                method on Predicate. This makes option E correct. Line 7 takes zero parameters and
+                doesn’t return anything, making it a Runnable. Remember that Runnable doesn’t use
+                generics. This makes option F correct. Finally, line 8 takes two parameters and returns an
+                int. Option C is correct. Comparable is there to mislead you since it takes only one parameter in its single abstract method.
+            </p>
+        </div>
+        <div class="question" data-question="9">
+            <h1 class="question-title">Question 9</h1>
+            <p class="question-text">Suppose you have a module named com.vet. Where could you place the following module-info.java file to create a valid module?</p>
+            <pre class="question-code">
+public module com.vet {
+exports com.vet;
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. At the same level as the com folder</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. At the same level as the vet folder</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>C. Inside the vet folder</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>D. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                D. If this were a valid module-info.java file, it would need to be placed at the root
+                directory of the module, which is option A. However, a module is not allowed to use the
+                public access modifier. Option D is correct because the provided file does not compile
+                regardless of placement in the project.
+            </p>
+        </div>
+        <div class="question" data-question="10">
+            <h1 class="question-title">Question 10</h1>
+            <p class="question-text">What is the output of the following program? (Choose all that apply.)</p>
+            <pre class="question-code">
+1:  interface HasTail { private int getTailLength(); }
+2:  abstract class Puma implements HasTail {
+3:     String getTailLength() { return "4"; }
+4:  }
+5:  public class Cougar implements HasTail {
+6:     public static void main(String[] args) {
+7:        var puma = new Puma() {};
+8:        System.out.println(puma.getTailLength());
+9:     }
+10:    public int getTailLength(int length) { return 2; }
+11: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. 2</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. 4</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>C. The code will not compile because of line 1.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. The code will not compile because of line 3.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. The code will not compile because of line 5.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>F. The code will not compile because of line 7.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>G. The code will not compile because of line 10.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>H. The output cannot be determined from the code provided.</p>
+            </div>
+            <p class="question-explanation">
+                C. The getTailLength() method in the interface is private; therefore, it must include
+                a body. For this reason, line 1 is the only line that does not compile and option C is correct.
+                Line 3 uses a different return type for the method, but since it is private in the interface, it
+                is not considered an override. Note that line 7 defines an anonymous class using the abstract
+                Puma parent class.
+            </p>
+        </div>
+        <div class="question" data-question="11">
+            <h1 class="question-title">Question 11</h1>
+            <p class="question-text">Which lines in Tadpole.java give a compiler error? (Choose all that apply.)</p>
+            <pre class="question-code">
+// Frog.java
+1:  package animal;
+2:  public class Frog {
+3:     protected void ribbit() { }
+4:     void jump() { }
+5:  }
+// Tadpole.java
+1:  package other;
+2:  import animal.*;
+3:  public class Tadpole extends Frog {
+4:     public static void main(String[] args) {
+5:        Tadpole t = new Tadpole();
+6:        t.ribbit();
+7:        t.jump();
+8:        Frog f = new Tadpole();
+9:        f.ribbit();
+10:       f.jump();
+11:    } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. Line 5</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. Line 6</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>C. Line 7</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. Line 8</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>E. Line 9</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>F. Line 10</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>G. All of the lines compile.</p>
+            </div>
+            <p class="question-explanation">
+                C, E, F. The jump() method has package access, which means it can be accessed only
+                from the same package. Tadpole is not in the same package as Frog, causing lines 7
+                and 10 to trigger compiler errors and giving us options C and F. The ribbit() method has
+                protected access, which means it can only be accessed from a subclass reference or in the
+                same package. Line 6 is fine because Tadpole is a subclass. Line 9 does not compile and
+                our final answer is option E because the variable reference is to a Frog, which doesn’t grant
+                access to the protected method.
+            </p>
+        </div>
+        <div class="question" data-question="12">
+            <h1 class="question-title">Question 12</h1>
+            <p class="question-text">Which of the following can fill in the blanks in order to make this code compile?</p>
+            <pre class="question-code">
+__________ a = __________.getConnection(
+url, userName, password);
+__________ b = a.prepareStatement(sql);
+__________ c = b.executeQuery();
+if (c.next()) System.out.println(c.getString(1));
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. Connection, Driver, PreparedStatement, ResultSet</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>B. Connection, DriverManager, PreparedStatement, ResultSet</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>C. Connection, DataSource, PreparedStatement, ResultSet</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. Driver, Connection, PreparedStatement, ResultSet</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. DriverManager, Connection, PreparedStatement, ResultSet</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>F. DataSource, Connection, PreparedStatement, ResultSet</p>
+            </div>
+            <p class="question-explanation">
+                B. DataSource isn’t on the exam, so any question containing one is wrong.
+                The key variables used in running a query are Connection, PreparedStatement, and ResultSet.
+                A Connection is obtained through a DriverManager, making option B correct.
+            </p>
+        </div>
+        <div class="question" data-question="13">
+            <h1 class="question-title">Question 13</h1>
+            <p class="question-text">Which of the following statements can fill in the blank to make the code compile successfully? (Choose all that apply.)</p>
+            <pre class="question-code">
+Set&lt;? extends RuntimeException&gt; mySet = new _________ ();
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. HashSet&lt;? extends RuntimeException&gt;</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. HashSet&lt;Exception&gt;</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>C. TreeSet&lt;RuntimeException&gt;</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>D. TreeSet&lt;NullPointerException&gt;</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                C, D. The mySet declaration defines an upper bound of type RuntimeException.
+                This means that classes may specify RuntimeException or any subclass of
+                RuntimeException as the type parameter. Option B is incorrect because Exception is a
+                superclass, not a subclass, of RuntimeException. Option A is incorrect because the wildcard cannot occur on the right side of the assignment. Options C and D compile and are the
+                answers.
+            </p>
+        </div>
+        <div class="question" data-question="14">
+            <h1 class="question-title">Question 14</h1>
+            <p class="question-text">Assume that birds.dat exists, is accessible, and contains data for a Bird object. What is the result of executing the following code? (Choose all that apply.)</p>
+            <pre class="question-code">
+1:  import java.io.*;
+2:  public class Bird {
+3:     private String name;
+4:     private transient Integer age;
+5:
+6:     // Getters/setters omitted
+7:
+8:     public static void main(String[] args) {
+9:        try(var is = new ObjectInputStream(
+10:             new BufferedInputStream(
+11:             new FileInputStream("birds.dat")))) {
+12:          Bird b = is.readObject();
+13:          System.out.println(b.age);
+14:       } } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. It compiles and prints 0 at runtime.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. It compiles and prints null at runtime.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>C. It compiles and prints a number at runtime.</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>D. The code will not compile because of lines 9–11.</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>E. The code will not compile because of line 12.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>F. It compiles but throws an exception at runtime.</p>
+            </div>
+            <p class="question-explanation">
+                D, E. Line 10 includes an unhandled checked IOException, while line 11 includes an
+                unhandled checked FileNotFoundException, making option D correct. Line 12 does not
+                compile because is.readObject() must be cast to a Bird object to be assigned to b. It
+                also does not compile because it includes two unhandled checked exceptions, IOException
+                and ClassNotFoundException, making option E correct. If a cast operation were added
+                on line 12 and the main() method were updated on line 8 to declare the various checked
+                exceptions, the code would compile but throw an exception at runtime since Bird does not
+                implement Serializable. Finally, if the class did implement Serializable, the program
+                would print null at runtime, as that is the default value for the transient field age.
+            </p>
+        </div>
+        <div class="question" data-question="15">
+            <h1 class="question-title">Question 15</h1>
+            <p class="question-text">Which of the following are valid instance members of a class? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. var var = 3;</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. Var case = new Var();</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>C. void var() {}</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. int Var() { var _ = 7; return _;}</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. String new = "var";</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>F. var var() { return null; }</p>
+            </div>
+            <p class="question-explanation">
+                C. Option A is incorrect because var is only allowed as a type for local variables, not instance members.
+                Options B and E are incorrect because new and case are reserved words
+                and cannot be used as identifiers. Option C is correct, as var can be used as a method name.
+                Option D is incorrect because a single underscore (_) cannot be used as an identifier. Finally,
+                option F is incorrect because var cannot be specified as the return type of a method.
+            </p>
+        </div>
+        <div class="question" data-question="16">
+            <h1 class="question-title">Question 16</h1>
+            <p class="question-text">Which is true if the table is empty before this code is run? (Choose all that apply.)</p>
+            <pre class="question-code">
+var sql = "INSERT INTO people VALUES(?, ?, ?)";
+conn.setAutoCommit(false);
+try (var ps = conn.prepareStatement(sql,
+ResultSet.TYPE_SCROLL_SENSITIVE,
+ResultSet.CONCUR_UPDATABLE)) {
+ps.setInt(1, 1);
+ps.setString(2, "Joslyn");
+ps.setString(3, "NY");
+ps.executeUpdate();
+Savepoint sp = conn.setSavepoint();
+ps.setInt(1, 2);
+ps.setString(2, "Kara");
+ps.executeUpdate();
+conn._________________;
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>A. If the blank line contains rollback(), there are no rows in the table.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. If the blank line contains rollback(), there is one row in the table.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>C. If the blank line contains rollback(sp), there are no rows in the table.</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>D. If the blank line contains rollback(sp), there is one row in the table.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. The code does not compile.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>F. The code throws an exception because the second update does not set all the parameters.</p>
+            </div>
+            <p class="question-explanation">
+                A, D. This code is correct, eliminating options E and F. JDBC will use the existing parameter
+                set if you don’t replace it. This means Kara’s row will be set to use NY as the third parameter.
+                Rolling back to a savepoint throws out any changes made since. This leaves Joslyn and
+                eliminates Kara, making option D correct. Rolling back without a savepoint brings us back
+                to the beginning of the transaction, which is option A
+            </p>
+        </div>
+        <div class="question" data-question="17">
+            <h1 class="question-title">Question 17</h1>
+            <p class="question-text">Which is true if the contents of path1 start with the text Howdy? (Choose two.)</p>
+            <pre class="question-code">
+System.out.println(Files.mismatch(path1,path2));
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. If path2 doesn&#39;t exist, the code prints -1.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. If path2 doesn&#39;t exist, the code prints 0.</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>C. If path2 doesn&#39;t exist, the code throws an exception.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. If the contents of path2 start with Hello, the code prints -1.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. If the contents of path2 start with Hello, the code prints 0.</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>F. If the contents of path2 start with Hello, the code prints 1.</p>
+            </div>
+            <p class="question-explanation">
+                C, F. Option C is correct as mismatch() throws an exception if the files do not exist unless
+                they both refer to the same file. Additionally, option F is correct because the first index that
+                differs is returned, which is the second character. Since Java uses zero-based indexes, this is 1.
+            </p>
+        </div>
+        <div class="question" data-question="18">
+            <h1 class="question-title">Question 18</h1>
+            <p class="question-text">Which of the following types can be inserted into the blank to allow the program to compile successfully? (Choose all that apply.)</p>
+            <pre class="question-code">
+1: import java.util.*;
+2: final class Amphibian {}
+3: abstract class Tadpole extends Amphibian {}
+4: public class FindAllTadpoles {
+5:    public static void main(String… args) {
+6:       var tadpoles = new ArrayList&lt;Tadpole&gt;();
+7:       for (var amphibian : tadpoles) {
+8:          ___________   tadpole = amphibian;
+9: } } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. List&lt;Tadpole&gt;</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. Boolean</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>C. Amphibian</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. Tadpole</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. Object</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>F. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                F. The Amphibian class is marked final, which means line 3 triggers a compiler error and
+                option F is correct.
+            </p>
+        </div>
+        <div class="question" data-question="19">
+            <h1 class="question-title">Question 19</h1>
+            <p class="question-text">What is the result of compiling and executing the following program?</p>
+            <pre class="question-code">
+1:  public class FeedingSchedule {
+2:     public static void main(String[] args) {
+3:        var x = 5;
+4:        var j = 0;
+5:        OUTER: for (var i = 0; i &lt; 3;)
+6:           INNER: do {
+7:              i++;
+8:              x++;
+9:              if (x&gt; 10) break INNER;
+10:             x += 4;
+11:             j++;
+12:          } while (j &lt;= 2);
+13:       System.out.println(x);
+14: } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. 10</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. 11</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>C. 12</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. 17</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. The code will not compile because of line 5.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>F. The code will not compile because of line 6.</p>
+            </div>
+            <p class="question-explanation">
+                C. The code compiles and runs without issue; therefore, options E and F are incorrect. This
+                type of problem is best examined one loop iteration at a time:
+                - On the first iteration of the outer loop, i is 0, so the loop continues.
+                - On the first iteration of the inner loop, i is updated to 1 and x to 6. The if statement
+                branch is not executed, and x is increased to 10 and j to 1.
+                - On the second iteration of the inner loop (since j = 1 and 1 &lt;= 2), i is updated to 2
+                and x to 11. At this point, the if branch will evaluate to true for the remainder of
+                the program run, which causes the flow to break out of the inner loop each time it
+                is reached.
+                - On the second iteration of the outer loop (since i = 2), i is updated to 3 and x to 12. As
+                before, the inner loop is broken since x is still greater than 10.
+                - On the third iteration of the outer loop, the outer loop is broken, as i is already not less
+                than 3. The most recent value of x, 12, is output, so the answer is option C.
+            </p>
+        </div>
+        <div class="question" data-question="20">
+            <h1 class="question-title">Question 20</h1>
+            <p class="question-text">When printed, which String gives the same value as this text block?</p>
+            <pre class="question-code">
+var pooh = """
+"Oh, bother." -Pooh
+""".indent(1);
+System.out.print(pooh);
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. "\n\"Oh, bother.\" -Pooh\n"</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. "\n \"Oh, bother.\" -Pooh\n"</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>C. " \"Oh, bother.\" -Pooh\n"</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. "\n\"Oh, bother.\" -Pooh"</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. "\n \"Oh, bother.\" -Pooh"</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>F. " \"Oh, bother.\" -Pooh"</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                C. First, note that the text block has the closing """ on a separate line, which means there
+                is a new line at the end and rules out options D, E, and F. Additionally, text blocks don’t
+                start with a new line, ruling out options A and B. Therefore, option C is correct.
+            </p>
+        </div>
+        <div class="question" data-question="21">
+            <h1 class="question-title">Question 21</h1>
+            <p class="question-text">A(n) _________________ module always contains a module-info.java file, while a(n) _________________ module always exports
+                all its packages to other modules.</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. automatic, named</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. automatic, unnamed</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>C. named, automatic</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. named, unnamed</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. unnamed, automatic</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>F. unnamed, named</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                C. Only named modules are required to have a module-info.java file, ruling out options
+                A, B, E, and F. Unnamed modules are not readable by any other types of modules, ruling
+                out option D. Automatic modules always export all packages to other modules, making the
+                answer option C.
+            </p>
+        </div>
+        <div class="question" data-question="22">
+            <h1 class="question-title">Question 22</h1>
+            <p class="question-text">What is the result of the following code</p>
+            <pre class="question-code">
+22: var treeMap = new TreeMap&lt;Character, Integer&gt;();
+23: treeMap.put(&#39;k&#39;, 1);
+24: treeMap.put(&#39;k&#39;, 2);
+25: treeMap.put(&#39;m&#39;, 3);
+26: treeMap.put(&#39;M&#39;, 4);
+27: treeMap.replaceAll((k, v) -&gt; v + v);
+28: treeMap.keySet()
+29:    .forEach(k -&gt; System.out.print(treeMap.get(k)));
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. 268</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. 468</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>C. 2468</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. 826</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>E. 846</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>F. 8246</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                E. When the same key is put into a Map, it overrides the original value. This means that line
+                23 could be omitted and the code would be the same, and there are only three key/value
+                pairs in the map. TreeMap sorts its keys, making the order M followed by k followed by m.
+                Remember that natural sort ordering has uppercase before lowercase. The replaceAll()
+                method runs against each element in the map, doubling the value. Finally, we iterate through
+                each key, printing 846 and making option E correct.
+            </p>
+        </div>
+        <div class="question" data-question="23">
+            <h1 class="question-title">Question 23</h1>
+            <p class="question-text">Which of the following lines can fill in the blank to print true? (Choose all that apply.)</p>
+            <pre class="question-code">
+10: public static void main(String[] args) {
+11:    System.out.println(test(____________________________));
+12: }
+13: private static boolean test(Function&lt;Integer, Boolean&gt; b) {
+14:    return b.apply(5);
+15: }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. i::equals(5)</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. i -&gt; {i == 5;}</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>C. (i) -&gt; i == 5</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. (int i) -&gt; i == 5</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. (int i) -&gt; {return i == 5;}</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>F. (i) -&gt; {return i == 5;}</p>
+            </div>
+            <p class="question-explanation">
+                C, F. Option A looks like a method reference. However, it doesn’t call a valid method, nor
+                can method references take parameters. The Predicate interface takes a single parameter and returns a boolean.
+                Lambda expressions with one parameter are allowed to omit
+                the parentheses around the parameter list, making option C correct. The return statement is optional when a single
+                statement is in the body, making option F correct. Option
+                B is incorrect because a return statement must be used if braces are included around the
+                body. Options D and E are incorrect because the type is Integer in the predicate and int
+                in the lambda. Autoboxing works for collections, not inferring predicates. If these two were
+                changed to Integer, they would be correct.
+            </p>
+        </div>
+        <div class="question" data-question="24">
+            <h1 class="question-title">Question 24</h1>
+            <p class="question-text">How many times is the word true printed?</p>
+            <pre class="question-code">
+var s1 = "Java";
+var s2 = "Java";
+var s3 = s1.indent(1).strip();
+var s4 = s3.intern();
+var sb1 = new StringBuilder();
+sb1.append("Ja").append("va");
+System.out.println(s1 == s2);
+System.out.println(s1.equals(s2));
+System.out.println(s1 == s3);
+System.out.println(s1 == s4);
+System.out.println(sb1.toString() == s1);
+System.out.println(sb1.toString().equals(s1));
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. Once</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. Twice</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>C. Three times</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>D. Four times</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. Five times</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>F. The code does not compile.</p>
+            </div>
+            <p class="question-explanation">
+                D. String literals are used from the string pool. This means that s1 and s2 refer to the
+                same object and are equal. Therefore, the first two print statements print true. While the
+                indent() and strip() methods create new String objects and the third statement prints
+                false, the intern() method reverts the String to the one from the string pool. Therefore, the fourth print statement
+                prints true. The fifth print statement prints false because
+                toString() uses a method to compute the value, and it is not from the string pool. The
+                final print statement again prints true because equals() looks at the values of String
+                objects. Since four are true, option D is the answer.
+            </p>
+        </div>
+        <div class="question" data-question="25">
+            <h1 class="question-title">Question 25</h1>
+            <p class="question-text">What is the output of the following program?</p>
+            <pre class="question-code">
+1:  class Deer {
+2:     public Deer() {System.out.print("Deer");}
+3:     public Deer(int age) {System.out.print("DeerAge");}
+4:     protected boolean hasHorns() { return false; }
+5:  }
+6:  public class Reindeer extends Deer {
+7:     public Reindeer(int age) {System.out.print("Reindeer");}
+8:     public boolean hasHorns() { return true; }
+9:     public static void main(String[] args) {
+10:       Deer deer = new Reindeer(5);
+11:       System.out.println("," + deer.hasHorns());
+12: } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. ReindeerDeer,false</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. DeerAgeReindeer,true</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>C. DeerReindeer,true</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. DeerReindeer,false</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. ReindeerDeer,true</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>F. DeerAgeReindeer,false</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>G. The code will not compile because of line 4.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>H. The code will not compile because of line 12.</p>
+            </div>
+            <p class="question-explanation">
+                C. The Reindeer object is instantiated using the constructor that takes an int value. Since
+                there is no explicit call to the parent constructor, the compiler inserts super() as the first
+                line of the constructor on line 7. The parent constructor is called, and Deer is printed on line
+                2. The flow returns to the constructor on line 7, with Reindeer being printed. Next, the
+                hasHorns() method is called. The reference type is Deer, and the underlying object type
+                is Reindeer. Since Reindeer correctly overrides the hasHorns() method, the version in
+                Reindeer is called, with line 11 printing ,true. Therefore, option C is correct.
+            </p>
+        </div>
+        <div class="question" data-question="26">
+            <h1 class="question-title">Question 26</h1>
+            <p class="question-text">Which of the following are true? (Choose all that apply.)</p>
+            <pre class="question-code">
+private static void magic(Stream&lt;Integer&gt; s) {
+Optional o = s
+.filter(x -&gt; x &lt; 5)
+.limit(3)
+.max((x, y) -&gt; x-y);
+System.out.println(o.get());
+}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. magic(Stream.empty()); runs infinitely.</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>B. magic(Stream.empty()); throws an exception.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>C. magic(Stream.iterate(1, x -&gt; x++)); runs infinitely.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. magic(Stream.iterate(1, x -&gt; x++)); throws an exception.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. magic(Stream.of(5, 10)); runs infinitely.</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>F. magic(Stream.of(5, 10)); throws an exception.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>G. The method does not compile.</p>
+            </div>
+            <p class="question-explanation">
+                B, F. Calling get() on an empty Optional causes an exception to be thrown, making
+                option B correct. Option F is also correct because filter() makes the Optional empty
+                before it calls get(). Option C is incorrect because the infinite stream is made finite by the
+                intermediate limit() operation. Options A and E are incorrect because the source streams
+                are not infinite. Therefore, the call to max() sees only three elements and terminates.
+            </p>
+        </div>
+        <div class="question" data-question="27">
+            <h1 class="question-title">Question 27</h1>
+            <p class="question-text">Assuming the following declarations are top-level types declared in the same file, which successfully compile? (Choose all that apply.)</p>
+            <pre class="question-code">
+record Music() {
+final int score = 10;
+}
+record Song(String lyrics) {
+Song {
+this.lyrics = lyrics + "Hello World";
+}
+}
+sealed class Dance {}
+record March() {
+@Override String toString() { return null; }
+}
+class Ballet extends Dance {}
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. Music</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. Song</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>C. Dance</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. March</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. Ballet</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>F. None of them compile.</p>
+            </div>
+            <p class="question-explanation">
+                C. Music does not compile because records cannot include instance variables not listed in
+                the declaration of the record, as it could break immutability. Song does not compile because
+                a compact constructor cannot set an instance variable. The record would compile if this
+                were removed from the compact constructor, as compact constructors can modify input
+                parameters. March does not compile because it is an invalid override; it reduces the visibility
+                of the toString() method from public to package access. Ballet does not compile
+                because the subclass of a sealed class must be marked final, sealed, or non-sealed.
+                Since the only one that compiles is Dance, option C is the answer.
+            </p>
+        </div>
+        <div class="question" data-question="28">
+            <h1 class="question-title">Question 28</h1>
+            <p class="question-text">Which of the following expressions compile without error? (Choose all that apply.)</p>
+            <pre class="question-code">
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. int monday = 3 + 2.0;</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>B. double tuesday = 5_6L;</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>C. boolean wednesday = 1 &gt; 2 ? !true;</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>D. short thursday = (short)Integer.MAX_VALUE;</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. long friday = 8.0L;</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>F. var saturday = 2_.0;</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>G. None of the above</p>
+            </div>
+            <p class="question-explanation">
+                B, D. Option A does not compile, as the expression 3 + 2.0 is evaluated as a double,
+                and a double requires an explicit cast to be assigned to an int. Option B compiles without
+                issue, as a long value can be implicitly cast to a double. Option C does not compile
+                because the ternary operator (? :) is missing a colon (:), followed by a second expression.
+                Option D is correct. Even though the int value is larger than a short, it is explicitly cast to
+                a short, which means the value will wrap around to fit in a short. Option E is incorrect,
+                as you cannot use a decimal (.) with the long (L) postfix. Finally, option F is incorrect, as an
+                underscore cannot be used next to a decimal point.
+            </p>
+        </div>
+        <div class="question" data-question="29">
+            <h1 class="question-title">Question 29</h1>
+            <p class="question-text">What is the result of executing the following application?</p>
+            <pre class="question-code">
+final var cb = new CyclicBarrier(3,
+() -&gt; System.out.println("Clean!"));  // u1
+ExecutorService service = Executors.newSingleThreadExecutor();
+try {
+IntStream.generate(() -&gt; 1)
+.limit(12)
+.parallel()
+.forEach(i -&gt; service.submit(() -&gt; cb.await()));  // u2
+} finally { service.shutdown(); }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. It outputs Clean! at least once.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. It outputs Clean! exactly four times.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>C. The code will not compile because of line u1.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. The code will not compile because of line u2.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. It compiles but throws an exception at runtime.</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>F. It compiles but waits forever at runtime.</p>
+            </div>
+            <p class="question-explanation">
+                F. The code compiles without issue. The key to understanding this code is to notice that our
+                thread executor contains only one thread, but our CyclicBarrier limit is 3. Even though
+                12 tasks are all successfully submitted to the service, the first task will block forever on the
+                call to await(). Since the barrier is never reached, nothing is printed, and the program
+                hangs, making option F correct.
+            </p>
+        </div>
+        <div class="question" data-question="30">
+            <h1 class="question-title">Question 30</h1>
+            <p class="question-text">Which statement about the following method is true?</p>
+            <pre class="question-code">
+5:  public static void main(String… unused) {
+6:     System.out.print("a");
+7:     try (StringBuilder reader = new StringBuilder()) {
+8:        System.out.print("b");
+9:        throw new IllegalArgumentException();
+10:    } catch (Exception e || RuntimeException e) {
+11:       System.out.print("c");
+12:       throw new FileNotFoundException();
+13:    } finally {
+14:       System.out.print("d");
+15: } }
+</pre>
+            <div class="question-answers">
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>A. It compiles and prints abc.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>B. It compiles and prints abd.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>C. It compiles and prints abcd.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>D. One line contains a compiler error.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>E. Two lines contain a compiler error.</p>
+                <p class="question-answer" data-is-correct="True"><input type="checkbox"/>F. Three lines contain a compiler error.</p>
+                <p class="question-answer" data-is-correct="False"><input type="checkbox"/>G. It compiles but prints an exception at runtime.</p>
+            </div>
+            <p class="question-explanation">
+                F. Line 5 does not compile as the FileNotFoundException thrown on line 12 is not handled or declared by the method.
+                Line 7 does not compile because StringBuilder does not
+                implement AutoCloseable and is therefore not compatible with a try-with-resource statement. Finally, line 10 does
+                not compile as RuntimeException is a subclass of Exception
+                in the multi-catch block, making it redundant. Since this method contains three compiler
+                errors, option F is the correct answer.
+            </p>
+        </div>
+
+        <p class="info"></p>
+    </div>
+    <div>
+        <button type="button" class="start">Start</button>
+        <button type="button" class="finish">Finish</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
